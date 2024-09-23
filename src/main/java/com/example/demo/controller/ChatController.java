@@ -104,19 +104,19 @@ public class ChatController {
     @PostMapping("/get-userinfo")
     public ResponseEntity<List<String>> getUserSessionIds(@RequestBody Map<String, String> userMap) {
         try {
-            String user_id = userMap.get("user_id");
-            log.info("Received user_id: {}", user_id);
+            int user_no = Integer.parseInt(userMap.get("user_no"));
+            log.info("Received user_no: {}", user_no);
 
-            //user_id에 해당하는 session_id 가져오기
-            List<String> sessionIds = chatMapper.getSessionIdsByUserId(user_id);
+            //user_no 해당하는 session_id 가져오기
+            List<String> sessionIds = chatMapper.getSessionIdsByUserId(user_no);
 
             if (sessionIds.isEmpty()) {
-                log.info("No session IDs found for user: {}", user_id);
+                log.info("No session IDs found for user: {}", user_no);
                 return ResponseEntity.noContent().build();
             }
             return ResponseEntity.ok(sessionIds);
         } catch (Exception e) {
-            log.error("Error fetching session IDs for user {}: {}", userMap.get("user_id"), e.getMessage(), e);
+            log.error("Error fetching session IDs for user {}: {}", userMap.get("user_no"), e.getMessage(), e);
             return ResponseEntity.status(500).body(null);
         }
     }
