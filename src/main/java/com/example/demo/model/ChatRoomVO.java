@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class ChatRoomVO {
     private String sessionId;
-    private String user_id;
+    private int user_no;
 
 }

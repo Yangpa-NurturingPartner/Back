@@ -40,9 +40,9 @@ public interface ChatMapper {
     })
     List<ChatVO> getSummBySessionIds(@Param("sessionIds") List<String> sessionIds);
 
-    //user_id가 가지고 있는 채팅방 목록 불러오기
-    @Select("SELECT session_id FROM chat_room WHERE user_id = #{user_id}")
-    List<String> getSessionIdsByUserId(String user_id);
+    //user_no 가지고 있는 채팅방 목록 불러오기
+    @Select("SELECT session_id FROM chat_room WHERE user_no = #{user_no}")
+    List<String> getSessionIdsByUserId(Integer user_no);
 
     //과거 채팅 불러오기
     @Select("SELECT query, answer, qa_time FROM chat_detail WHERE session_id = #{sessionId} ORDER BY qa_time ASC")
