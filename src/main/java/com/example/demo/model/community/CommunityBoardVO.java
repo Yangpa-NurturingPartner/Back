@@ -1,6 +1,8 @@
-package com.example.demo.model;
+package com.example.demo.model.community;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.sql.Date;
 
 @Data
@@ -14,4 +16,6 @@ public class CommunityBoardVO {
     private Integer count;
     private Date register_time;
     private Date update_time;
+
+    private MultipartFile file;
 }
