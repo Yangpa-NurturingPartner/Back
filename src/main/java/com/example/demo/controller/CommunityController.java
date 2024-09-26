@@ -130,7 +130,7 @@ public class CommunityController {
         }
     }
 
-    // 문자열 검색을 위한 새로운 엔드포인트
+    // 문자열 검색
     @PostMapping("/boards/search")
     public ResponseEntity<PageResponseVO<CommunityBoardVO>> searchBoards(@RequestBody Map<String, String> request) {
         try {
