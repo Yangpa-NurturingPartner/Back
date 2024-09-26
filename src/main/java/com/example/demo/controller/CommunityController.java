@@ -1,12 +1,13 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.community.CommunityBoardVO;
+import com.example.demo.model.community.*;
 import com.example.demo.model.PageRequestVO;
 import com.example.demo.model.PageResponseVO;
 import com.example.demo.security.JwtTokenProvider;
 import com.example.demo.service.community.CommunityService;
 import com.example.demo.service.member.MemberUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -27,13 +31,7 @@ public class CommunityController {
     private final CommunityService communityService;
     private final MemberUserService memberUserService;
     private final JwtTokenProvider jwtTokenProvider;
-
-    @Autowired
-    public CommunityController(CommunityService communityService, MemberUserService memberUserService, JwtTokenProvider jwtTokenProvider) {
-        this.communityService = communityService;
-        this.memberUserService = memberUserService;
-        this.jwtTokenProvider = jwtTokenProvider;
-    }
+    private final RestTemplate restTemplate;
 
     @Value("${jwt.secret}")
     private String jwtSecret;
@@ -44,9 +42,19 @@ public class CommunityController {
     @Value("${fastapi.port}")
     private String fastApiPort;
 
+    @Autowired
+    public CommunityController(CommunityService communityService,
+                               MemberUserService memberUserService,
+                               JwtTokenProvider jwtTokenProvider) {
+        this.communityService = communityService;
+        this.memberUserService = memberUserService;
+        this.jwtTokenProvider = jwtTokenProvider;
+        this.restTemplate = new RestTemplate();
+    }
+
     // 게시물 목록 조회
-    @GetMapping("/boards")
-    public PageResponseVO<CommunityBoardVO> getBoardList(PageRequestVO pageRequestVO) {
+    @PostMapping("/boards")
+    public PageResponseVO<CommunityBoardVO> getBoardList(@RequestBody PageRequestVO pageRequestVO) {
         return communityService.getBoardList(pageRequestVO);
     }
 
@@ -61,42 +69,90 @@ public class CommunityController {
             @RequestParam(value = "file", required = false) MultipartFile file
     ) {
         Map<String, Object> response = new HashMap<>();
-
         try {
             Long userNo = extractUserNoFromToken(token);
-            Long lastBoardNo = communityService.getLastInsertedBoardNo();
-            Long newBoardNo = (lastBoardNo != null) ? lastBoardNo + 1 : 1;
-
+            Long newBoardNo = getNewBoardNo();
             CommunityBoardVO boardVO = buildCommunityBoard(newBoardNo, userNo, childId, boardCode, title, boardContents, file);
 
             communityService.createBoard(boardVO);
 
-            lastBoardNo = communityService.getLastInsertedBoardNo();
-
-            Map<String, Object> payload = new HashMap<>();
-            payload.put("content", title + " " + boardContents);
-            payload.put("board", lastBoardNo);
-
-            // 커뮤니티 오픈 서치 저장 api 통신
-            RestTemplate restTemplate = new RestTemplate();
-            String externalApiUrl = "http://" + apiHost + ":" + fastApiPort + "/embedded/community/contents";
-            restTemplate.postForEntity(externalApiUrl, payload, String.class);
+            saveBoardContentToExternalApi(newBoardNo, title, boardContents);
 
             response.put("state", HttpStatus.OK.value());
             response.put("log", "Board Created Successfully");
             return ResponseEntity.ok(response);
-
         } catch (IOException e) {
-            log.error("File processing error: {}", e.getMessage());
-            return buildErrorResponse(response, HttpStatus.INTERNAL_SERVER_ERROR, "File processing error: " + e.getMessage());
-
+            return handleException(response, "File processing error", e, HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (RuntimeException e) {
-            log.error("Board creation runtime error: {}", e.getMessage());
-            return buildErrorResponse(response, HttpStatus.BAD_REQUEST, "Board creation error: " + e.getMessage());
+            return handleException(response, "Board creation runtime error", e, HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return handleException(response, "Board creation error", e, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    // board_no로 게시물 세부 정보, 댓글 및 파일 정보 조회
+    @GetMapping("/{board_no}")
+    public ResponseEntity<CommunityBoardDetailVO> getBoardDetails(@PathVariable("board_no") Long boardNo) {
+        CommunityBoardDetailVO boardDetail = buildBoardDetailResponse(boardNo);
+        return ResponseEntity.ok(boardDetail);
+    }
+
+    // 댓글 생성하는 api
+    @PostMapping("/boards/addComment")
+    public ResponseEntity<Map<String, Object>> addComment(@RequestBody CommentRequestDTO commentRequestDTO) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            // 새로운 comment_no를 생성
+            Long newCommentNo = communityService.getNewCommentNo();
+
+            LocalDate localDate = LocalDate.now();
+            Date today = Date.valueOf(localDate);
+
+            CommunityCommentVO commentVO = new CommunityCommentVO();
+            commentVO.setComment_no(newCommentNo);
+            commentVO.setBoard_no(commentRequestDTO.getBoard_no());
+            commentVO.setParents_id(null);
+            commentVO.setComments_name(null);
+            commentVO.setComments_contents(commentRequestDTO.getComments_contents());
+            commentVO.setComments_date(today);
+
+            // 댓글 저장, 갯수 + 1
+            communityService.addComment(commentVO);
+            communityService.incrementBoardCount(commentRequestDTO.getBoard_no());
+
+            response.put("state", HttpStatus.OK.value());
+            response.put("log", "Comment Added Successfully");
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException e) {
+            return handleException(response, "Comment creation runtime error", e, HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return handleException(response, "Comment creation error", e, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    // 문자열 검색을 위한 새로운 엔드포인트
+    @PostMapping("/boards/search")
+    public ResponseEntity<PageResponseVO<CommunityBoardVO>> searchBoards(@RequestBody Map<String, String> request) {
+        try {
+            String query = request.get("query");
+
+            Map<String, Object> payload = new HashMap<>();
+            payload.put("query", query);
+            payload.put("user_no", 0);
+
+            // post통신 - 사용자 쿼리 받아 데이터 비교 후 board_no_list로 결과값 사용
+            String searchApiUrl = "http://192.168.0.218:9000/search/community";
+            ResponseEntity<Map> response = restTemplate.postForEntity(searchApiUrl, payload, Map.class);
+
+            List<Integer> boardNoList = (List<Integer>) response.getBody().get("board_no_list");
+            List<CommunityBoardVO> boards = communityService.getBoardsByNos(boardNoList);
+
+            PageResponseVO<CommunityBoardVO> pageResponseVO = new PageResponseVO<>(boards, boards.size(), 1, boards.size());
+            return ResponseEntity.ok(pageResponseVO);
 
         } catch (Exception e) {
-            log.error("Board creation error: {}", e.getMessage());
-            return buildErrorResponse(response, HttpStatus.BAD_REQUEST, "Board creation error: " + e.getMessage());
+            log.error("게시물 검색 중 오류 발생: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
@@ -106,6 +162,12 @@ public class CommunityController {
         Map<String, Object> userInfo = jwtTokenProvider.decodeToken(jwtToken);
         log.info("Decoded user info: {}", userInfo);
         return memberUserService.getUserNoByEmail(userInfo.get("email").toString());
+    }
+
+    // 새로운 게시물 번호 생성
+    private Long getNewBoardNo() {
+        Long lastBoardNo = communityService.getLastInsertedBoardNo();
+        return (lastBoardNo != null) ? lastBoardNo + 1 : 1;
     }
 
     // CommunityBoardVO 생성
@@ -124,10 +186,38 @@ public class CommunityController {
         return boardVO;
     }
 
-    // 에러 응답 생성 메서드
-    private ResponseEntity<Map<String, Object>> buildErrorResponse(Map<String, Object> response, HttpStatus status, String logMessage) {
+    // 외부 API에 게시물 내용 저장
+    private void saveBoardContentToExternalApi(Long boardNo, String title, String boardContents) {
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("content", title + " " + boardContents);
+        payload.put("board", boardNo);
+
+        String externalApiUrl = "http://" + apiHost + ":" + fastApiPort + "/embedded/community/contents";
+        restTemplate.postForEntity(externalApiUrl, payload, String.class);
+    }
+
+    // 게시물 세부 정보 응답 생성
+    private CommunityBoardDetailVO buildBoardDetailResponse(Long boardNo) {
+        CommunityBoardVO board = communityService.getBoardByNo(boardNo);
+        List<CommunityCommentVO> comments = communityService.getCommentsByBoardNo(boardNo);
+        List<CommunityFileVO> files = communityService.getFilesByBoardNo(boardNo);
+
+        CommunityBoardResponseDTO boardResponseDTO = new CommunityBoardResponseDTO();
+        BeanUtils.copyProperties(board, boardResponseDTO);
+
+        CommunityBoardDetailVO boardDetail = new CommunityBoardDetailVO();
+        boardDetail.setBoard(boardResponseDTO);
+        boardDetail.setComments(comments);
+        boardDetail.setFiles(files);
+
+        return boardDetail;
+    }
+
+    // 예외 처리 및 응답 생성
+    private ResponseEntity<Map<String, Object>> handleException(Map<String, Object> response, String message, Exception e, HttpStatus status) {
+        log.error("{}: {}", message, e.getMessage());
         response.put("state", status.value());
-        response.put("log", logMessage);
+        response.put("log", message + ": " + e.getMessage());
         return ResponseEntity.status(status).body(response);
     }
 }
