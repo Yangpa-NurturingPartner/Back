@@ -52,4 +52,10 @@ public class CommunityService {
             communityMapper.insertFile(fileVO);
         }
     }
+
+    // 가장 최근에 삽입된 board_no를 가져오는 메서드
+    public Long getLastInsertedBoardNo() {
+        return communityMapper.getLastInsertedBoardNo();
+    }
+
 }

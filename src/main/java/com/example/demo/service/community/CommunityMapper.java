@@ -27,4 +27,8 @@ public interface CommunityMapper {
     @Insert("INSERT INTO community_file (board_no, name, attached_img, post_date) " +
             "VALUES (#{board_no}, #{name}, #{attached_img}, NOW())")
     void insertFile(CommunityFileVO fileVO);
+
+    // 가장 최근에 삽입된 board_no 가져오기
+    @Select("SELECT MAX(board_no) FROM community_board")
+    Long getLastInsertedBoardNo();
 }

@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -37,6 +38,12 @@ public class CommunityController {
     @Value("${jwt.secret}")
     private String jwtSecret;
 
+    @Value("${api.host}")
+    private String apiHost;
+
+    @Value("${fastapi.port}")
+    private String fastApiPort;
+
     // 게시물 목록 조회
     @GetMapping("/boards")
     public PageResponseVO<CommunityBoardVO> getBoardList(PageRequestVO pageRequestVO) {
@@ -57,10 +64,23 @@ public class CommunityController {
 
         try {
             Long userNo = extractUserNoFromToken(token);
+            Long lastBoardNo = communityService.getLastInsertedBoardNo();
+            Long newBoardNo = (lastBoardNo != null) ? lastBoardNo + 1 : 1;
 
-            CommunityBoardVO boardVO = buildCommunityBoard(userNo, childId, boardCode, title, boardContents, file);
+            CommunityBoardVO boardVO = buildCommunityBoard(newBoardNo, userNo, childId, boardCode, title, boardContents, file);
 
             communityService.createBoard(boardVO);
+
+            lastBoardNo = communityService.getLastInsertedBoardNo();
+
+            Map<String, Object> payload = new HashMap<>();
+            payload.put("content", title + " " + boardContents);
+            payload.put("board", lastBoardNo);
+
+            // 커뮤니티 오픈 서치 저장 api 통신
+            RestTemplate restTemplate = new RestTemplate();
+            String externalApiUrl = "http://" + apiHost + ":" + fastApiPort + "/embedded/community/contents";
+            restTemplate.postForEntity(externalApiUrl, payload, String.class);
 
             response.put("state", HttpStatus.OK.value());
             response.put("log", "Board Created Successfully");
@@ -89,8 +109,9 @@ public class CommunityController {
     }
 
     // CommunityBoardVO 생성
-    private CommunityBoardVO buildCommunityBoard(Long userNo, Integer childId, Integer boardCode, String title, String boardContents, MultipartFile file) throws IOException {
+    private CommunityBoardVO buildCommunityBoard(Long newBoardNo, Long userNo, Integer childId, Integer boardCode, String title, String boardContents, MultipartFile file) throws IOException {
         CommunityBoardVO boardVO = new CommunityBoardVO();
+        boardVO.setBoard_no(Math.toIntExact(newBoardNo));
         boardVO.setUser_no(Math.toIntExact(userNo));
         boardVO.setChild_id(childId);
         boardVO.setBoard_code(boardCode);
