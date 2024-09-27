@@ -1276,3 +1276,101 @@ org.apache.ibatis.binding.BindingException: Invalid bound statement (not found):
 [DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] getCommunityBoardsWithFilesByNos - ==> Parameters: 29(Integer), 30(Integer), 31(Integer)
 [DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] getCommunityBoardsWithFilesByNos - <==      Total: 3
 [DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@456a68b6]
+[WARN ] 2024-09-27 18:03:37 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m12s600ms).
+[WARN ] 2024-09-27 18:20:28 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m20s164ms).
+[WARN ] 2024-09-27 18:24:45 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=46s833ms).
+[INFO ] 2024-09-27 18:29:18 [http-nio-8000-exec-7] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
+[INFO ] 2024-09-27 18:29:18 [http-nio-8000-exec-7] IntSearchController - Decoded user info: {createdAt=2024-09-23 09:28:42.768, name=장혜지, id=1, email=jangheyji@gmail.com}
+[INFO ] 2024-09-27 18:29:23 [http-nio-8000-exec-7] IntSearchController - {video_results_video_no=[20, 24, 25], document_results_document_no=[426, 248, 118], community_results_board_no=[29, 30, 31], chat_results_session_id=[]}
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78fbb118] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1321521357 wrapping org.postgresql.jdbc.PgConnection@1786150f] will not be managed by Spring
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] getVideoDataByIds - ==>  Preparing: SELECT * FROM data_video WHERE video_no IN ( ? , ? , ? )
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] getVideoDataByIds - ==> Parameters: 20(Integer), 24(Integer), 25(Integer)
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] getVideoDataByIds - <==      Total: 3
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78fbb118]
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@61d93e61] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1300969717 wrapping org.postgresql.jdbc.PgConnection@1786150f] will not be managed by Spring
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] getDocumentDataByIds - ==>  Preparing: SELECT * FROM data_document WHERE document_no IN ( ? , ? , ? )
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] getDocumentDataByIds - ==> Parameters: 426(Integer), 248(Integer), 118(Integer)
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] getDocumentDataByIds - <==      Total: 3
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@61d93e61]
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@68dd332d] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@16237635 wrapping org.postgresql.jdbc.PgConnection@1786150f] will not be managed by Spring
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] getCommunityBoardsWithFilesByNos - ==>  Preparing: SELECT * FROM community_board WHERE board_no IN ( ? , ? , ? )
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] getCommunityBoardsWithFilesByNos - ==> Parameters: 29(Integer), 30(Integer), 31(Integer)
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] getCommunityBoardsWithFilesByNos - <==      Total: 3
+[DEBUG] 2024-09-27 18:29:23 [http-nio-8000-exec-7] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@68dd332d]
+[INFO ] 2024-09-27 18:30:11 [http-nio-8000-exec-9] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
+[DEBUG] 2024-09-27 18:31:06 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-27 18:31:06 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@34327bad] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-27 18:31:06 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@518411554 wrapping org.postgresql.jdbc.PgConnection@1786150f] will not be managed by Spring
+[DEBUG] 2024-09-27 18:31:06 [http-nio-8000-exec-2] getBoardsWithFilesByNos - ==>  Preparing: SELECT b.*, f.file_no, f.name AS file_name, f.attached_img, f.post_date FROM community_board b LEFT JOIN community_file f ON b.board_no = f.board_no WHERE b.board_no IN ( ? , ? , ? , ? ) ORDER BY b.board_no DESC
+[DEBUG] 2024-09-27 18:31:06 [http-nio-8000-exec-2] getBoardsWithFilesByNos - ==> Parameters: 29(Integer), 30(Integer), 31(Integer), 32(Integer)
+[DEBUG] 2024-09-27 18:31:06 [http-nio-8000-exec-2] getBoardsWithFilesByNos - <==      Total: 4
+[DEBUG] 2024-09-27 18:31:06 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@34327bad]
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@490548b6] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@638636151 wrapping org.postgresql.jdbc.PgConnection@1786150f] will not be managed by Spring
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] getBoardByNo - ==>  Preparing: SELECT * FROM community_board WHERE board_no = ?
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] getBoardByNo - ==> Parameters: 32(Long)
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] getBoardByNo - <==      Total: 1
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@490548b6]
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1d2a2d42] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1208401324 wrapping org.postgresql.jdbc.PgConnection@1786150f] will not be managed by Spring
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] getCommentsByBoardNo - ==>  Preparing: SELECT * FROM community_comments WHERE board_no = ?
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] getCommentsByBoardNo - ==> Parameters: 32(Long)
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] getCommentsByBoardNo - <==      Total: 6
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1d2a2d42]
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@479a8e84] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@982294534 wrapping org.postgresql.jdbc.PgConnection@1786150f] will not be managed by Spring
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] getFilesByBoardNo - ==>  Preparing: SELECT * FROM community_file WHERE board_no = ?
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] getFilesByBoardNo - ==> Parameters: 32(Long)
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] getFilesByBoardNo - <==      Total: 1
+[DEBUG] 2024-09-27 18:31:43 [http-nio-8000-exec-1] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@479a8e84]
+[DEBUG] 2024-09-27 18:31:51 [http-nio-8000-exec-3] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-27 18:31:51 [http-nio-8000-exec-3] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2327ae2c] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-27 18:31:51 [http-nio-8000-exec-3] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@107594882 wrapping org.postgresql.jdbc.PgConnection@1786150f] will not be managed by Spring
+[DEBUG] 2024-09-27 18:31:51 [http-nio-8000-exec-3] getBoardListWithFiles - ==>  Preparing: SELECT b.*, f.name AS file_name, f.attached_img, f.post_date FROM community_board b LEFT JOIN community_file f ON b.board_no = f.board_no ORDER BY b.board_no DESC LIMIT ? OFFSET ?
+[DEBUG] 2024-09-27 18:31:51 [http-nio-8000-exec-3] getBoardListWithFiles - ==> Parameters: 10(Integer), 0(Integer)
+[DEBUG] 2024-09-27 18:31:51 [http-nio-8000-exec-3] getBoardListWithFiles - <==      Total: 4
+[DEBUG] 2024-09-27 18:31:51 [http-nio-8000-exec-3] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2327ae2c]
+[DEBUG] 2024-09-27 18:31:51 [http-nio-8000-exec-3] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-27 18:31:51 [http-nio-8000-exec-3] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@32a02f6] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-27 18:31:51 [http-nio-8000-exec-3] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@416757249 wrapping org.postgresql.jdbc.PgConnection@1786150f] will not be managed by Spring
+[DEBUG] 2024-09-27 18:31:51 [http-nio-8000-exec-3] getTotalCount - ==>  Preparing: SELECT COUNT(*) FROM community_board
+[DEBUG] 2024-09-27 18:31:51 [http-nio-8000-exec-3] getTotalCount - ==> Parameters: 
+[DEBUG] 2024-09-27 18:31:51 [http-nio-8000-exec-3] getTotalCount - <==      Total: 1
+[DEBUG] 2024-09-27 18:31:51 [http-nio-8000-exec-3] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@32a02f6]
+[INFO ] 2024-09-27 18:32:07 [http-nio-8000-exec-4] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
+[INFO ] 2024-09-27 18:32:07 [http-nio-8000-exec-4] CommunityController - Decoded user info: {createdAt=2024-09-23 09:28:42.768, name=장혜지, id=1, email=jangheyji@gmail.com}
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a11f69f] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1722969240 wrapping org.postgresql.jdbc.PgConnection@1786150f] will not be managed by Spring
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] getLastInsertedBoardNo - ==>  Preparing: SELECT MAX(board_no) FROM community_board
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] getLastInsertedBoardNo - ==> Parameters: 
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] getLastInsertedBoardNo - <==      Total: 1
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a11f69f]
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@48f15dda] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1443201569 wrapping org.postgresql.jdbc.PgConnection@1786150f] will not be managed by Spring
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] insertBoard - ==>  Preparing: INSERT INTO community_board (user_no, child_id, board_code, title, board_contents, count, register_date, update_date) VALUES (?, ?, ?, ?, ?, 0, NOW(), NOW())
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] insertBoard - ==> Parameters: 3(Integer), 1(Integer), 101(Integer), 임신7주차 디카페인커피로 살았어여(String), 무식이 죄라고
+아니 임신중에도 커피 마실수 있다면서요 ㅠ
+왜저는 여태 몰랐을까요 ㅠㅠ
+얼마나 참았는데요 ㅋㅋㅋㅋㅋㅋ
+디카페인커피는 괜찮다고 해서 체험단 마저 신청했다능
+장난 아니져(String)
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] insertBoard - <==    Updates: 1
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@48f15dda]
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1c4cbad2] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1793030134 wrapping org.postgresql.jdbc.PgConnection@1786150f] will not be managed by Spring
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] insertFile - ==>  Preparing: INSERT INTO community_file (board_no, name, attached_img, post_date) VALUES (?, ?, ?, NOW())
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] insertFile - ==> Parameters: 33(Long), notion.png(String), [B@1a449a0e(byte[])
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] insertFile - <==    Updates: 1
+[DEBUG] 2024-09-27 18:32:07 [http-nio-8000-exec-4] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1c4cbad2]

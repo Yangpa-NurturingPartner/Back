@@ -61,3 +61,24 @@ dependencyManagement {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+bootWar {
+    archiveBaseName = 'back'
+    archiveFileName = 'back.war'
+    archiveVersion = "0.0.0"
+}
+
+bootWar {
+    enabled = true
+}
+
+bootJar {
+    enabled = false
+}
+
+task copyEnvFile(type: Copy) {
+    from '.env'
+    into 'build/resources/main'
+}
+
+processResources.dependsOn(copyEnvFile)
