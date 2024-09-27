@@ -16,4 +16,10 @@ public class MemberUserService {
         MemberUserVO memberUser = memberUserDAO.findByEmail(email);
         return memberUser != null ? memberUser.getUserNo() : null;
     }
+
+    // userNo를 통해 이메일을 조회하는 메서드
+    public String getEmailByUserNo(Long userNo) {
+        MemberUserVO memberUser = memberUserDAO.findByUserNo(userNo);
+        return memberUser != null ? memberUser.getUserEmail() : null;
+    }
 }

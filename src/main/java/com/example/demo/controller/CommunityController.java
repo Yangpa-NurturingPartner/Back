@@ -105,6 +105,9 @@ public class CommunityController {
             // 새로운 comment_no를 생성
             Long newCommentNo = communityService.getNewCommentNo();
 
+            Long userNo = extractUserNoFromToken(commentRequestDTO.getToken());
+            String userEmail = memberUserService.getEmailByUserNo(userNo);
+
             LocalDate localDate = LocalDate.now();
             Date today = Date.valueOf(localDate);
 
@@ -112,7 +115,7 @@ public class CommunityController {
             commentVO.setComment_no(newCommentNo);
             commentVO.setBoard_no(commentRequestDTO.getBoard_no());
             commentVO.setParents_id(null);
-            commentVO.setComments_name(null);
+            commentVO.setComments_name(userEmail);
             commentVO.setComments_contents(commentRequestDTO.getComments_contents());
             commentVO.setComments_date(today);
 
@@ -204,6 +207,9 @@ public class CommunityController {
 
         CommunityBoardResponseDTO boardResponseDTO = new CommunityBoardResponseDTO();
         BeanUtils.copyProperties(board, boardResponseDTO);
+
+        String userEmail = memberUserService.getEmailByUserNo(Long.valueOf(board.getUser_no()));
+        boardResponseDTO.setEmail(userEmail);
 
         CommunityBoardDetailVO boardDetail = new CommunityBoardDetailVO();
         boardDetail.setBoard(boardResponseDTO);
