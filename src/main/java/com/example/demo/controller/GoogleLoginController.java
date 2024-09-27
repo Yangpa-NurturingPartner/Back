@@ -4,22 +4,16 @@ import com.example.demo.entity.AuthToken;
 import com.example.demo.entity.MemberUser;
 import com.example.demo.repository.AuthTokenRepository;
 import com.example.demo.repository.MemberUserRepository;
-import com.example.demo.security.JwtTokenProvider;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
-import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
-import java.security.Key;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
@@ -32,38 +26,17 @@ public class GoogleLoginController {
     private MemberUserRepository memberUserRepository;
 
     @Autowired
-    private AuthTokenRepository authTokenRepository;  // auth_token 테이블 저장을 위한 repository
-
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
+    private AuthTokenRepository authTokenRepository;
 
     @Value("${google.client.id}")
     private String googleClientId;
 
-    @Value("${jwt.secret}")
-    private String jwtSecret;
-
-    // JWT 토큰 생성 메서드
-    private String createToken(String userNo, String email, String name) {
-        Key hmacKey = new SecretKeySpec(jwtSecret.getBytes(StandardCharsets.UTF_8), SignatureAlgorithm.HS256.getJcaName());
-        Date now = new Date();
-
-        return Jwts.builder()
-                .setSubject(userNo)
-                .claim("email", email)
-                .claim("name", name)
-                .setIssuedAt(now)
-                .signWith(hmacKey, SignatureAlgorithm.HS256)
-                .compact();
-    }
-
-    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
     @PostMapping("/google-login")
     public ResponseEntity<?> googleLogin(@RequestBody Map<String, String> tokenData) {
         String idTokenString = tokenData.get("token");
 
         try {
-            // Google ID 토큰 검증
+            // Google ID Token 검증 로직
             GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(
                     GoogleNetHttpTransport.newTrustedTransport(),
                     JacksonFactory.getDefaultInstance())
@@ -76,29 +49,52 @@ public class GoogleLoginController {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid ID token");
             }
 
-            // Google ID 토큰의 페이로드에서 사용자 정보 추출
+            // 토큰 검증 후 사용자 정보 가져오기
             GoogleIdToken.Payload payload = idToken.getPayload();
             String email = payload.getEmail();
             String name = (String) payload.get("name");
 
-            // 사용자 데이터베이스 저장 또는 조회
+            // 사용자 정보 저장 또는 검색
             MemberUser memberUser = memberUserRepository.findByUserEmail(email).orElseGet(() -> {
                 MemberUser newUser = new MemberUser(email);
                 return memberUserRepository.save(newUser);
             });
 
-            // JWT 토큰 생성
-            String jwtToken = createToken(String.valueOf(memberUser.getUserNo()), email, name);
-            System.out.println("Generated JWT Token: " + jwtToken);
+            // 로그 추가: 사용자 정보와 토큰 요청 정보 출력
+            System.out.println("User email: " + email);
+            System.out.println("User name: " + name);
+            System.out.println("User ID: " + memberUser.getUserNo());
 
-            // auth_token 테이블에 JWT 토큰 저장
+            // JwtController의 토큰 생성 API 호출
+            RestTemplate restTemplate = new RestTemplate();
+            String url = "http://localhost:8080/api/generate-token";
+            Map<String, Object> requestBody = Map.of(
+                    "id", memberUser.getUserNo(),
+                    "email", email,
+                    "name", name
+            );
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Content-Type", "application/json");
+            HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
+
+            ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.POST, request, Map.class);
+
+            if (response.getStatusCode() != HttpStatus.OK || response.getBody() == null || !response.getBody().containsKey("token")) {
+                System.err.println("Failed to generate JWT token: " + response);
+                throw new RuntimeException("Failed to generate JWT token");
+            }
+
+            // 응답에서 JWT 토큰 추출
+            String jwtToken = (String) response.getBody().get("token");
+
+            // AuthToken 엔티티에 토큰 저장
             AuthToken authToken = new AuthToken();
             authToken.setMemberUser(memberUser);
             authToken.setAccessToken(jwtToken);
             authToken.setIat(new Date());
-            authTokenRepository.save(authToken);  // 저장
+            authTokenRepository.save(authToken);
 
-            // 클라이언트로 JWT와 사용자 정보 반환
             return ResponseEntity.ok(Map.of(
                     "token", jwtToken,
                     "email", email,
@@ -107,17 +103,9 @@ public class GoogleLoginController {
 
         } catch (Exception e) {
             System.err.println("Error during token validation: " + e.getMessage());
+            e.printStackTrace();  // 전체 스택 트레이스 출력
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error during token validation: " + e.getMessage());
+                    .body(Map.of("error", "Error during token validation: " + e.getMessage()));
         }
-    }
-
-    // 토큰 디코딩 및 정보 추출
-    @GetMapping("/decode-google-token")
-    public ResponseEntity<Map<String, Object>> decodeGoogleToken(@RequestHeader("Authorization") String token) {
-        String jwtToken = token.replace("Bearer ", "");
-        Map<String, Object> userInfo = jwtTokenProvider.decodeToken(jwtToken);
-
-        return ResponseEntity.ok(userInfo);
     }
 }

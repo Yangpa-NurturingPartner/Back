@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProfileService {
@@ -28,6 +26,12 @@ public class ProfileService {
     @Transactional
     public Profile_child saveProfile(Profile_child profile) {
         logger.info("Saving profile for user: {}", profile.getMemberUser().getUserNo());
+
+        // user_no 별로 child_id를 1부터 증가시키는 로직
+        MemberUser memberUser = profile.getMemberUser();
+        Integer maxChildId = profileRepository.findMaxChildIdByMemberUser(memberUser);
+        profile.setChildId(maxChildId + 1);
+
         return profileRepository.save(profile);
     }
 
@@ -37,51 +41,5 @@ public class ProfileService {
         MemberUser memberUser = memberUserRepository.findById(userNo)
                 .orElseThrow(() -> new RuntimeException("User not found with id: " + userNo));
         return profileRepository.findByMemberUser(memberUser);
-    }
-
-    @Transactional(readOnly = true)
-    public Optional<Profile_child> getProfileByChildId(Long childId) {
-        logger.info("Fetching profile with child id: {}", childId);
-        return profileRepository.findByChildId(childId);
-    }
-
-    @Transactional
-    public Profile_child updateProfile(Long childId, Profile_child updatedProfile) {
-        logger.info("Updating profile with child id: {}", childId);
-        Profile_child existingProfile = profileRepository.findByChildId(childId)
-                .orElseThrow(() -> new RuntimeException("Profile not found with id: " + childId));
-
-        existingProfile.setName(updatedProfile.getName());
-        existingProfile.setSex(updatedProfile.getSex());
-        existingProfile.setBirthdate(updatedProfile.getBirthdate());
-        existingProfile.setImageProfile(updatedProfile.getImageProfile());
-
-        return profileRepository.save(existingProfile);
-    }
-
-    @Transactional
-    public void deleteProfile(Long childId) {
-        logger.info("Deleting profile with child id: {}", childId);
-        profileRepository.deleteById(childId);
-    }
-
-    @Transactional(readOnly = true)
-    public List<Profile_child> getProfilesByBirthdate(LocalDate birthdate) {
-        logger.info("Fetching profiles with birthdate: {}", birthdate);
-        return profileRepository.findByBirthdate(birthdate);
-    }
-
-    @Transactional(readOnly = true)
-    public List<Profile_child> getProfilesByName(String name) {
-        logger.info("Fetching profiles with name containing: {}", name);
-        return profileRepository.findByNameContaining(name);
-    }
-
-    @Transactional(readOnly = true)
-    public long countProfilesByUser(Long userNo) {
-        logger.info("Counting profiles for user: {}", userNo);
-        MemberUser memberUser = memberUserRepository.findById(userNo)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + userNo));
-        return profileRepository.countByMemberUser(memberUser);
     }
 }

@@ -1,7 +1,7 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
@@ -9,12 +9,12 @@ import java.time.LocalDate;
 public class Profile_child {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "child_id")
-    private Long childId;
+    private Integer childId;  // @GeneratedValue 제거하여 수동 설정으로 변경
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_no", nullable = false)
+    @JsonIgnore
     private MemberUser memberUser;
 
     @Column(name = "name")
@@ -33,11 +33,11 @@ public class Profile_child {
     private byte[] imageProfile;
 
     // Getter 및 Setter
-    public Long getChildId() {
+    public Integer getChildId() {
         return childId;
     }
 
-    public void setChildId(Long childId) {
+    public void setChildId(Integer childId) {
         this.childId = childId;
     }
 
