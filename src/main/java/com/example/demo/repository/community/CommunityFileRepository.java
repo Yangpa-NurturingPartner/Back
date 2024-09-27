@@ -1,6 +1,6 @@
 package com.example.demo.repository.community;
 
-import com.example.demo.entity.CommunityFile;
+import com.example.demo.entity.community.CommunityFile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -2934,3 +2934,6 @@ Relying upon circular references is discouraged and they are prohibited by defau
 [DEBUG] 2024-09-26 18:43:13 [http-nio-8000-exec-2] getBoardsWithFilesByNos - ==> Parameters: 29(Integer), 30(Integer), 31(Integer), 32(Integer)
 [DEBUG] 2024-09-26 18:43:13 [http-nio-8000-exec-2] getBoardsWithFilesByNos - <==      Total: 4
 [DEBUG] 2024-09-26 18:43:13 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@19f8b637]
+[INFO ] 2024-09-26 19:01:57 [SpringApplicationShutdownHook] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 2024-09-26 19:01:57 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 2024-09-26 19:01:57 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
