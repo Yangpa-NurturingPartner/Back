@@ -17,4 +17,5 @@ public class CommunityBoardResponseDTO {
     private Integer count;
     private Date register_date;
     private Date update_date;
+    private String email;
 }

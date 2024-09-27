@@ -21,6 +21,12 @@ public class MemberUserDAO {
         return jdbcTemplate.queryForObject(sql, new Object[]{email}, new MemberUserRowMapper());
     }
 
+    // userNo로 이메일 조회
+    public MemberUserVO findByUserNo(Long userNo) {
+        String sql = "SELECT user_no, user_email FROM member_user WHERE user_no = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{userNo}, new MemberUserRowMapper());
+    }
+
     // ResultSet을 MemberUserVO로 매핑
     private static class MemberUserRowMapper implements RowMapper<MemberUserVO> {
         @Override
