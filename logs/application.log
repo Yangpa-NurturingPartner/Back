@@ -1252,3 +1252,27 @@ org.apache.ibatis.binding.BindingException: Invalid bound statement (not found):
 [DEBUG] 2024-09-27 17:38:31 [http-nio-8000-exec-1] getFilesByBoardNo - ==> Parameters: 32(Long)
 [DEBUG] 2024-09-27 17:38:31 [http-nio-8000-exec-1] getFilesByBoardNo - <==      Total: 1
 [DEBUG] 2024-09-27 17:38:31 [http-nio-8000-exec-1] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7409942c]
+[INFO ] 2024-09-27 17:43:26 [http-nio-8000-exec-5] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
+[INFO ] 2024-09-27 17:43:26 [http-nio-8000-exec-5] IntSearchController - Decoded user info: {createdAt=2024-09-23 09:28:42.768, name=장혜지, id=1, email=jangheyji@gmail.com}
+[INFO ] 2024-09-27 17:43:33 [http-nio-8000-exec-5] IntSearchController - {video_results_video_no=[20, 24, 25], document_results_document_no=[426, 248, 118], community_results_board_no=[29, 30, 31], chat_results_session_id=[]}
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3ddbbff2] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1177613173 wrapping org.postgresql.jdbc.PgConnection@1786150f] will not be managed by Spring
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] getVideoDataByIds - ==>  Preparing: SELECT * FROM data_video WHERE video_no IN ( ? , ? , ? )
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] getVideoDataByIds - ==> Parameters: 20(Integer), 24(Integer), 25(Integer)
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] getVideoDataByIds - <==      Total: 3
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3ddbbff2]
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2abe5668] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1613332783 wrapping org.postgresql.jdbc.PgConnection@1786150f] will not be managed by Spring
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] getDocumentDataByIds - ==>  Preparing: SELECT * FROM data_document WHERE document_no IN ( ? , ? , ? )
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] getDocumentDataByIds - ==> Parameters: 426(Integer), 248(Integer), 118(Integer)
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] getDocumentDataByIds - <==      Total: 3
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2abe5668]
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@456a68b6] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1436159759 wrapping org.postgresql.jdbc.PgConnection@1786150f] will not be managed by Spring
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] getCommunityBoardsWithFilesByNos - ==>  Preparing: SELECT * FROM community_board WHERE board_no IN ( ? , ? , ? )
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] getCommunityBoardsWithFilesByNos - ==> Parameters: 29(Integer), 30(Integer), 31(Integer)
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] getCommunityBoardsWithFilesByNos - <==      Total: 3
+[DEBUG] 2024-09-27 17:43:33 [http-nio-8000-exec-5] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@456a68b6]
