@@ -91,7 +91,7 @@ public class ChatService {
     }
 
     public String getSummary(String answer) {
-        ChatMessage summaryMessage = new ChatMessage("user", "다음 텍스트의 대화 주제를 10~20글자 사이로 요약해: " + answer);
+        ChatMessage summaryMessage = new ChatMessage("user", "다음 텍스트의 대화 주제를 8~15글자 사이로 요약해: " + answer);
 
         ChatCompletionRequest summaryRequest = ChatCompletionRequest.builder()
                 .model("gpt-4o-mini")
@@ -125,12 +125,17 @@ public class ChatService {
 //                .map(chat -> "질문: " + chat.getQuery() + "\n답변: " + chat.getAnswer())
 //                .collect(Collectors.joining("\n\n"));
 
-        String first_answer = chatMapper.getFirstAnswer(session_id);
-        String summ_answer = getSummary(first_answer);
-        Timestamp end_time = Timestamp.valueOf(LocalDateTime.now());
-        chatMapper.saveChat(session_id, summ_answer, end_time);
+        String first_answer = chatMapper.getFirstAnswer(session_id); //첫 번째 답변 가져옴
+        int count = chatMapper.countBySessionId(session_id);
+        if (first_answer != null && !first_answer.trim().isEmpty() && count == 0) {
+            String summ_answer = getSummary(first_answer);
+            Timestamp end_time = Timestamp.valueOf(LocalDateTime.now());
+            chatMapper.saveChat(session_id, summ_answer, end_time);
+            System.out.println("요약 저장 완료");
 
-        System.out.println("요약 저장 완료");
+        } else {
+            System.out.println("대화 내용 없어서 요약 불가");
+        }
     }
 
   public List<ChatDetailVO> getChatDetailsBySessionId(String sessionId) {
