@@ -4932,3 +4932,7 @@ Caused by: org.postgresql.util.PSQLException: 오류: character varying(250) 자
 [DEBUG] 2024-09-30 16:25:18 [http-nio-8000-exec-5] getBoardsWithFilesByNos - ==> Parameters: 59(Integer), 57(Integer), 64(Integer), 63(Integer), 62(Integer), 92(Integer), 1(Integer), 56(Integer)
 [DEBUG] 2024-09-30 16:25:18 [http-nio-8000-exec-5] getBoardsWithFilesByNos - <==      Total: 7
 [DEBUG] 2024-09-30 16:25:18 [http-nio-8000-exec-5] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3fa3c1e5]
+[WARN ] 2024-09-30 16:44:04 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=50s989ms).
+[WARN ] 2024-09-30 16:51:14 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m40s698ms).
+[WARN ] 2024-09-30 17:18:51 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=58s503ms).
+[WARN ] 2024-09-30 17:23:48 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m27s112ms).
