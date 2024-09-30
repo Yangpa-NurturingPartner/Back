@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.intSearch.SearchResultMapper;
 import com.example.demo.security.JwtTokenProvider;
 import com.example.demo.service.community.CommunityService;
 import com.example.demo.service.member.MemberUserService;
@@ -36,7 +35,7 @@ public class IntSearchController {
     private CommunityMapper communityMapper;
 
     @Autowired
-    private SearchResultMapper searchMapper;
+    private com.example.demo.model.intSㄹearch.SearchResultMapper searchMapper;
 
     @Autowired
     public IntSearchController(CommunityService communityService,

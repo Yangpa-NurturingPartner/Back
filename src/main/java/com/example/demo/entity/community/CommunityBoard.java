@@ -31,7 +31,7 @@ public class CommunityBoard {
     @Column(name = "title", length = 50)
     private String title;
 
-    @Column(name = "board_contents", length = 250)
+    @Column(name = "board_contents", length = 1500)
     private String boardContents;
 
     @Column(name = "count")

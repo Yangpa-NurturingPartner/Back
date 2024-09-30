@@ -3,7 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.entity.AuthToken;
 import com.example.demo.entity.MemberUser;
 import com.example.demo.repository.AuthTokenRepository;
-import com.example.demo.repository.MemberUserRepository;
+import com.example.demo.repository.member.MemberUserRepository;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;

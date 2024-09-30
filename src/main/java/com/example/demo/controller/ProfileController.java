@@ -2,9 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.MemberUser;
 import com.example.demo.entity.Profile_child;
-import com.example.demo.repository.MemberUserRepository;
+import com.example.demo.repository.member.MemberUserRepository;
 import com.example.demo.repository.ProfileRepository;
-import com.example.demo.service.ProfileService;
+import com.example.demo.service.member.ProfileService;
 import com.example.demo.security.JwtTokenProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

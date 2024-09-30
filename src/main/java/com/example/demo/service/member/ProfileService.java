@@ -1,8 +1,8 @@
-package com.example.demo.service;
+package com.example.demo.service.member;
 
 import com.example.demo.entity.MemberUser;
 import com.example.demo.entity.Profile_child;
-import com.example.demo.repository.MemberUserRepository;
+import com.example.demo.repository.member.MemberUserRepository;
 import com.example.demo.repository.ProfileRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
