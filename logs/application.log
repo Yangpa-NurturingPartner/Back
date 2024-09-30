@@ -4604,3 +4604,331 @@ Caused by: org.postgresql.util.PSQLException: 오류: "chat" 테이블에서 자
 [DEBUG] 2024-09-30 15:20:07 [http-nio-8000-exec-9] saveChatRoom - ==> Parameters: 24286bbe-3d97-489e-bd2e-36f06dcd61d5(String), 3(Integer), 1(Integer)
 [DEBUG] 2024-09-30 15:20:07 [http-nio-8000-exec-9] saveChatRoom - <==    Updates: 1
 [DEBUG] 2024-09-30 15:20:07 [http-nio-8000-exec-9] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@49b04108]
+[WARN ] 2024-09-30 15:46:54 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m35s878ms).
+[INFO ] 2024-09-30 16:18:45 [SpringApplicationShutdownHook] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 2024-09-30 16:18:45 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 2024-09-30 16:18:45 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 2024-09-30 16:18:47 [background-preinit] Version - HV000001: Hibernate Validator 8.0.1.Final
+[INFO ] 2024-09-30 16:18:47 [main] DemoApplication - Starting DemoApplication using Java 17.0.6 with PID 79772 (/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main started by honggeonho in /Users/honggeonho/Documents/workspace/AIOnion/Back)
+[DEBUG] 2024-09-30 16:18:47 [main] DemoApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[INFO ] 2024-09-30 16:18:47 [main] DemoApplication - No active profile set, falling back to 1 default profile: "default"
+[DEBUG] 2024-09-30 16:18:48 [main] MybatisAutoConfiguration - Searching for mappers annotated with @Mapper
+[DEBUG] 2024-09-30 16:18:48 [main] MybatisAutoConfiguration - Using auto-configuration base package 'com.example.demo'
+[INFO ] 2024-09-30 16:18:48 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 2024-09-30 16:18:48 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 80 ms. Found 2 JPA repository interfaces.
+[DEBUG] 2024-09-30 16:18:48 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/model/intSearch/SearchResultMapper.class]
+[DEBUG] 2024-09-30 16:18:48 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/chat/ChatMapper.class]
+[DEBUG] 2024-09-30 16:18:48 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/community/CommunityMapper.class]
+[DEBUG] 2024-09-30 16:18:48 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'searchResultMapper' and 'com.example.demo.model.intSearch.SearchResultMapper' mapperInterface
+[DEBUG] 2024-09-30 16:18:48 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'chatMapper' and 'com.example.demo.service.chat.ChatMapper' mapperInterface
+[DEBUG] 2024-09-30 16:18:48 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'communityMapper' and 'com.example.demo.service.community.CommunityMapper' mapperInterface
+[INFO ] 2024-09-30 16:18:48 [main] TomcatWebServer - Tomcat initialized with port 8000 (http)
+[INFO ] 2024-09-30 16:18:49 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8000"]
+[INFO ] 2024-09-30 16:18:49 [main] StandardService - Starting service [Tomcat]
+[INFO ] 2024-09-30 16:18:49 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+[INFO ] 2024-09-30 16:18:49 [main] [/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2024-09-30 16:18:49 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 991 ms
+[INFO ] 2024-09-30 16:18:49 [main] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 2024-09-30 16:18:49 [main] Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+[INFO ] 2024-09-30 16:18:49 [main] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[INFO ] 2024-09-30 16:18:49 [main] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[INFO ] 2024-09-30 16:18:49 [main] HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 2024-09-30 16:18:49 [main] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7b7cf475
+[INFO ] 2024-09-30 16:18:49 [main] HikariDataSource - HikariPool-1 - Start completed.
+[WARN ] 2024-09-30 16:18:49 [main] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[INFO ] 2024-09-30 16:18:50 [main] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[WARN ] 2024-09-30 16:18:50 [main] ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists community_board alter column board_contents set data type varchar(250)" via JDBC [오류: character varying(250) 자료형에 너무 긴 자료를 담으려고 합니다.]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table if exists community_board alter column board_contents set data type varchar(250)" via JDBC [오류: character varying(250) 자료형에 너무 긴 자료를 담으려고 합니다.]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:575) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:515) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:333) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:232) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:117) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:280) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:144) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1421) ~[?:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:141) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:322) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:457) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1506) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.12.jar:6.1.12]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.1.12.jar:6.1.12]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.12.jar:6.1.12]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.12.jar:6.1.12]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) [spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) [spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205) [spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:954) [spring-context-6.1.12.jar:6.1.12]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) [spring-context-6.1.12.jar:6.1.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352) [spring-boot-3.3.3.jar:3.3.3]
+	at com.example.demo.DemoApplication.main(DemoApplication.java:9) [main/:?]
+Caused by: org.postgresql.util.PSQLException: 오류: character varying(250) 자료형에 너무 긴 자료를 담으려고 합니다.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2725) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2412) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:371) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:502) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:419) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:341) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:326) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:302) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:297) ~[postgresql-42.7.3.jar:42.7.3]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.1.0.jar:?]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	... 37 more
+[INFO ] 2024-09-30 16:18:50 [main] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[DEBUG] 2024-09-30 16:18:50 [main] SqlSessionFactoryBean - Property 'mapperLocations' was not specified.
+[WARN ] 2024-09-30 16:18:50 [main] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[WARN ] 2024-09-30 16:18:50 [main] ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+[DEBUG] 2024-09-30 16:18:50 [main] MybatisAutoConfiguration - Not found configuration for registering mapper bean using @MapperScan, MapperFactoryBean and MapperScannerConfigurer.
+[INFO ] 2024-09-30 16:18:50 [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8000"]
+[INFO ] 2024-09-30 16:18:50 [main] TomcatWebServer - Tomcat started on port 8000 (http) with context path '/'
+[INFO ] 2024-09-30 16:18:50 [main] DemoApplication - Started DemoApplication in 3.219 seconds (process running for 3.809)
+[INFO ] 2024-09-30 16:20:05 [http-nio-8000-exec-2] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2024-09-30 16:20:05 [http-nio-8000-exec-2] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2024-09-30 16:20:05 [http-nio-8000-exec-2] DispatcherServlet - Completed initialization in 2 ms
+[INFO ] 2024-09-30 16:20:05 [http-nio-8000-exec-2] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
+[INFO ] 2024-09-30 16:20:05 [http-nio-8000-exec-2] ChatController - Decoded user info: {createdAt=2024-09-23 09:28:42.768, name=장혜지, id=1, email=jangheyji@gmail.com}
+[DEBUG] 2024-09-30 16:20:06 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-30 16:20:06 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@32c9313] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-30 16:20:06 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@102832420 wrapping org.postgresql.jdbc.PgConnection@7b7cf475] will not be managed by Spring
+[DEBUG] 2024-09-30 16:20:06 [http-nio-8000-exec-2] getSummBySessionIds - ==>  Preparing: SELECT * FROM chat WHERE session_id IN ( ? ) ORDER BY end_time DESC
+[DEBUG] 2024-09-30 16:20:06 [http-nio-8000-exec-2] getSummBySessionIds - ==> Parameters: 385fc270-150c-4a9d-8fe8-9f4ea0bf02e5(String)
+[DEBUG] 2024-09-30 16:20:06 [http-nio-8000-exec-2] getSummBySessionIds - <==      Total: 1
+[DEBUG] 2024-09-30 16:20:06 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@32c9313]
+[INFO ] 2024-09-30 16:20:44 [SpringApplicationShutdownHook] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 2024-09-30 16:20:44 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 2024-09-30 16:20:44 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 2024-09-30 16:20:47 [background-preinit] Version - HV000001: Hibernate Validator 8.0.1.Final
+[INFO ] 2024-09-30 16:20:47 [main] DemoApplication - Starting DemoApplication using Java 17.0.6 with PID 79812 (/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main started by honggeonho in /Users/honggeonho/Documents/workspace/AIOnion/Back)
+[DEBUG] 2024-09-30 16:20:47 [main] DemoApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[INFO ] 2024-09-30 16:20:47 [main] DemoApplication - No active profile set, falling back to 1 default profile: "default"
+[DEBUG] 2024-09-30 16:20:47 [main] MybatisAutoConfiguration - Searching for mappers annotated with @Mapper
+[DEBUG] 2024-09-30 16:20:47 [main] MybatisAutoConfiguration - Using auto-configuration base package 'com.example.demo'
+[INFO ] 2024-09-30 16:20:47 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 2024-09-30 16:20:47 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 75 ms. Found 2 JPA repository interfaces.
+[DEBUG] 2024-09-30 16:20:47 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/model/intSearch/SearchResultMapper.class]
+[DEBUG] 2024-09-30 16:20:47 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/chat/ChatMapper.class]
+[DEBUG] 2024-09-30 16:20:47 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/community/CommunityMapper.class]
+[DEBUG] 2024-09-30 16:20:47 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'searchResultMapper' and 'com.example.demo.model.intSearch.SearchResultMapper' mapperInterface
+[DEBUG] 2024-09-30 16:20:47 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'chatMapper' and 'com.example.demo.service.chat.ChatMapper' mapperInterface
+[DEBUG] 2024-09-30 16:20:47 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'communityMapper' and 'com.example.demo.service.community.CommunityMapper' mapperInterface
+[INFO ] 2024-09-30 16:20:48 [main] TomcatWebServer - Tomcat initialized with port 8000 (http)
+[INFO ] 2024-09-30 16:20:48 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8000"]
+[INFO ] 2024-09-30 16:20:48 [main] StandardService - Starting service [Tomcat]
+[INFO ] 2024-09-30 16:20:48 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+[INFO ] 2024-09-30 16:20:48 [main] [/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2024-09-30 16:20:48 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 778 ms
+[INFO ] 2024-09-30 16:20:48 [main] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 2024-09-30 16:20:48 [main] Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+[INFO ] 2024-09-30 16:20:48 [main] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[INFO ] 2024-09-30 16:20:48 [main] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[INFO ] 2024-09-30 16:20:48 [main] HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 2024-09-30 16:20:48 [main] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7b7cf475
+[INFO ] 2024-09-30 16:20:48 [main] HikariDataSource - HikariPool-1 - Start completed.
+[WARN ] 2024-09-30 16:20:48 [main] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[INFO ] 2024-09-30 16:20:49 [main] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[WARN ] 2024-09-30 16:20:49 [main] ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists community_board alter column board_contents set data type varchar(250)" via JDBC [오류: character varying(250) 자료형에 너무 긴 자료를 담으려고 합니다.]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table if exists community_board alter column board_contents set data type varchar(250)" via JDBC [오류: character varying(250) 자료형에 너무 긴 자료를 담으려고 합니다.]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:575) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:515) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:333) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:232) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:117) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:280) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:144) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1421) ~[?:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:141) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:322) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:457) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1506) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.12.jar:6.1.12]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.1.12.jar:6.1.12]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.12.jar:6.1.12]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.12.jar:6.1.12]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) [spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) [spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205) [spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:954) [spring-context-6.1.12.jar:6.1.12]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) [spring-context-6.1.12.jar:6.1.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352) [spring-boot-3.3.3.jar:3.3.3]
+	at com.example.demo.DemoApplication.main(DemoApplication.java:9) [main/:?]
+Caused by: org.postgresql.util.PSQLException: 오류: character varying(250) 자료형에 너무 긴 자료를 담으려고 합니다.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2725) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2412) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:371) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:502) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:419) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:341) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:326) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:302) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:297) ~[postgresql-42.7.3.jar:42.7.3]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.1.0.jar:?]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	... 37 more
+[INFO ] 2024-09-30 16:20:49 [main] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[DEBUG] 2024-09-30 16:20:49 [main] SqlSessionFactoryBean - Property 'mapperLocations' was not specified.
+[WARN ] 2024-09-30 16:20:49 [main] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[WARN ] 2024-09-30 16:20:49 [main] ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+[DEBUG] 2024-09-30 16:20:49 [main] MybatisAutoConfiguration - Not found configuration for registering mapper bean using @MapperScan, MapperFactoryBean and MapperScannerConfigurer.
+[INFO ] 2024-09-30 16:20:49 [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8000"]
+[INFO ] 2024-09-30 16:20:49 [main] TomcatWebServer - Tomcat started on port 8000 (http) with context path '/'
+[INFO ] 2024-09-30 16:20:49 [main] DemoApplication - Started DemoApplication in 2.894 seconds (process running for 3.345)
+[INFO ] 2024-09-30 16:20:54 [http-nio-8000-exec-3] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2024-09-30 16:20:54 [http-nio-8000-exec-3] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2024-09-30 16:20:54 [http-nio-8000-exec-3] DispatcherServlet - Completed initialization in 0 ms
+[INFO ] 2024-09-30 16:20:54 [http-nio-8000-exec-3] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
+[INFO ] 2024-09-30 16:20:54 [http-nio-8000-exec-3] ChatController - Decoded user info: {createdAt=2024-09-23 09:28:42.768, name=장혜지, id=1, email=jangheyji@gmail.com}
+[INFO ] 2024-09-30 16:20:55 [http-nio-8000-exec-3] ChatController - <200 OK OK,{session_ids=[385fc270-150c-4a9d-8fe8-9f4ea0bf02e5]},[date:"Mon, 30 Sep 2024 07:20:54 GMT", server:"uvicorn", content-length:"56", content-type:"application/json"]>
+[DEBUG] 2024-09-30 16:20:55 [http-nio-8000-exec-3] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-30 16:20:55 [http-nio-8000-exec-3] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6bbdf76d] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-30 16:20:55 [http-nio-8000-exec-3] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@2065197906 wrapping org.postgresql.jdbc.PgConnection@7b7cf475] will not be managed by Spring
+[DEBUG] 2024-09-30 16:20:55 [http-nio-8000-exec-3] getSummBySessionIds - ==>  Preparing: SELECT * FROM chat WHERE session_id IN ( ? ) ORDER BY end_time DESC
+[DEBUG] 2024-09-30 16:20:55 [http-nio-8000-exec-3] getSummBySessionIds - ==> Parameters: 385fc270-150c-4a9d-8fe8-9f4ea0bf02e5(String)
+[DEBUG] 2024-09-30 16:20:55 [http-nio-8000-exec-3] getSummBySessionIds - <==      Total: 1
+[DEBUG] 2024-09-30 16:20:55 [http-nio-8000-exec-3] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6bbdf76d]
+[INFO ] 2024-09-30 16:21:38 [SpringApplicationShutdownHook] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 2024-09-30 16:21:38 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 2024-09-30 16:21:38 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 2024-09-30 16:21:41 [background-preinit] Version - HV000001: Hibernate Validator 8.0.1.Final
+[INFO ] 2024-09-30 16:21:41 [main] DemoApplication - Starting DemoApplication using Java 17.0.6 with PID 79835 (/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main started by honggeonho in /Users/honggeonho/Documents/workspace/AIOnion/Back)
+[DEBUG] 2024-09-30 16:21:41 [main] DemoApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[INFO ] 2024-09-30 16:21:41 [main] DemoApplication - No active profile set, falling back to 1 default profile: "default"
+[DEBUG] 2024-09-30 16:21:41 [main] MybatisAutoConfiguration - Searching for mappers annotated with @Mapper
+[DEBUG] 2024-09-30 16:21:41 [main] MybatisAutoConfiguration - Using auto-configuration base package 'com.example.demo'
+[INFO ] 2024-09-30 16:21:41 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 2024-09-30 16:21:41 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 78 ms. Found 2 JPA repository interfaces.
+[DEBUG] 2024-09-30 16:21:42 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/model/intSearch/SearchResultMapper.class]
+[DEBUG] 2024-09-30 16:21:42 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/chat/ChatMapper.class]
+[DEBUG] 2024-09-30 16:21:42 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/community/CommunityMapper.class]
+[DEBUG] 2024-09-30 16:21:42 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'searchResultMapper' and 'com.example.demo.model.intSearch.SearchResultMapper' mapperInterface
+[DEBUG] 2024-09-30 16:21:42 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'chatMapper' and 'com.example.demo.service.chat.ChatMapper' mapperInterface
+[DEBUG] 2024-09-30 16:21:42 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'communityMapper' and 'com.example.demo.service.community.CommunityMapper' mapperInterface
+[INFO ] 2024-09-30 16:21:42 [main] TomcatWebServer - Tomcat initialized with port 8000 (http)
+[INFO ] 2024-09-30 16:21:42 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8000"]
+[INFO ] 2024-09-30 16:21:42 [main] StandardService - Starting service [Tomcat]
+[INFO ] 2024-09-30 16:21:42 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+[INFO ] 2024-09-30 16:21:42 [main] [/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2024-09-30 16:21:42 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 778 ms
+[INFO ] 2024-09-30 16:21:42 [main] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 2024-09-30 16:21:42 [main] Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+[INFO ] 2024-09-30 16:21:42 [main] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[INFO ] 2024-09-30 16:21:42 [main] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[INFO ] 2024-09-30 16:21:42 [main] HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 2024-09-30 16:21:42 [main] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7b7cf475
+[INFO ] 2024-09-30 16:21:42 [main] HikariDataSource - HikariPool-1 - Start completed.
+[WARN ] 2024-09-30 16:21:42 [main] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[INFO ] 2024-09-30 16:21:43 [main] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[WARN ] 2024-09-30 16:21:43 [main] ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists community_board alter column board_contents set data type varchar(250)" via JDBC [오류: character varying(250) 자료형에 너무 긴 자료를 담으려고 합니다.]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table if exists community_board alter column board_contents set data type varchar(250)" via JDBC [오류: character varying(250) 자료형에 너무 긴 자료를 담으려고 합니다.]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:575) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:515) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:333) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:232) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:117) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:280) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:144) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1421) ~[?:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:141) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:322) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:457) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1506) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.12.jar:6.1.12]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.1.12.jar:6.1.12]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.12.jar:6.1.12]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.12.jar:6.1.12]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) [spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) [spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205) [spring-beans-6.1.12.jar:6.1.12]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:954) [spring-context-6.1.12.jar:6.1.12]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) [spring-context-6.1.12.jar:6.1.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363) [spring-boot-3.3.3.jar:3.3.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352) [spring-boot-3.3.3.jar:3.3.3]
+	at com.example.demo.DemoApplication.main(DemoApplication.java:9) [main/:?]
+Caused by: org.postgresql.util.PSQLException: 오류: character varying(250) 자료형에 너무 긴 자료를 담으려고 합니다.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2725) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2412) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:371) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:502) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:419) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:341) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:326) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:302) ~[postgresql-42.7.3.jar:42.7.3]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:297) ~[postgresql-42.7.3.jar:42.7.3]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.1.0.jar:?]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.1.0.jar:?]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
+	... 37 more
+[INFO ] 2024-09-30 16:21:43 [main] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[DEBUG] 2024-09-30 16:21:43 [main] SqlSessionFactoryBean - Property 'mapperLocations' was not specified.
+[WARN ] 2024-09-30 16:21:43 [main] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[WARN ] 2024-09-30 16:21:43 [main] ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+[DEBUG] 2024-09-30 16:21:43 [main] MybatisAutoConfiguration - Not found configuration for registering mapper bean using @MapperScan, MapperFactoryBean and MapperScannerConfigurer.
+[INFO ] 2024-09-30 16:21:44 [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8000"]
+[INFO ] 2024-09-30 16:21:44 [main] TomcatWebServer - Tomcat started on port 8000 (http) with context path '/'
+[INFO ] 2024-09-30 16:21:44 [main] DemoApplication - Started DemoApplication in 2.927 seconds (process running for 3.416)
+[INFO ] 2024-09-30 16:21:48 [http-nio-8000-exec-3] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2024-09-30 16:21:48 [http-nio-8000-exec-3] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2024-09-30 16:21:48 [http-nio-8000-exec-3] DispatcherServlet - Completed initialization in 1 ms
+[INFO ] 2024-09-30 16:21:48 [http-nio-8000-exec-3] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
+[INFO ] 2024-09-30 16:21:48 [http-nio-8000-exec-3] ChatController - Decoded user info: {createdAt=2024-09-23 09:28:42.768, name=장혜지, id=1, email=jangheyji@gmail.com}
+[INFO ] 2024-09-30 16:21:49 [http-nio-8000-exec-3] ChatController - {session_ids=[385fc270-150c-4a9d-8fe8-9f4ea0bf02e5]}
+[DEBUG] 2024-09-30 16:21:49 [http-nio-8000-exec-3] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-30 16:21:49 [http-nio-8000-exec-3] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5773b0a9] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-30 16:21:49 [http-nio-8000-exec-3] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1368342773 wrapping org.postgresql.jdbc.PgConnection@7b7cf475] will not be managed by Spring
+[DEBUG] 2024-09-30 16:21:49 [http-nio-8000-exec-3] getSummBySessionIds - ==>  Preparing: SELECT * FROM chat WHERE session_id IN ( ? ) ORDER BY end_time DESC
+[DEBUG] 2024-09-30 16:21:49 [http-nio-8000-exec-3] getSummBySessionIds - ==> Parameters: 385fc270-150c-4a9d-8fe8-9f4ea0bf02e5(String)
+[DEBUG] 2024-09-30 16:21:49 [http-nio-8000-exec-3] getSummBySessionIds - <==      Total: 1
+[DEBUG] 2024-09-30 16:21:49 [http-nio-8000-exec-3] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5773b0a9]
+[DEBUG] 2024-09-30 16:25:18 [http-nio-8000-exec-5] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-09-30 16:25:18 [http-nio-8000-exec-5] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3fa3c1e5] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-09-30 16:25:18 [http-nio-8000-exec-5] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@828651617 wrapping org.postgresql.jdbc.PgConnection@7b7cf475] will not be managed by Spring
+[DEBUG] 2024-09-30 16:25:18 [http-nio-8000-exec-5] getBoardsWithFilesByNos - ==>  Preparing: SELECT b.*, f.file_no, f.name AS file_name, f.attached_img, f.post_date FROM community_board b LEFT JOIN community_file f ON b.board_no = f.board_no WHERE b.board_no IN ( ? , ? , ? , ? , ? , ? , ? , ? ) ORDER BY b.board_no DESC
+[DEBUG] 2024-09-30 16:25:18 [http-nio-8000-exec-5] getBoardsWithFilesByNos - ==> Parameters: 59(Integer), 57(Integer), 64(Integer), 63(Integer), 62(Integer), 92(Integer), 1(Integer), 56(Integer)
+[DEBUG] 2024-09-30 16:25:18 [http-nio-8000-exec-5] getBoardsWithFilesByNos - <==      Total: 7
+[DEBUG] 2024-09-30 16:25:18 [http-nio-8000-exec-5] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3fa3c1e5]
