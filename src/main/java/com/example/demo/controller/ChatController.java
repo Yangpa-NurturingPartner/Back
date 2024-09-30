@@ -30,15 +30,16 @@ public class ChatController {
         ChatDetailVO chatDetailVO = new ChatDetailVO();
         try {
             String session_id = (String) requestBody.get("session_id");
+            String query = (String) requestBody.get("chat_detail");
+            System.out.println("Received session_id: " + session_id);
+            System.out.println("Request Body: " + requestBody);
 
             //세션이 종료된 경우 메시지 전송 불가
             if (chatService.isSessionEnded(session_id)) {
                 return ResponseEntity.badRequest().body(null);
             }
 
-            Map<String, Object> chatDetailMap = (Map<String, Object>) requestBody.get("chat_detail");
-
-            chatDetailVO.setQuery((String) chatDetailMap.get("query"));
+            chatDetailVO.setQuery(query);
             chatDetailVO.setSession_id(session_id);
 
             Timestamp qa_time = Timestamp.valueOf(LocalDateTime.now());
@@ -75,24 +76,29 @@ public class ChatController {
     // 새로운 채팅
     @PostMapping("/start-new-chat")
     public ResponseEntity<Map<String, String>> startNewChat(@RequestParam(required = false) String oldSession_id) {
+        log.info("startNewChat 호출됨. oldSession_id: {}", oldSession_id);
         try {
-            //기존 세션 존재 -> 기록 불러오고 세션 종료
+            // 기존 세션 처리
             List<ChatDetailVO> history = null;
             if (oldSession_id != null) {
-                history = chatMapper.getChatHistoryBySessionId(oldSession_id); // 기록 불러오기
+                history = chatMapper.getChatHistoryBySessionId(oldSession_id);
             }
 
-            //새 세션 생성, 저장
+
+            // 새로운 세션 생성
             String newSession_id = chatService.createNewSession(history, oldSession_id);
-            chatMapper.saveChatRoom(newSession_id);
+            int user_no = 1;
+            int child_id = 1;
+            chatMapper.saveChatRoom(newSession_id, user_no, child_id);
 
-            return ResponseEntity.ok(Map.of("session_id", newSession_id));
-
+            log.info("새로운 세션아이디: {}", newSession_id); // 로그 확인
+            return ResponseEntity.ok(Map.of("session_id", newSession_id)); // session_id 반환
         } catch (Exception e) {
             log.error("새로운 채팅 세션 생성 오류: {}", e.getMessage(), e);
-            return ResponseEntity.status(500).body(Map.of("error", "세션을 생성 불가"));
+            return ResponseEntity.status(500).body(Map.of("error", "세션 생성 불가"));
         }
     }
+
 
     //이전 채팅 불러오기
     @PostMapping("/chat-record")
