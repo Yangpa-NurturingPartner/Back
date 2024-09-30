@@ -2,23 +2,24 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.3'
     id 'io.spring.dependency-management' version '1.1.6'
+    id 'war'
 }
-
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
+
+apply plugin: 'war'
+
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
 }
-
 repositories {
     mavenCentral()
     maven { url 'https://repo.spring.io/milestone' }
     maven { url 'https://jitpack.io' }
 }
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -40,45 +41,31 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-log4j2"
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-
     // akarta validation
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-
 }
-
 configurations {
     all {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     }
 }
-
 dependencyManagement {
     imports {
         mavenBom "org.springframework.ai:spring-ai-bom:1.0.0-M2"
     }
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
-
 bootWar {
-    archiveBaseName = 'back'
-    archiveFileName = 'back.war'
-    archiveVersion = "0.0.0"
-}
-
-bootWar {
+    archiveBaseName.set('back')
+    archiveFileName.set('back.war')
+    archiveVersion.set('0.0.0')
     enabled = true
 }
-
 bootJar {
     enabled = false
 }
-
 task copyEnvFile(type: Copy) {
     from '.env'
     into 'build/resources/main'
 }
-
 processResources.dependsOn(copyEnvFile)
