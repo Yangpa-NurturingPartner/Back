@@ -1,13 +1,19 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.ChatDetailVO;
-import com.example.demo.model.ChatVO;
-import com.example.demo.service.ChatMapper;
-import com.example.demo.service.ChatService;
+import com.example.demo.model.chat.ChatDetailVO;
+import com.example.demo.model.chat.ChatVO;
+import com.example.demo.security.JwtTokenProvider;
+import com.example.demo.service.chat.ChatMapper;
+import com.example.demo.service.chat.ChatService;
+import com.example.demo.service.member.MemberUserService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.sql.Timestamp;
@@ -17,106 +23,141 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/chat")
+@RequiredArgsConstructor
 public class ChatController {
 
-    @Autowired
-    private ChatService chatService;
+    private final ChatService chatService;
+    private final ChatMapper chatMapper;
+    private final JwtTokenProvider jwtTokenProvider;
+    private final MemberUserService memberUserService;
 
-    @Autowired
-    private ChatMapper chatMapper;
+    private static final String SESSION_ENDED_MSG = "세션이 종료되었습니다.";
+    private static final String CHAT_END_ERROR_MSG = "채팅 종료 중 오류 발생";
+    private static final String NEW_CHAT_ERROR_MSG = "새로운 채팅 세션 생성 오류: ";
+    private static final String SESSION_CREATION_ERROR_MSG = "세션을 생성 불가";
 
+    //채팅 생성
     @PostMapping("/message")
     public ResponseEntity<ChatDetailVO> yangpaChat(@RequestBody Map<String, Object> requestBody) {
-        ChatDetailVO chatDetailVO = new ChatDetailVO();
         try {
-            String session_id = (String) requestBody.get("session_id");
+            String sessionId = (String) requestBody.get("session_id");
+            String query = (String) requestBody.get("chat_detail");
+            String userNo = (String) requestBody.get("token");
+            Long user = extractUserNoFromToken(userNo);
 
-            //세션이 종료된 경우 메시지 전송 불가
-            if (chatService.isSessionEnded(session_id)) {
+            // chat 테이블에 해당 session_id가 존재하는지 확인
+            String existingSummAnswer = chatMapper.getFirstAnswer(sessionId);
+
+            if (existingSummAnswer == null) {
+                String summary = chatService.getSummary(query);
+
+                chatMapper.saveChat(sessionId, summary, Timestamp.valueOf(LocalDateTime.now()));
+            }
+
+            // 세션 종료 여부 확인
+            if (chatService.isSessionEnded(sessionId)) {
                 return ResponseEntity.badRequest().body(null);
             }
 
-            Map<String, Object> chatDetailMap = (Map<String, Object>) requestBody.get("chat_detail");
+            ChatDetailVO chatDetailVO = createChatDetailVO(sessionId, query);
 
-            chatDetailVO.setQuery((String) chatDetailMap.get("query"));
-            chatDetailVO.setSession_id(session_id);
-
-            Timestamp qa_time = Timestamp.valueOf(LocalDateTime.now());
-            chatDetailVO.setQa_time(qa_time);
-
-            //대화 기록 조회 후 응답 생성
-            List<ChatDetailVO> history = chatMapper.getChatHistoryBySessionId(session_id);
-            String answer = chatService.getAnswer(session_id, chatDetailVO.getQuery(), history);
+            List<ChatDetailVO> history = chatMapper.getChatHistoryBySessionId(sessionId);
+            String answer = chatService.getAnswer(sessionId, chatDetailVO.getQuery(), history);
 
             chatDetailVO.setAnswer(answer);
             chatMapper.saveChatDetail(chatDetailVO);
 
-            return ResponseEntity.ok(chatDetailVO);
+            // 새로운 POST 요청을 외부 URL에 보내는 로직 추가
+            String embeddedUrl = "http://192.168.0.218:9000/embedded/chat/contents";
+            Map<String, Object> externalRequestBody = Map.of(
+                    "user_no", user,
+                    "session_id", sessionId,
+                    "query", query,
+                    "answer", answer
+            );
+
+            // HTTP POST 요청 보내기
+            ResponseEntity<String> response = sendPostRequest(embeddedUrl, externalRequestBody);
+
+            // 요청 성공 여부에 따른 처리
+            if (response.getStatusCode().is2xxSuccessful()) {
+                return ResponseEntity.ok(chatDetailVO);
+            } else {
+                log.error("외부 서비스 요청 실패: {}", response.getBody());
+                return ResponseEntity.status(500).body(createErrorChatDetailVO(new Exception("외부 서비스 요청 실패: " + response.getBody())));
+            }
+
         } catch (Exception e) {
-            log.error("Error in GPT Controller: {}", e.getMessage(), e);
-            chatDetailVO.setAnswer("An error occurred: " + e.getMessage());
-            return ResponseEntity.status(500).body(chatDetailVO);
+            log.error("Error in yangpaChat: {}", e.getMessage(), e);
+            return ResponseEntity.status(500).body(createErrorChatDetailVO(e));
         }
     }
 
     //채팅 종료
     @PostMapping("/end-chat")
-    public ResponseEntity<String> endChatSession(@RequestParam String session_id) {
+    public ResponseEntity<String> endChatSession(@RequestParam String sessionId) {
         try {
-            List<ChatDetailVO> history = chatMapper.getChatHistoryBySessionId(session_id);
-            chatService.endChatSession(session_id, history); // 서비스에서 세션 종료 처리
-            return ResponseEntity.ok("채팅 세션이 종료되었습니다.");
+            List<ChatDetailVO> history = chatMapper.getChatHistoryBySessionId(sessionId);
+            chatService.endChatSession(sessionId, history);
+            return ResponseEntity.ok(SESSION_ENDED_MSG);
         } catch (Exception e) {
             log.error("채팅 종료 중 오류 발생: {}", e.getMessage(), e);
-            return ResponseEntity.status(500).body("채팅 종료 중 오류 발생");
+            return ResponseEntity.status(500).body(CHAT_END_ERROR_MSG);
         }
     }
 
     // 새로운 채팅
     @PostMapping("/start-new-chat")
-    public ResponseEntity<Map<String, String>> startNewChat(@RequestParam(required = false) String oldSession_id) {
+    public ResponseEntity<Map<String, String>> startNewChat(@RequestBody Map<String, Object> requestBody) {
         try {
-            //기존 세션 존재 -> 기록 불러오고 세션 종료
-            List<ChatDetailVO> history = null;
-            if (oldSession_id != null) {
-                history = chatMapper.getChatHistoryBySessionId(oldSession_id); // 기록 불러오기
-            }
+            String oldSessionId = (String) requestBody.get("oldSession_id");
+            String jwtToken = (String) requestBody.get("jwtToken");
+            Integer childId = (Integer) requestBody.get("child_id");
 
-            //새 세션 생성, 저장
-            String newSession_id = chatService.createNewSession(history, oldSession_id);
-            chatMapper.saveChatRoom(newSession_id);
+            Long userNo = extractUserNoFromToken(jwtToken);
 
-            return ResponseEntity.ok(Map.of("session_id", newSession_id));
+            List<ChatDetailVO> history = (oldSessionId != null) ?
+                    chatMapper.getChatHistoryBySessionId(oldSessionId) : null;
+
+            // 새로운 채팅 세션 생성
+            String newSessionId = chatService.createNewSession(history, oldSessionId);
+
+            // 추출한 userNo와 제공된 childId로 새로운 채팅방 저장
+            chatMapper.saveChatRoom(newSessionId, Math.toIntExact(userNo), childId);
+
+            // 새로 생성된 세션 ID 반환
+            return ResponseEntity.ok(Map.of("session_id", newSessionId));
 
         } catch (Exception e) {
-            log.error("새로운 채팅 세션 생성 오류: {}", e.getMessage(), e);
-            return ResponseEntity.status(500).body(Map.of("error", "세션을 생성 불가"));
+            log.error("{} {}", NEW_CHAT_ERROR_MSG, e.getMessage(), e);
+            return ResponseEntity.status(500).body(Map.of("error", SESSION_CREATION_ERROR_MSG));
         }
     }
 
-    //이전 채팅 불러오기
-    @PostMapping("/chat-record")
-    public List<ChatVO> getChatSummaries(@RequestBody List<String> sessionIds) {
-        return chatMapper.getSummBySessionIds(sessionIds);
-    }
-
-    //해당 user가 했던 session_id가져오기
-    @PostMapping("/get-userinfo")
-    public ResponseEntity<List<String>> getUserSessionIds(@RequestBody Map<String, String> userMap) {
+    //해당 user가 했던 session_id가져와 이전 채팅 불러오기
+    @PostMapping("/user-chat-record")
+    public ResponseEntity<List<ChatVO>> getUserChatSummaries(@RequestBody Map<String, String> userMap) {
         try {
-            int user_no = Integer.parseInt(userMap.get("user_no"));
-            log.info("Received user_no: {}", user_no);
+            Long userNo = extractUserNoFromToken(userMap.get("token"));
+            log.info("Received user_no: {}", userNo);
 
-            //user_no 해당하는 session_id 가져오기
-            List<String> sessionIds = chatMapper.getSessionIdsByUserId(user_no);
+            // 사용자와 관련된 모든 세션 ID를 가져옴
+            List<String> sessionIds = chatMapper.getSessionIdsByUserId(Math.toIntExact(userNo));
 
             if (sessionIds.isEmpty()) {
-                log.info("No session IDs found for user: {}", user_no);
+                log.info("No session IDs found for user: {}", userNo);
                 return ResponseEntity.noContent().build();
             }
-            return ResponseEntity.ok(sessionIds);
+            List<ChatVO> chatSummaries = chatMapper.getSummBySessionIds(sessionIds);
+
+            if (chatSummaries.isEmpty()) {
+                log.info("No chat summaries found for session IDs: {}", sessionIds);
+                return ResponseEntity.noContent().build();
+            }
+
+            return ResponseEntity.ok(chatSummaries);
         } catch (Exception e) {
-            log.error("Error fetching session IDs for user {}: {}", userMap.get("user_no"), e.getMessage(), e);
+            log.error("Error fetching chat summaries for user {}: {}", userMap.get("user_no"), e.getMessage(), e);
             return ResponseEntity.status(500).body(null);
         }
     }
@@ -132,7 +173,39 @@ public class ChatController {
             }
             return ResponseEntity.ok(chatDetails);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(null); // 오류 처리
+            log.error("Error fetching chat details for session {}: {}", sessionId, e.getMessage(), e);
+            return ResponseEntity.status(500).body(null);
         }
+    }
+
+    private ChatDetailVO createChatDetailVO(String sessionId, String query) {
+        ChatDetailVO chatDetailVO = new ChatDetailVO();
+        chatDetailVO.setQuery(query);
+        chatDetailVO.setSession_id(sessionId);
+        chatDetailVO.setQa_time(Timestamp.valueOf(LocalDateTime.now()));
+        return chatDetailVO;
+    }
+
+    private ChatDetailVO createErrorChatDetailVO(Exception e) {
+        ChatDetailVO chatDetailVO = new ChatDetailVO();
+        chatDetailVO.setAnswer("An error occurred: " + e.getMessage());
+        return chatDetailVO;
+    }
+
+    private Long extractUserNoFromToken(String token) {
+        String jwtToken = token.replace("Bearer ", "");
+        Map<String, Object> userInfo = jwtTokenProvider.decodeToken(jwtToken);
+        log.info("Decoded user info: {}", userInfo);
+        return memberUserService.getUserNoByEmail(userInfo.get("email").toString());
+    }
+
+    // 외부 URL로 POST 요청을 보내는 유틸리티 메소드
+    private ResponseEntity<String> sendPostRequest(String url, Map<String, Object> requestBody) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
+        return restTemplate.postForEntity(url, requestEntity, String.class);
     }
 }

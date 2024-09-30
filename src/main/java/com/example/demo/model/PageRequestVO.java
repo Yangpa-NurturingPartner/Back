@@ -32,6 +32,8 @@ public class PageRequestVO {
 
     private String searchKey;
 
+    private Integer boardCode;
+
     public int getSkip() {
         return (pageNo - 1) * size;
     }
