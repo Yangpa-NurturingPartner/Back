@@ -19,9 +19,9 @@ public interface ChatMapper {
     @Insert("INSERT INTO chat (session_id, summ_answer, end_time) VALUES (#{session_id}, #{summ_answer}, #{end_time}) RETURNING chat_id")
     Integer saveChat(String session_id, String summ_answer, Timestamp end_time);
 
-    //세션아이디 저장
-    @Insert("INSERT INTO chat_room (session_id) VALUES (#{session_id})")
-    void saveChatRoom(String session_id);
+    //채팅방 저장
+    @Insert("INSERT INTO chat_room VALUES (#{session_id}, #{user_no}, #{child_id})")
+    void saveChatRoom(String session_id,int user_no,int child_id);
 
     //첫번째 answer가져오기(요약 시 사용)
     @Select("SELECT answer FROM chat_detail WHERE session_id = #{session_id} ORDER BY qa_time ASC LIMIT 1")
@@ -32,7 +32,7 @@ public interface ChatMapper {
 
     @Select({
             "<script>",
-            "SELECT session_id, summ_answer, end_time  FROM chat  WHERE session_id IN ",
+            "SELECT *  FROM chat  WHERE session_id IN ",
             "<foreach item='sessionId' collection='sessionIds' open='(' separator=',' close=')'>",
             "#{sessionId}</foreach> ",
             "ORDER BY end_time DESC",
@@ -47,4 +47,8 @@ public interface ChatMapper {
     //과거 채팅 불러오기
     @Select("SELECT query, answer, qa_time FROM chat_detail WHERE session_id = #{sessionId} ORDER BY qa_time ASC")
     List<ChatDetailVO> getChatDetailsBySessionId(String sessionId);
+
+    @Select("SELECT COUNT(*) FROM chat_detail WHERE session_id = #{session_id}")
+    int countBySessionId(@Param("session_id") String session_id);
+
 }
