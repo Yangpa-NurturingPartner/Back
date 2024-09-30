@@ -26,12 +26,6 @@ public class ProfileService {
     @Transactional
     public Profile_child saveProfile(Profile_child profile) {
         logger.info("Saving profile for user: {}", profile.getMemberUser().getUserNo());
-
-        // user_no 별로 child_id를 1부터 증가시키는 로직
-        MemberUser memberUser = profile.getMemberUser();
-        Integer maxChildId = profileRepository.findMaxChildIdByMemberUser(memberUser);
-        profile.setChildId(maxChildId + 1);
-
         return profileRepository.save(profile);
     }
 

@@ -9,8 +9,9 @@ import java.time.LocalDate;
 public class Profile_child {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "child_id")
-    private Integer childId;  // @GeneratedValue 제거하여 수동 설정으로 변경
+    private Integer childId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_no", nullable = false)
