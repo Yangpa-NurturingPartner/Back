@@ -22,6 +22,9 @@ import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -133,11 +136,12 @@ public class CommunityController {
         }
     }
 
-    // 문자열 검색
+    // 사용자 검색에 따른 문자열 검색
     @PostMapping("/boards/search")
     public ResponseEntity<PageResponseVO<CommunityBoardVO>> searchBoards(@RequestBody Map<String, String> request) {
         try {
             String query = request.get("query");
+            String period = request.get("period");
 
             Map<String, Object> payload = new HashMap<>();
             payload.put("query", query);
@@ -149,6 +153,27 @@ public class CommunityController {
 
             List<Integer> boardNoList = (List<Integer>) response.getBody().get("board_no_list");
             List<CommunityBoardVO> boards = communityService.getBoardsByNos(boardNoList);
+
+            // 기간 필터링 처리
+            if (period != null && !period.equals("all")) {
+                LocalDate endDate = LocalDate.now();
+                final LocalDate startDate;
+
+                if (period.equals("week")) {
+                    startDate = endDate.minusWeeks(1);
+                } else if (period.equals("month")) {
+                    startDate = endDate.minusMonths(1);
+                } else {
+                    startDate = endDate;
+                }
+
+                boards = boards.stream()
+                        .filter(board -> {
+                            LocalDate boardDate = board.getRegister_date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                            return (boardDate.isEqual(startDate) || boardDate.isAfter(startDate)) && (boardDate.isBefore(endDate) || boardDate.isEqual(endDate));
+                        })
+                        .collect(Collectors.toList());
+            }
 
             PageResponseVO<CommunityBoardVO> pageResponseVO = new PageResponseVO<>(boards, boards.size(), 1, boards.size());
             return ResponseEntity.ok(pageResponseVO);
