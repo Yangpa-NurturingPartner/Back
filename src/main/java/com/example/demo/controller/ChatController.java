@@ -36,7 +36,7 @@ public class ChatController {
     private static final String NEW_CHAT_ERROR_MSG = "새로운 채팅 세션 생성 오류: ";
     private static final String SESSION_CREATION_ERROR_MSG = "세션을 생성 불가";
 
-    // 채팅 생성
+    //채팅 생성
     @PostMapping("/message")
     public ResponseEntity<ChatDetailVO> yangpaChat(@RequestBody Map<String, Object> requestBody) {
         try {
@@ -95,7 +95,7 @@ public class ChatController {
         }
     }
 
-    // 채팅 종료
+    //채팅 종료
     @PostMapping("/end-chat")
     public ResponseEntity<String> endChatSession(@RequestParam String sessionId) {
         try {
@@ -110,7 +110,6 @@ public class ChatController {
 
     // 새로운 채팅
     @PostMapping("/start-new-chat")
-<<<<<<< HEAD
     public ResponseEntity<Map<String, String>> startNewChat(@RequestBody Map<String, Object> requestBody) {
         try {
             String oldSessionId = (String) requestBody.get("oldSession_id");
@@ -130,64 +129,28 @@ public class ChatController {
 
             // 새로 생성된 세션 ID 반환
             return ResponseEntity.ok(Map.of("session_id", newSessionId));
-=======
-    public ResponseEntity<Map<String, String>> startNewChat(@RequestParam(required = false) String oldSession_id) {
-        log.info("startNewChat 호출됨. oldSession_id: {}", oldSession_id);
-        try {
-            // 기존 세션 처리
-            List<ChatDetailVO> history = null;
-            if (oldSession_id != null) {
-                history = chatMapper.getChatHistoryBySessionId(oldSession_id);
-            }
 
-
-            // 새로운 세션 생성
-            String newSession_id = chatService.createNewSession(history, oldSession_id);
-            int user_no = 1;
-            int child_id = 1;
-            chatMapper.saveChatRoom(newSession_id, user_no, child_id);
->>>>>>> d9dd369d66c22c5c2dd28cad26d688f6dbc5ea22
-
-            log.info("새로운 세션아이디: {}", newSession_id); // 로그 확인
-            return ResponseEntity.ok(Map.of("session_id", newSession_id)); // session_id 반환
         } catch (Exception e) {
-<<<<<<< HEAD
             log.error("{} {}", NEW_CHAT_ERROR_MSG, e.getMessage(), e);
             return ResponseEntity.status(500).body(Map.of("error", SESSION_CREATION_ERROR_MSG));
         }
     }
 
-    // 해당 user가 했던 session_id가져와 이전 채팅 불러오기
     @PostMapping("/user-chat-record")
-    public ResponseEntity<List<ChatVO>> getUserChatSummaries(@RequestBody Map<String, String> userMap) {
-=======
-            log.error("새로운 채팅 세션 생성 오류: {}", e.getMessage(), e);
-            return ResponseEntity.status(500).body(Map.of("error", "세션 생성 불가"));
-        }
-    }
-
-
-    //이전 채팅 불러오기
-    @PostMapping("/chat-record")
-    public List<ChatVO> getChatSummaries(@RequestBody List<String> sessionIds) {
-        return chatMapper.getSummBySessionIds(sessionIds);
-    }
-
-    //해당 user가 했던 session_id가져오기
-    @PostMapping("/get-userinfo")
-    public ResponseEntity<List<String>> getUserSessionIds(@RequestBody Map<String, String> userMap) {
->>>>>>> d9dd369d66c22c5c2dd28cad26d688f6dbc5ea22
+    public ResponseEntity<List<ChatVO>> getUserChatSummaries(@RequestHeader("Authorization") String token) {
         try {
-            Long userNo = extractUserNoFromToken(userMap.get("token"));
+            // JWT 토큰에서 Bearer를 제외한 토큰 부분만 추출
+            String jwtToken = token.replace("Bearer ", "");
+            Long userNo = extractUserNoFromToken(jwtToken);
             log.info("Received user_no: {}", userNo);
 
-            // 사용자와 관련된 모든 세션 ID를 가져옴
             List<String> sessionIds = chatMapper.getSessionIdsByUserId(Math.toIntExact(userNo));
 
             if (sessionIds.isEmpty()) {
                 log.info("No session IDs found for user: {}", userNo);
                 return ResponseEntity.noContent().build();
             }
+
             List<ChatVO> chatSummaries = chatMapper.getSummBySessionIds(sessionIds);
 
             if (chatSummaries.isEmpty()) {
@@ -197,12 +160,12 @@ public class ChatController {
 
             return ResponseEntity.ok(chatSummaries);
         } catch (Exception e) {
-            log.error("Error fetching chat summaries for user {}: {}", userMap.get("user_no"), e.getMessage(), e);
+            log.error("Error fetching chat summaries for user: {}", e.getMessage(), e);
             return ResponseEntity.status(500).body(null);
         }
     }
 
-    // 과거 채팅 상세보기
+    //과거 채팅 상세보기
     @GetMapping("/chat-record-view/{sessionId}")
     public ResponseEntity<List<ChatDetailVO>> getChatDetails(@PathVariable String sessionId) {
         try {
@@ -214,47 +177,6 @@ public class ChatController {
             return ResponseEntity.ok(chatDetails);
         } catch (Exception e) {
             log.error("Error fetching chat details for session {}: {}", sessionId, e.getMessage(), e);
-            return ResponseEntity.status(500).body(null);
-        }
-    }
-
-    // 요약된 채팅 제목 검색
-    @PostMapping("/search")
-    public ResponseEntity<List<ChatVO>> searchChatHistory(@RequestBody Map<String, String> requestBody) {
-        try {
-            String query = requestBody.get("query");
-            String jwtToken = requestBody.get("token");
-
-            Long userNo = extractUserNoFromToken(jwtToken);
-            Map<String, Object> externalRequestBody = Map.of(
-                    "query", query,
-                    "user_no", userNo
-            );
-            String searchUrl = "http://192.168.0.218:9000/search/chat-history";
-
-            // 채팅 관련 검색 post 요청 전송
-            ResponseEntity<Map> response = sendPostRequestForSearch(searchUrl, externalRequestBody);
-            log.info(response.getBody().toString());
-
-            if (!response.getStatusCode().is2xxSuccessful() || !response.hasBody()) {
-                log.error("Failed to search chat history: {}", response.getBody());
-                return ResponseEntity.status(500).body(null);
-            }
-
-            Map<String, Object> responseBody = response.getBody();
-            List<String> sessionIds = (List<String>) responseBody.get("session_ids");
-
-            if (sessionIds == null || sessionIds.isEmpty()) {
-                log.info("No session IDs found for user: {}", userNo);
-                return ResponseEntity.noContent().build();
-            }
-
-            List<ChatVO> chatSummaries = chatMapper.getSummBySessionIds(sessionIds);
-
-            return ResponseEntity.ok(chatSummaries);
-
-        } catch (Exception e) {
-            log.error("Error in searchChatHistory: {}", e.getMessage(), e);
             return ResponseEntity.status(500).body(null);
         }
     }
@@ -288,14 +210,5 @@ public class ChatController {
 
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
         return restTemplate.postForEntity(url, requestEntity, String.class);
-    }
-
-    private ResponseEntity<Map> sendPostRequestForSearch(String url, Map<String, Object> requestBody) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
-        return restTemplate.postForEntity(url, requestEntity, Map.class);
     }
 }
