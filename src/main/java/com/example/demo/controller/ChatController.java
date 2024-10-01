@@ -40,10 +40,17 @@ public class ChatController {
     @PostMapping("/message")
     public ResponseEntity<ChatDetailVO> yangpaChat(@RequestBody Map<String, Object> requestBody) {
         try {
+<<<<<<< HEAD
             String sessionId = (String) requestBody.get("session_id");
             String query = (String) requestBody.get("chat_detail");
             String userNo = (String) requestBody.get("token");
             Long user = extractUserNoFromToken(userNo);
+=======
+            String session_id = (String) requestBody.get("session_id");
+            String query = (String) requestBody.get("chat_detail");
+            System.out.println("Received session_id: " + session_id);
+            System.out.println("Request Body: " + requestBody);
+>>>>>>> d9dd369d66c22c5c2dd28cad26d688f6dbc5ea22
 
             // chat 테이블에 해당 session_id가 존재하는지 확인
             String existingSummAnswer = chatMapper.getFirstAnswer(sessionId);
@@ -59,10 +66,22 @@ public class ChatController {
                 return ResponseEntity.badRequest().body(null);
             }
 
+<<<<<<< HEAD
             ChatDetailVO chatDetailVO = createChatDetailVO(sessionId, query);
 
             List<ChatDetailVO> history = chatMapper.getChatHistoryBySessionId(sessionId);
             String answer = chatService.getAnswer(sessionId, chatDetailVO.getQuery(), history);
+=======
+            chatDetailVO.setQuery(query);
+            chatDetailVO.setSession_id(session_id);
+
+            Timestamp qa_time = Timestamp.valueOf(LocalDateTime.now());
+            chatDetailVO.setQa_time(qa_time);
+
+            //대화 기록 조회 후 응답 생성
+            List<ChatDetailVO> history = chatMapper.getChatHistoryBySessionId(session_id);
+            String answer = chatService.getAnswer(session_id, chatDetailVO.getQuery(), history);
+>>>>>>> d9dd369d66c22c5c2dd28cad26d688f6dbc5ea22
 
             chatDetailVO.setAnswer(answer);
             chatMapper.saveChatDetail(chatDetailVO);
@@ -108,6 +127,7 @@ public class ChatController {
 
     // 새로운 채팅
     @PostMapping("/start-new-chat")
+<<<<<<< HEAD
     public ResponseEntity<Map<String, String>> startNewChat(@RequestBody Map<String, Object> requestBody) {
         try {
             String oldSessionId = (String) requestBody.get("oldSession_id");
@@ -127,8 +147,28 @@ public class ChatController {
 
             // 새로 생성된 세션 ID 반환
             return ResponseEntity.ok(Map.of("session_id", newSessionId));
+=======
+    public ResponseEntity<Map<String, String>> startNewChat(@RequestParam(required = false) String oldSession_id) {
+        log.info("startNewChat 호출됨. oldSession_id: {}", oldSession_id);
+        try {
+            // 기존 세션 처리
+            List<ChatDetailVO> history = null;
+            if (oldSession_id != null) {
+                history = chatMapper.getChatHistoryBySessionId(oldSession_id);
+            }
 
+
+            // 새로운 세션 생성
+            String newSession_id = chatService.createNewSession(history, oldSession_id);
+            int user_no = 1;
+            int child_id = 1;
+            chatMapper.saveChatRoom(newSession_id, user_no, child_id);
+>>>>>>> d9dd369d66c22c5c2dd28cad26d688f6dbc5ea22
+
+            log.info("새로운 세션아이디: {}", newSession_id); // 로그 확인
+            return ResponseEntity.ok(Map.of("session_id", newSession_id)); // session_id 반환
         } catch (Exception e) {
+<<<<<<< HEAD
             log.error("{} {}", NEW_CHAT_ERROR_MSG, e.getMessage(), e);
             return ResponseEntity.status(500).body(Map.of("error", SESSION_CREATION_ERROR_MSG));
         }
@@ -137,6 +177,23 @@ public class ChatController {
     // 해당 user가 했던 session_id가져와 이전 채팅 불러오기
     @PostMapping("/user-chat-record")
     public ResponseEntity<List<ChatVO>> getUserChatSummaries(@RequestBody Map<String, String> userMap) {
+=======
+            log.error("새로운 채팅 세션 생성 오류: {}", e.getMessage(), e);
+            return ResponseEntity.status(500).body(Map.of("error", "세션 생성 불가"));
+        }
+    }
+
+
+    //이전 채팅 불러오기
+    @PostMapping("/chat-record")
+    public List<ChatVO> getChatSummaries(@RequestBody List<String> sessionIds) {
+        return chatMapper.getSummBySessionIds(sessionIds);
+    }
+
+    //해당 user가 했던 session_id가져오기
+    @PostMapping("/get-userinfo")
+    public ResponseEntity<List<String>> getUserSessionIds(@RequestBody Map<String, String> userMap) {
+>>>>>>> d9dd369d66c22c5c2dd28cad26d688f6dbc5ea22
         try {
             Long userNo = extractUserNoFromToken(userMap.get("token"));
             log.info("Received user_no: {}", userNo);
