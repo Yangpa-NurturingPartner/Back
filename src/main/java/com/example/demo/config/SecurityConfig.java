@@ -26,14 +26,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .cors().configurationSource(corsConfigurationSource()).and()  // CORS 설정 추가
-                .csrf().disable()  // CSRF 보호 비활성화
+        // CSRF 비활성화 및 CORS 활성화 구성
+        http.csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // CORS 활성화 및 설정 추가
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/google-login", "/api/user-info", "/api/generate-token").permitAll()
-                        .requestMatchers("/api/profiles/**").authenticated()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll() // 모든 요청에 대해 인증 없이 접근 허용
                 )
+                // JWT 인증 필터 추가
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
@@ -42,9 +41,9 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // 허용할 출처
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // 허용할 HTTP 메서드
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // 허용할 헤더
+        configuration.setAllowedOrigins(Arrays.asList("*")); // 모든 출처 허용
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE")); // 모든 HTTP 메서드 허용
+        configuration.setAllowedHeaders(Arrays.asList("*")); // 모든 헤더 허용
         configuration.setAllowCredentials(true); // 자격 증명 허용
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration); // 모든 경로에 대해 CORS 설정 적용

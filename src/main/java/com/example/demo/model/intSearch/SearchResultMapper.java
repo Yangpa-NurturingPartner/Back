@@ -1,4 +1,4 @@
-package com.example.demo.model.intSearch;
+package com.example.demo.model.intSㄹearch;
 
 import com.example.demo.model.community.CommunityBoardVO;
 import org.apache.ibatis.annotations.Mapper;

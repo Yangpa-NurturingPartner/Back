@@ -9,7 +9,6 @@ version = '0.0.1-SNAPSHOT'
 
 apply plugin: 'war'
 
-
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
@@ -24,16 +23,14 @@ dependencies {
     // Spring Boot Starters
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
 
     // Database
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-
     runtimeOnly 'org.postgresql:postgresql'
 
     // MyBatis
@@ -62,7 +59,6 @@ dependencies {
 
     // Validation
     implementation 'javax.annotation:javax.annotation-api:1.3.2'
-
     implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
     implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
 
@@ -75,25 +71,18 @@ dependencies {
     // Testing
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
 
-configurations {
-    all {
-        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-    }
-
-    implementation "org.springframework.boot:spring-boot-starter-log4j2"
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    // akarta validation
+    // Validation Starter
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-
 }
+
 configurations {
     all {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        exclude group: 'ch.qos.logback'
     }
 }
+
 dependencyManagement {
     imports {
         mavenBom "org.springframework.ai:spring-ai-bom:1.0.0-M2"
@@ -113,22 +102,4 @@ task copyEnvFile(type: Copy) {
     from '.env'
     into 'build/resources/main'
 }
-
-
-bootWar {
-    archiveBaseName.set('back')
-    archiveFileName.set('back.war')
-    archiveVersion.set('0.0.0')
-    enabled = true
-}
-
-bootJar {
-    enabled = false
-}
-
-task copyEnvFile(type: Copy) {
-    from '.env'
-    into 'build/resources/main'
-}
 processResources.dependsOn(copyEnvFile)
-
