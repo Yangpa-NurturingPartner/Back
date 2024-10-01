@@ -40,24 +40,19 @@ public class ChatController {
     @PostMapping("/message")
     public ResponseEntity<ChatDetailVO> yangpaChat(@RequestBody Map<String, Object> requestBody) {
         try {
-<<<<<<< HEAD
             String sessionId = (String) requestBody.get("session_id");
             String query = (String) requestBody.get("chat_detail");
             String userNo = (String) requestBody.get("token");
             Long user = extractUserNoFromToken(userNo);
-=======
-            String session_id = (String) requestBody.get("session_id");
-            String query = (String) requestBody.get("chat_detail");
-            System.out.println("Received session_id: " + session_id);
-            System.out.println("Request Body: " + requestBody);
->>>>>>> d9dd369d66c22c5c2dd28cad26d688f6dbc5ea22
+
+            System.out.println(user);
 
             // chat 테이블에 해당 session_id가 존재하는지 확인
             String existingSummAnswer = chatMapper.getFirstAnswer(sessionId);
 
+            //요약본 저장
             if (existingSummAnswer == null) {
                 String summary = chatService.getSummary(query);
-
                 chatMapper.saveChat(sessionId, summary, Timestamp.valueOf(LocalDateTime.now()));
             }
 
@@ -66,22 +61,10 @@ public class ChatController {
                 return ResponseEntity.badRequest().body(null);
             }
 
-<<<<<<< HEAD
             ChatDetailVO chatDetailVO = createChatDetailVO(sessionId, query);
 
             List<ChatDetailVO> history = chatMapper.getChatHistoryBySessionId(sessionId);
             String answer = chatService.getAnswer(sessionId, chatDetailVO.getQuery(), history);
-=======
-            chatDetailVO.setQuery(query);
-            chatDetailVO.setSession_id(session_id);
-
-            Timestamp qa_time = Timestamp.valueOf(LocalDateTime.now());
-            chatDetailVO.setQa_time(qa_time);
-
-            //대화 기록 조회 후 응답 생성
-            List<ChatDetailVO> history = chatMapper.getChatHistoryBySessionId(session_id);
-            String answer = chatService.getAnswer(session_id, chatDetailVO.getQuery(), history);
->>>>>>> d9dd369d66c22c5c2dd28cad26d688f6dbc5ea22
 
             chatDetailVO.setAnswer(answer);
             chatMapper.saveChatDetail(chatDetailVO);
