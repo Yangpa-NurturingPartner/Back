@@ -40,15 +40,26 @@ public class ProfileController {
     // 사용자 조회
     @GetMapping("/search")
     public ResponseEntity<?> getProfiles(@RequestHeader("Authorization") String token) {
-        MemberUser memberUser = getMemberUserByToken(token);
-        List<Profile_child> profiles = profileService.getProfilesByUserNo(memberUser.getUserNo());
-        return ResponseEntity.ok(profiles);
+        try {
+            MemberUser memberUser = getMemberUserByToken(token);
+            List<Profile_child> profiles = profileService.getProfilesByUserNo(memberUser.getUserNo());
+            return ResponseEntity.ok(Map.of("status", "success", "data", profiles));
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
+                    "status", "fail",
+                    "message", "사용자를 찾을 수 없습니다."
+            ));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
+                    "status", "error",
+                    "message", "예상치 못한 오류가 발생했습니다: " + e.getMessage()
+            ));
+        }
     }
 
     // 자식 프로필 등록
     @PostMapping("/add")
     public ResponseEntity<?> addProfile(@RequestBody Profile_child profileData, @RequestHeader("Authorization") String token) {
-        Map<String, Object> response = new HashMap<>();
         try {
             MemberUser memberUser = getMemberUserByToken(token);
             validateProfileData(profileData);
@@ -58,26 +69,31 @@ public class ProfileController {
 
             profileService.saveProfile(profileData);
 
-            response.put("status", "success");
-            response.put("message", "Profile added successfully");
-
-            return ResponseEntity.ok(response);
-
-        } catch (UserNotFoundException | InvalidProfileDataException e) {
-            response.put("status", "fail");
-            response.put("message", e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            return ResponseEntity.ok(Map.of(
+                    "status", "success",
+                    "message", "프로필이 성공적으로 추가되었습니다."
+            ));
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
+                    "status", "fail",
+                    "message", "사용자를 찾을 수 없습니다."
+            ));
+        } catch (InvalidProfileDataException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
+                    "status", "fail",
+                    "message", "유효하지 않은 프로필 데이터입니다: " + e.getMessage()
+            ));
         } catch (Exception e) {
-            response.put("status", "error");
-            response.put("message", "An unexpected error occurred: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
+                    "status", "error",
+                    "message", "예상치 못한 오류가 발생했습니다: " + e.getMessage()
+            ));
         }
     }
 
     // 자식 프로필 수정
     @PutMapping("/{childId}")
     public ResponseEntity<?> updateProfile(@PathVariable Integer childId, @RequestBody Profile_child profileData, @RequestHeader("Authorization") String token) {
-        Map<String, Object> response = new HashMap<>();
         try {
             validateProfileData(profileData);
 
@@ -90,43 +106,60 @@ public class ProfileController {
 
             profileRepository.save(profileToUpdate);
 
-            response.put("status", "success");
-            response.put("message", "Profile updated successfully");
-
-            return ResponseEntity.ok(response);
-
-        } catch (UserNotFoundException | ProfileNotFoundException | InvalidProfileDataException e) {
-            response.put("status", "fail");
-            response.put("message", e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            return ResponseEntity.ok(Map.of(
+                    "status", "success",
+                    "message", "프로필 수정 완료 했습니다."
+            ));
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
+                    "status", "fail",
+                    "message", "사용자를 찾을 수 없습니다."
+            ));
+        } catch (ProfileNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
+                    "status", "fail",
+                    "message", "프로필을 찾을 수 없습니다."
+            ));
+        } catch (InvalidProfileDataException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
+                    "status", "fail",
+                    "message", "유효하지 않은 프로필 데이터입니다: " + e.getMessage()
+            ));
         } catch (Exception e) {
-            response.put("status", "error");
-            response.put("message", "An unexpected error occurred: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
+                    "status", "error",
+                    "message", "예상치 못한 오류가 발생했습니다: " + e.getMessage()
+            ));
         }
     }
 
     // 자식 프로필 삭제
     @DeleteMapping("/{childId}")
     public ResponseEntity<?> deleteProfile(@PathVariable Integer childId, @RequestHeader("Authorization") String token) {
-        Map<String, Object> response = new HashMap<>();
         try {
             Profile_child existingProfile = getProfileById(childId);
 
             profileRepository.delete(existingProfile);
 
-            response.put("status", "success");
-            response.put("message", "Profile deleted successfully");
-            return ResponseEntity.ok(response);
-
-        } catch (UserNotFoundException | ProfileNotFoundException e) {
-            response.put("status", "fail");
-            response.put("message", e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            return ResponseEntity.ok(Map.of(
+                    "status", "success",
+                    "data", "프로필 삭제에 성공 했습니다."
+            ));
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
+                    "status", "fail",
+                    "message", "사용자를 찾을 수 없습니다."
+            ));
+        } catch (ProfileNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
+                    "status", "fail",
+                    "message", "프로필을 찾을 수 없습니다."
+            ));
         } catch (Exception e) {
-            response.put("status", "error");
-            response.put("message", "An unexpected error occurred: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
+                    "status", "error",
+                    "message", "예상치 못한 오류가 발생했습니다: " + e.getMessage()
+            ));
         }
     }
 
@@ -135,26 +168,26 @@ public class ProfileController {
         Map<String, Object> userInfo = validateToken(token);
         String email = (String) userInfo.get("email");
         return memberUserRepository.findByUserEmail(email)
-                .orElseThrow(() -> new UserNotFoundException("User not found with email: " + email));
+                .orElseThrow(() -> new UserNotFoundException("이메일로 사용자를 찾을 수 없습니다: " + email));
     }
 
     // 프로필 데이터 검증
     private void validateProfileData(Profile_child profileData) {
         if (profileData.getName() == null || profileData.getBirthdate() == null || profileData.getSex() == null) {
-            throw new InvalidProfileDataException("Incomplete profile data: name, birthdate, and sex are required.");
+            throw new InvalidProfileDataException("프로필 데이터가 불완전합니다: 이름, 생년월일 및 성별이 필요합니다.");
         }
     }
 
     // 프로필 ID로 프로필 정보 가져오기
     private Profile_child getProfileById(Integer childId) {
         return profileRepository.findById(childId)
-                .orElseThrow(() -> new ProfileNotFoundException("Profile not found with ID: " + childId));
+                .orElseThrow(() -> new ProfileNotFoundException("ID로 프로필을 찾을 수 없습니다: " + childId));
     }
 
     // 토큰 유효성 검사 메서드
     private Map<String, Object> validateToken(String token) {
         if (!token.startsWith("Bearer ")) {
-            throw new IllegalArgumentException("Invalid Authorization format");
+            throw new IllegalArgumentException("잘못된 Authorization 형식입니다.");
         }
         String jwtToken = token.replace("Bearer ", "");
         return jwtTokenProvider.decodeToken(jwtToken);

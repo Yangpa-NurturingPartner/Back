@@ -48,28 +48,47 @@ public class IntSearchController {
 
     @PostMapping("/total")
     public ResponseEntity<Map<String, Object>> search(@RequestBody Map<String, String> request) {
-        String search = request.get("search");
-        String token = request.get("token");
+        try {
+            String search = request.get("search");
+            String token = request.get("token");
 
-        // 사용자 번호 추출
-        Long userNo = extractUserNoFromToken(token);
+            // 사용자 번호 추출
+            Long userNo = extractUserNoFromToken(token);
 
-        Map<String, Object> searchRequest = new HashMap<>();
-        searchRequest.put("query", search);
-        searchRequest.put("user_no", userNo);
+            Map<String, Object> searchRequest = new HashMap<>();
+            searchRequest.put("query", search);
+            searchRequest.put("user_no", userNo);
 
-        // 사용자 검색에 맞는 임베딩된 데이터에서 결과 찾는 api 초출
-        Map<String, Object> response = restTemplate.postForObject(
-                "http://192.168.0.218:9000/search/unified",
-                searchRequest,
-                Map.class
-        );
+            // 사용자 검색에 맞는 임베딩된 데이터에서 결과 찾는 API 호출
+            Map<String, Object> response = restTemplate.postForObject(
+                    "http://192.168.0.218:9000/search/unified",
+                    searchRequest,
+                    Map.class
+            );
 
-        log.info(response.toString());
-        Map<String, Object> results = fetchSearchResults(response);
-        return ResponseEntity.ok(results);
+            log.info(response.toString());
+            Map<String, Object> results = fetchSearchResults(response);
+
+            // Jsend 성공 응답 포맷
+            Map<String, Object> jsendResponse = new HashMap<>();
+            jsendResponse.put("status", "success");
+            jsendResponse.put("data", results);
+
+            return ResponseEntity.ok(jsendResponse);
+
+        } catch (Exception e) {
+            log.error("Error during search: ", e);
+            // Jsend 에러 응답 포맷
+            Map<String, Object> jsendError = new HashMap<>();
+            jsendError.put("status", "error");
+            jsendError.put("message", "검색 중 오류가 발생했습니다.");
+            jsendError.put("data", e.getMessage());
+
+            return ResponseEntity.status(500).body(jsendError);
+        }
     }
 
+    // api 결과 이용하여 db 접근해 매칭된 결과 가져오기
     private Map<String, Object> fetchSearchResults(Map<String, Object> searchResults) {
         Map<String, Object> results = new HashMap<>();
 

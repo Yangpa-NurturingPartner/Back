@@ -38,36 +38,35 @@ public class ChatController {
 
     // 채팅 생성
     @PostMapping("/message")
-    public ResponseEntity<ChatDetailVO> yangpaChat(@RequestBody Map<String, Object> requestBody) {
+    public ResponseEntity<Map<String, Object>> yangpaChat(@RequestBody Map<String, Object> requestBody) {
         try {
             String sessionId = (String) requestBody.get("session_id");
             String query = (String) requestBody.get("chat_detail");
             String userNo = (String) requestBody.get("token");
             Long user = extractUserNoFromToken(userNo);
 
-            // chat 테이블에 해당 session_id가 존재하는지 확인
             String existingSummAnswer = chatMapper.getFirstAnswer(sessionId);
 
             if (existingSummAnswer == null) {
                 String summary = chatService.getSummary(query);
-
                 chatMapper.saveChat(sessionId, summary, Timestamp.valueOf(LocalDateTime.now()));
             }
 
-            // 세션 종료 여부 확인
             if (chatService.isSessionEnded(sessionId)) {
-                return ResponseEntity.badRequest().body(null);
+                return ResponseEntity.badRequest().body(Map.of(
+                        "status", "fail",
+                        "data", null,
+                        "message", "세션이 종료되었습니다."
+                ));
             }
 
             ChatDetailVO chatDetailVO = createChatDetailVO(sessionId, query);
-
             List<ChatDetailVO> history = chatMapper.getChatHistoryBySessionId(sessionId);
             String answer = chatService.getAnswer(sessionId, chatDetailVO.getQuery(), history);
 
             chatDetailVO.setAnswer(answer);
             chatMapper.saveChatDetail(chatDetailVO);
 
-            // 새로운 POST 요청을 외부 URL에 보내는 로직 추가
             String embeddedUrl = "http://192.168.0.218:9000/embedded/chat/contents";
             Map<String, Object> externalRequestBody = Map.of(
                     "user_no", user,
@@ -76,111 +75,157 @@ public class ChatController {
                     "answer", answer
             );
 
-            // HTTP POST 요청 보내기
             ResponseEntity<String> response = sendPostRequest(embeddedUrl, externalRequestBody);
 
-            // 요청 성공 여부에 따른 처리
             if (response.getStatusCode().is2xxSuccessful()) {
-                return ResponseEntity.ok(chatDetailVO);
+                return ResponseEntity.ok(Map.of(
+                        "status", "success",
+                        "data", chatDetailVO,
+                        "message", "요청이 성공적으로 처리되었습니다."
+                ));
             } else {
                 log.error("외부 서비스 요청 실패: {}", response.getBody());
-                return ResponseEntity.status(500).body(createErrorChatDetailVO(new Exception("외부 서비스 요청 실패: " + response.getBody())));
+                return ResponseEntity.status(500).body(Map.of(
+                        "status", "error",
+                        "message", "외부 서비스 요청 실패: " + response.getBody(),
+                        "data", null
+                ));
             }
 
         } catch (Exception e) {
             log.error("Error in yangpaChat: {}", e.getMessage(), e);
-            return ResponseEntity.status(500).body(createErrorChatDetailVO(e));
+            return ResponseEntity.status(500).body(Map.of(
+                    "status", "error",
+                    "message", "예기치 못한 오류 발생: " + e.getMessage(),
+                    "data", null
+            ));
         }
     }
 
     // 채팅 종료
     @PostMapping("/end-chat")
-    public ResponseEntity<String> endChatSession(@RequestParam String sessionId) {
+    public ResponseEntity<Map<String, Object>> endChatSession(@RequestParam String sessionId) {
         try {
             List<ChatDetailVO> history = chatMapper.getChatHistoryBySessionId(sessionId);
             chatService.endChatSession(sessionId, history);
-            return ResponseEntity.ok(SESSION_ENDED_MSG);
+            return ResponseEntity.ok(Map.of(
+                    "status", "success",
+                    "data", null,
+                    "message", SESSION_ENDED_MSG
+            ));
         } catch (Exception e) {
             log.error("채팅 종료 중 오류 발생: {}", e.getMessage(), e);
-            return ResponseEntity.status(500).body(CHAT_END_ERROR_MSG);
+            return ResponseEntity.status(500).body(Map.of(
+                    "status", "error",
+                    "message", CHAT_END_ERROR_MSG,
+                    "data", null
+            ));
         }
     }
 
     // 새로운 채팅
     @PostMapping("/start-new-chat")
-    public ResponseEntity<Map<String, String>> startNewChat(@RequestBody Map<String, Object> requestBody) {
+    public ResponseEntity<Map<String, Object>> startNewChat(@RequestBody Map<String, Object> requestBody) {
         try {
             String oldSessionId = (String) requestBody.get("oldSession_id");
             String jwtToken = (String) requestBody.get("jwtToken");
             Integer childId = (Integer) requestBody.get("child_id");
 
             Long userNo = extractUserNoFromToken(jwtToken);
+            List<ChatDetailVO> history = (oldSessionId != null) ? chatMapper.getChatHistoryBySessionId(oldSessionId) : null;
 
-            List<ChatDetailVO> history = (oldSessionId != null) ?
-                    chatMapper.getChatHistoryBySessionId(oldSessionId) : null;
-
-            // 새로운 채팅 세션 생성
             String newSessionId = chatService.createNewSession(history, oldSessionId);
-
-            // 추출한 userNo와 제공된 childId로 새로운 채팅방 저장
             chatMapper.saveChatRoom(newSessionId, Math.toIntExact(userNo), childId);
 
-            // 새로 생성된 세션 ID 반환
-            return ResponseEntity.ok(Map.of("session_id", newSessionId));
-
+            return ResponseEntity.ok(Map.of(
+                    "status", "success",
+                    "data", Map.of("session_id", newSessionId),
+                    "message", "새로운 채팅 세션이 성공적으로 생성되었습니다."
+            ));
         } catch (Exception e) {
             log.error("{} {}", NEW_CHAT_ERROR_MSG, e.getMessage(), e);
-            return ResponseEntity.status(500).body(Map.of("error", SESSION_CREATION_ERROR_MSG));
+            return ResponseEntity.status(500).body(Map.of(
+                    "status", "error",
+                    "message", SESSION_CREATION_ERROR_MSG,
+                    "data", null
+            ));
         }
     }
 
-    // 해당 user가 했던 session_id가져와 이전 채팅 불러오기
+
+    // 해당 user가 했던 session_id 가져와 이전 채팅 불러오기
     @PostMapping("/user-chat-record")
-    public ResponseEntity<List<ChatVO>> getUserChatSummaries(@RequestBody Map<String, String> userMap) {
+    public ResponseEntity<Map<String, Object>> getUserChatSummaries(@RequestBody Map<String, String> userMap) {
         try {
             Long userNo = extractUserNoFromToken(userMap.get("token"));
             log.info("Received user_no: {}", userNo);
 
-            // 사용자와 관련된 모든 세션 ID를 가져옴
             List<String> sessionIds = chatMapper.getSessionIdsByUserId(Math.toIntExact(userNo));
-
             if (sessionIds.isEmpty()) {
                 log.info("No session IDs found for user: {}", userNo);
-                return ResponseEntity.noContent().build();
+                return ResponseEntity.ok(Map.of(
+                        "status", "fail",
+                        "data", null,
+                        "message", "해당 사용자는 세션 ID가 없습니다."
+                ));
             }
-            List<ChatVO> chatSummaries = chatMapper.getSummBySessionIds(sessionIds);
 
+            List<ChatVO> chatSummaries = chatMapper.getSummBySessionIds(sessionIds);
             if (chatSummaries.isEmpty()) {
                 log.info("No chat summaries found for session IDs: {}", sessionIds);
-                return ResponseEntity.noContent().build();
+                return ResponseEntity.ok(Map.of(
+                        "status", "fail",
+                        "data", null,
+                        "message", "세션 ID에 해당하는 채팅 요약이 없습니다."
+                ));
             }
 
-            return ResponseEntity.ok(chatSummaries);
+            return ResponseEntity.ok(Map.of(
+                    "status", "success",
+                    "data", chatSummaries,
+                    "message", "채팅 요약이 성공적으로 반환되었습니다."
+            ));
         } catch (Exception e) {
             log.error("Error fetching chat summaries for user {}: {}", userMap.get("user_no"), e.getMessage(), e);
-            return ResponseEntity.status(500).body(null);
+            return ResponseEntity.status(500).body(Map.of(
+                    "status", "error",
+                    "message", "사용자 채팅 요약을 가져오는 중 오류 발생",
+                    "data", null
+            ));
         }
     }
 
     // 과거 채팅 상세보기
     @GetMapping("/chat-record-view/{sessionId}")
-    public ResponseEntity<List<ChatDetailVO>> getChatDetails(@PathVariable String sessionId) {
+    public ResponseEntity<Map<String, Object>> getChatDetails(@PathVariable String sessionId) {
         try {
             List<ChatDetailVO> chatDetails = chatService.getChatDetailsBySessionId(sessionId);
 
             if (chatDetails.isEmpty()) {
-                return ResponseEntity.noContent().build();
+                return ResponseEntity.ok(Map.of(
+                        "status", "fail",
+                        "data", null,
+                        "message", "해당 세션에 대한 채팅 상세 정보가 없습니다."
+                ));
             }
-            return ResponseEntity.ok(chatDetails);
+            return ResponseEntity.ok(Map.of(
+                    "status", "success",
+                    "data", chatDetails,
+                    "message", "채팅 상세 정보가 성공적으로 반환되었습니다."
+            ));
         } catch (Exception e) {
             log.error("Error fetching chat details for session {}: {}", sessionId, e.getMessage(), e);
-            return ResponseEntity.status(500).body(null);
+            return ResponseEntity.status(500).body(Map.of(
+                    "status", "error",
+                    "message", "채팅 상세 정보를 가져오는 중 오류 발생",
+                    "data", null
+            ));
         }
     }
 
     // 요약된 채팅 제목 검색
     @PostMapping("/search")
-    public ResponseEntity<List<ChatVO>> searchChatHistory(@RequestBody Map<String, String> requestBody) {
+    public ResponseEntity<Map<String, Object>> searchChatHistory(@RequestBody Map<String, String> requestBody) {
         try {
             String query = requestBody.get("query");
             String jwtToken = requestBody.get("token");
@@ -192,13 +237,16 @@ public class ChatController {
             );
             String searchUrl = "http://192.168.0.218:9000/search/chat-history";
 
-            // 채팅 관련 검색 post 요청 전송
             ResponseEntity<Map> response = sendPostRequestForSearch(searchUrl, externalRequestBody);
             log.info(response.getBody().toString());
 
             if (!response.getStatusCode().is2xxSuccessful() || !response.hasBody()) {
                 log.error("Failed to search chat history: {}", response.getBody());
-                return ResponseEntity.status(500).body(null);
+                return ResponseEntity.status(500).body(Map.of(
+                        "status", "error",
+                        "message", "채팅 내역 검색 실패: " + response.getBody(),
+                        "data", null
+                ));
             }
 
             Map<String, Object> responseBody = response.getBody();
@@ -206,16 +254,28 @@ public class ChatController {
 
             if (sessionIds == null || sessionIds.isEmpty()) {
                 log.info("No session IDs found for user: {}", userNo);
-                return ResponseEntity.noContent().build();
+                return ResponseEntity.ok(Map.of(
+                        "status", "fail",
+                        "data", null,
+                        "message", "해당 사용자에 대한 세션 ID가 없습니다."
+                ));
             }
 
             List<ChatVO> chatSummaries = chatMapper.getSummBySessionIds(sessionIds);
 
-            return ResponseEntity.ok(chatSummaries);
+            return ResponseEntity.ok(Map.of(
+                    "status", "success",
+                    "data", chatSummaries,
+                    "message", "채팅 내역이 성공적으로 검색되었습니다."
+            ));
 
         } catch (Exception e) {
             log.error("Error in searchChatHistory: {}", e.getMessage(), e);
-            return ResponseEntity.status(500).body(null);
+            return ResponseEntity.status(500).body(Map.of(
+                    "status", "error",
+                    "message", "채팅 내역 검색 중 오류 발생",
+                    "data", null
+            ));
         }
     }
 
