@@ -40,14 +40,17 @@ public class GoogleLoginController {
     }
 
     @PostMapping("/google-login")
-    public ResponseEntity<Map<String, String>> googleLogin(@RequestBody Map<String, String> tokenData) {
+    public ResponseEntity<Map<String, Object>> googleLogin(@RequestBody Map<String, String> tokenData) {
         String idTokenString = tokenData.get("token");
 
         try {
             GoogleIdToken idToken = verifyGoogleToken(idTokenString);
             if (idToken == null) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                        .body(Map.of("error", "Invalid ID token"));
+                        .body(Map.of(
+                                "status", "fail",
+                                "message", "유효하지 않은 ID 토큰입니다."
+                        ));
             }
 
             // 사용자 정보 추출
@@ -62,14 +65,21 @@ public class GoogleLoginController {
             saveAuthToken(memberUser, jwtToken);
 
             return ResponseEntity.ok(Map.of(
-                    "token", jwtToken,
-                    "email", email,
-                    "name", name
+                    "status", "success",
+                    "message", "로그인이 성공적으로 완료되었습니다.",
+                    "data", Map.of(
+                            "token", jwtToken,
+                            "email", email,
+                            "name", name
+                    )
             ));
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(Map.of("error", "Error during token validation: " + e.getMessage()));
+                    .body(Map.of(
+                            "status", "error",
+                            "message", "토큰 유효성 검사 중 오류가 발생했습니다: " + e.getMessage()
+                    ));
         }
     }
 

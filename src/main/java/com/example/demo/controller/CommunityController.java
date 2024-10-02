@@ -57,8 +57,13 @@ public class CommunityController {
 
     // 게시물 목록 조회
     @PostMapping("/boards")
-    public PageResponseVO<CommunityBoardVO> getBoardList(@RequestBody PageRequestVO pageRequestVO) {
-        return communityService.getBoardList(pageRequestVO);
+    public ResponseEntity<Map<String, Object>> getBoardList(@RequestBody PageRequestVO pageRequestVO) {
+        PageResponseVO<CommunityBoardVO> result = communityService.getBoardList(pageRequestVO);
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", "success");
+        response.put("data", result);
+        response.put("message", "목록 조회에 성공 하였습니다.");
+        return ResponseEntity.ok(response);
     }
 
     // 게시물 생성 (파일 업로드 포함)
@@ -81,23 +86,27 @@ public class CommunityController {
 
             saveBoardContentToExternalApi(newBoardNo, title, boardContents);
 
-            response.put("state", HttpStatus.OK.value());
-            response.put("log", "Board Created Successfully");
+            response.put("status", "success");
+            response.put("message", "게시물이 성공적으로 생성되었습니다.");
             return ResponseEntity.ok(response);
         } catch (IOException e) {
-            return handleException(response, "File processing error", e, HttpStatus.INTERNAL_SERVER_ERROR);
+            return handleJsendException("파일 처리 오류", e, HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (RuntimeException e) {
-            return handleException(response, "Board creation runtime error", e, HttpStatus.BAD_REQUEST);
+            return handleJsendException("게시물 생성 중 런타임 오류", e, HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            return handleException(response, "Board creation error", e, HttpStatus.BAD_REQUEST);
+            return handleJsendException("게시물 생성 오류", e, HttpStatus.BAD_REQUEST);
         }
     }
 
     // board_no로 게시물 세부 정보, 댓글 및 파일 정보 조회
     @GetMapping("/{board_no}")
-    public ResponseEntity<CommunityBoardDetailVO> getBoardDetails(@PathVariable("board_no") Long boardNo) {
+    public ResponseEntity<Map<String, Object>> getBoardDetails(@PathVariable("board_no") Long boardNo) {
         CommunityBoardDetailVO boardDetail = buildBoardDetailResponse(boardNo);
-        return ResponseEntity.ok(boardDetail);
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", "success");
+        response.put("data", boardDetail);
+        response.put("message", "조회에 성공 하였습니다.");
+        return ResponseEntity.ok(response);
     }
 
     // 댓글 생성하는 api
@@ -126,19 +135,20 @@ public class CommunityController {
             communityService.addComment(commentVO);
             communityService.incrementBoardCount(commentRequestDTO.getBoard_no());
 
-            response.put("state", HttpStatus.OK.value());
-            response.put("log", "Comment Added Successfully");
+            response.put("status", "success");
+            response.put("message", "댓글이 성공적으로 추가되었습니다.");
             return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
-            return handleException(response, "Comment creation runtime error", e, HttpStatus.BAD_REQUEST);
+            return handleJsendException("댓글 생성 중 런타임 오류", e, HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            return handleException(response, "Comment creation error", e, HttpStatus.BAD_REQUEST);
+            return handleJsendException("댓글 생성 오류", e, HttpStatus.BAD_REQUEST);
         }
     }
 
     // 사용자 검색에 따른 문자열 검색
     @PostMapping("/boards/search")
-    public ResponseEntity<PageResponseVO<CommunityBoardVO>> searchBoards(@RequestBody Map<String, String> request) {
+    public ResponseEntity<Map<String, Object>> searchBoards(@RequestBody Map<String, String> request) {
+        Map<String, Object> response = new HashMap<>();
         try {
             String query = request.get("query");
             String period = request.get("period");
@@ -149,9 +159,9 @@ public class CommunityController {
 
             // post통신 - 사용자 쿼리 받아 데이터 비교 후 board_no_list로 결과값 사용
             String searchApiUrl = "http://192.168.0.218:9000/search/community";
-            ResponseEntity<Map> response = restTemplate.postForEntity(searchApiUrl, payload, Map.class);
+            ResponseEntity<Map> apiResponse = restTemplate.postForEntity(searchApiUrl, payload, Map.class);
 
-            List<Integer> boardNoList = (List<Integer>) response.getBody().get("board_no_list");
+            List<Integer> boardNoList = (List<Integer>) apiResponse.getBody().get("board_no_list");
             List<CommunityBoardVO> boards = communityService.getBoardsByNos(boardNoList);
 
             // 기간 필터링 처리
@@ -176,11 +186,19 @@ public class CommunityController {
             }
 
             PageResponseVO<CommunityBoardVO> pageResponseVO = new PageResponseVO<>(boards, boards.size(), 1, boards.size());
-            return ResponseEntity.ok(pageResponseVO);
+
+            response.put("status", "success");
+            response.put("data", pageResponseVO);
+            response.put("message", "게시물 검색에 성공 하였습니다.");
+            return ResponseEntity.ok(response);
 
         } catch (Exception e) {
             log.error("게시물 검색 중 오류 발생: {}", e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            response.put("status", "error");
+            response.put("message", "게시물 검색 중 오류가 발생했습니다.");
+            response.put("code", HttpStatus.INTERNAL_SERVER_ERROR.value());
+            response.put("data", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
 
@@ -220,7 +238,8 @@ public class CommunityController {
         payload.put("content", title + " " + boardContents);
         payload.put("board", boardNo);
 
-        String externalApiUrl = "http://" + apiHost + ":" + fastApiPort + "/embedded/community/contents";
+        String externalApiUrl = "http://221.148.97.238:9400/embedded/community/contents";
+//        String externalApiUrl = "http://" + apiHost + ":" + fastApiPort + "/embedded/community/contents";
         restTemplate.postForEntity(externalApiUrl, payload, String.class);
     }
 
@@ -249,6 +268,17 @@ public class CommunityController {
         log.error("{}: {}", message, e.getMessage());
         response.put("state", status.value());
         response.put("log", message + ": " + e.getMessage());
+        return ResponseEntity.status(status).body(response);
+    }
+
+    // 예외 처리 및 응답 생성 - Jsend방식
+    private ResponseEntity<Map<String, Object>> handleJsendException(String message, Exception e, HttpStatus status) {
+        log.error("{}: {}", message, e.getMessage());
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", "error");
+        response.put("message", message);
+        response.put("code", status.value());
+        response.put("data", e.getMessage());
         return ResponseEntity.status(status).body(response);
     }
 }
