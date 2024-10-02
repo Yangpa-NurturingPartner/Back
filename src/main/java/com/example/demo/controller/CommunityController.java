@@ -19,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -157,30 +158,52 @@ public class CommunityController {
             payload.put("query", query);
             payload.put("user_no", 0);
 
-            // post통신 - 사용자 쿼리 받아 데이터 비교 후 board_no_list로 결과값 사용
+            // 외부 API 호출
             String searchApiUrl = "http://192.168.0.218:9000/search/community";
             ResponseEntity<Map> apiResponse = restTemplate.postForEntity(searchApiUrl, payload, Map.class);
 
+            log.warn(String.valueOf(apiResponse));
+
             List<Integer> boardNoList = (List<Integer>) apiResponse.getBody().get("board_no_list");
+
+            log.warn(boardNoList.toString());
+
             List<CommunityBoardVO> boards = communityService.getBoardsByNos(boardNoList);
 
             // 기간 필터링 처리
             if (period != null && !period.equals("all")) {
                 LocalDate endDate = LocalDate.now();
-                final LocalDate startDate;
+                LocalDate startDate;
 
-                if (period.equals("week")) {
-                    startDate = endDate.minusWeeks(1);
-                } else if (period.equals("month")) {
-                    startDate = endDate.minusMonths(1);
-                } else {
-                    startDate = endDate;
+                switch (period) {
+                    case "week":
+                        startDate = endDate.minusWeeks(1);
+                        break;
+                    case "month":
+                        startDate = endDate.minusMonths(1);
+                        break;
+                    default:
+                        startDate = endDate;
+                        break;
                 }
 
+                // startDate부터 endDate까지의 게시물만 필터링
                 boards = boards.stream()
                         .filter(board -> {
-                            LocalDate boardDate = board.getRegister_date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                            return (boardDate.isEqual(startDate) || boardDate.isAfter(startDate)) && (boardDate.isBefore(endDate) || boardDate.isEqual(endDate));
+                            try {
+                                // 등록 날짜가 없을 경우 필터링
+                                if (board.getRegister_date() == null) {
+                                    log.warn("Board with null register_date: {}", board);
+                                    return false;
+                                }
+                                LocalDate boardDate = board.getRegister_date().toLocalDate();
+
+                                return (boardDate.isEqual(startDate) || boardDate.isAfter(startDate))
+                                        && (boardDate.isBefore(endDate) || boardDate.isEqual(endDate));
+
+                            } catch (Exception e) {
+                                return false;
+                            }
                         })
                         .collect(Collectors.toList());
             }
