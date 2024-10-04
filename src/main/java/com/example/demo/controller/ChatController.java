@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -60,34 +61,74 @@ public class ChatController {
                 ));
             }
 
+            // 기존의 chatDetailVO 생성
             ChatDetailVO chatDetailVO = createChatDetailVO(sessionId, query);
-            List<ChatDetailVO> history = chatMapper.getChatHistoryBySessionId(sessionId);
-            String answer = chatService.getAnswer(sessionId, chatDetailVO.getQuery(), history);
 
+            // 기존 대화 이력 가져오기
+            List<ChatDetailVO> history = chatMapper.getChatHistoryBySessionId(sessionId);
+
+            // history 데이터를 새로운 API에 맞게 가공
+            List<Map<String, String>> messages = history.stream()
+                    .flatMap(chat -> List.of(
+                            Map.of("role", "user", "content", chat.getQuery()),
+                            Map.of("role", "assistant", "content", chat.getAnswer() != null ? chat.getAnswer() : "답변이 없습니다.")
+                    ).stream())
+                    .collect(Collectors.toList());
+
+            messages.add(Map.of("role", "user", "content", query));
+
+            String searchUrl = "http://221.148.97.238:9400/search/chat";
+            Map<String, Object> externalRequestBody = Map.of("messages", messages);
+            ResponseEntity<Map> response = sendPostRequestForSearch(searchUrl, externalRequestBody);
+            Map<String, Object> responseBody = response.getBody();
+
+            // 외부 API 응답 상태 확인
+            if (!response.getStatusCode().is2xxSuccessful() || !responseBody.containsKey("result")) {
+                log.error("외부 서비스 요청 실패: {}", response.getBody());
+                return ResponseEntity.status(500).body(Map.of(
+                        "status", "error",
+                        "message", "외부 서비스 요청 실패: " + response.getBody(),
+                        "data", null
+                ));
+            }
+
+            // 응답에서 'assistant'의 content 추출
+            List<Map<String, String>> result = (List<Map<String, String>>) responseBody.get("result");
+            String answer = result.stream()
+                    .filter(item -> "assistant".equals(item.get("role")))
+                    .map(item -> item.get("content"))
+                    .findFirst()
+                    .orElse("답변이 없습니다.");
+
+            // 답변을 chatDetailVO에 설정
             chatDetailVO.setAnswer(answer);
+
+            // 채팅 상세 저장
             chatMapper.saveChatDetail(chatDetailVO);
 
-            String embeddedUrl = "http://192.168.0.218:9000/embedded/chat/contents";
-            Map<String, Object> externalRequestBody = Map.of(
+            String embeddedUrl = "http://221.148.97.238:9400/embedded/chat/contents";
+            Map<String, Object> externalEmbeddedRequestBody = Map.of(
                     "user_no", user,
                     "session_id", sessionId,
                     "query", query,
                     "answer", answer
             );
 
-            ResponseEntity<String> response = sendPostRequest(embeddedUrl, externalRequestBody);
+            // 외부 서비스에 전송
+            ResponseEntity<String> embeddedResponse = sendPostRequest(embeddedUrl, externalEmbeddedRequestBody);
 
-            if (response.getStatusCode().is2xxSuccessful()) {
+            // 응답 처리
+            if (embeddedResponse.getStatusCode().is2xxSuccessful()) {
                 return ResponseEntity.ok(Map.of(
                         "status", "success",
                         "data", chatDetailVO,
                         "message", "요청이 성공적으로 처리되었습니다."
                 ));
             } else {
-                log.error("외부 서비스 요청 실패: {}", response.getBody());
+                log.error("외부 서비스 요청 실패: {}", embeddedResponse.getBody());
                 return ResponseEntity.status(500).body(Map.of(
                         "status", "error",
-                        "message", "외부 서비스 요청 실패: " + response.getBody(),
+                        "message", "외부 서비스 요청 실패: " + embeddedResponse.getBody(),
                         "data", null
                 ));
             }
@@ -101,6 +142,7 @@ public class ChatController {
             ));
         }
     }
+
 
     // 채팅 종료
     @PostMapping("/end-chat")
