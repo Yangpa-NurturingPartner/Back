@@ -61,7 +61,7 @@ public class IntSearchController {
 
             // 사용자 검색에 맞는 임베딩된 데이터에서 결과 찾는 API 호출
             Map<String, Object> response = restTemplate.postForObject(
-                    "http://192.168.0.218:9000/search/unified",
+                    "http://221.148.97.238:9400/search/unified",
                     searchRequest,
                     Map.class
             );

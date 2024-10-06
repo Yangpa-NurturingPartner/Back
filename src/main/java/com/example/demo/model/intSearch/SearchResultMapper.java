@@ -31,7 +31,7 @@ public interface SearchResultMapper {
 
     // 채팅 데이터 가져오는 메서드
     @Select("<script>" +
-            "SELECT * FROM chat_detail WHERE session_id IN " +
+            "SELECT summ_answer FROM chat WHERE session_id IN " +
             "<foreach item='id' collection='chatIds' open='(' separator=',' close=')'>" +
             "#{id}" +
             "</foreach>" +
