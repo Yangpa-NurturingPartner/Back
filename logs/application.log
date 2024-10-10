@@ -1,666 +1,473 @@
-[INFO ] 2024-10-06 13:41:03 [background-preinit] Version - HV000001: Hibernate Validator 8.0.1.Final
-[INFO ] 2024-10-06 13:41:03 [main] DemoApplication - Starting DemoApplication using Java 17.0.6 with PID 18498 (/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main started by honggeonho in /Users/honggeonho/Documents/workspace/AIOnion/Back)
-[DEBUG] 2024-10-06 13:41:03 [main] DemoApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-[INFO ] 2024-10-06 13:41:03 [main] DemoApplication - No active profile set, falling back to 1 default profile: "default"
-[DEBUG] 2024-10-06 13:41:04 [main] MybatisAutoConfiguration - Searching for mappers annotated with @Mapper
-[DEBUG] 2024-10-06 13:41:04 [main] MybatisAutoConfiguration - Using auto-configuration base package 'com.example.demo'
-[INFO ] 2024-10-06 13:41:04 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[INFO ] 2024-10-06 13:41:04 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 85 ms. Found 6 JPA repository interfaces.
-[DEBUG] 2024-10-06 13:41:04 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/model/intSㄹearch/SearchResultMapper.class]
-[DEBUG] 2024-10-06 13:41:04 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/chat/ChatMapper.class]
-[DEBUG] 2024-10-06 13:41:04 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/community/CommunityMapper.class]
-[DEBUG] 2024-10-06 13:41:04 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'searchResultMapper' and 'com.example.demo.model.intSㄹearch.SearchResultMapper' mapperInterface
-[DEBUG] 2024-10-06 13:41:04 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'chatMapper' and 'com.example.demo.service.chat.ChatMapper' mapperInterface
-[DEBUG] 2024-10-06 13:41:04 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'communityMapper' and 'com.example.demo.service.community.CommunityMapper' mapperInterface
-[INFO ] 2024-10-06 13:41:04 [main] TomcatWebServer - Tomcat initialized with port 8000 (http)
-[INFO ] 2024-10-06 13:41:04 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8000"]
-[INFO ] 2024-10-06 13:41:04 [main] StandardService - Starting service [Tomcat]
-[INFO ] 2024-10-06 13:41:04 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
-[INFO ] 2024-10-06 13:41:04 [main] [/] - Initializing Spring embedded WebApplicationContext
-[INFO ] 2024-10-06 13:41:04 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 938 ms
-[INFO ] 2024-10-06 13:41:04 [main] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-[INFO ] 2024-10-06 13:41:04 [main] Version - HHH000412: Hibernate ORM core version 6.5.2.Final
-[INFO ] 2024-10-06 13:41:04 [main] RegionFactoryInitiator - HHH000026: Second-level cache disabled
-[INFO ] 2024-10-06 13:41:04 [main] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-[INFO ] 2024-10-06 13:41:04 [main] HikariDataSource - HikariPool-1 - Starting...
-[INFO ] 2024-10-06 13:41:05 [main] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@575c23f1
-[INFO ] 2024-10-06 13:41:05 [main] HikariDataSource - HikariPool-1 - Start completed.
-[WARN ] 2024-10-06 13:41:05 [main] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-[INFO ] 2024-10-06 13:41:05 [main] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[INFO ] 2024-10-06 13:41:05 [main] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[DEBUG] 2024-10-06 13:41:06 [main] SqlSessionFactoryBean - Property 'mapperLocations' was not specified.
-[INFO ] 2024-10-06 13:41:06 [main] QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-[WARN ] 2024-10-06 13:41:06 [main] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[WARN ] 2024-10-06 13:41:06 [main] ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
-[DEBUG] 2024-10-06 13:41:06 [main] MybatisAutoConfiguration - Not found configuration for registering mapper bean using @MapperScan, MapperFactoryBean and MapperScannerConfigurer.
-[INFO ] 2024-10-06 13:41:07 [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8000"]
-[INFO ] 2024-10-06 13:41:07 [main] TomcatWebServer - Tomcat started on port 8000 (http) with context path '/'
-[INFO ] 2024-10-06 13:41:07 [main] DemoApplication - Started DemoApplication in 3.767 seconds (process running for 4.331)
-[INFO ] 2024-10-06 13:41:19 [http-nio-8000-exec-2] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[INFO ] 2024-10-06 13:41:19 [http-nio-8000-exec-2] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-[INFO ] 2024-10-06 13:41:19 [http-nio-8000-exec-2] DispatcherServlet - Completed initialization in 2 ms
-[INFO ] 2024-10-06 13:41:19 [http-nio-8000-exec-2] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
-[INFO ] 2024-10-06 13:41:19 [http-nio-8000-exec-2] IntSearchController - Decoded user info: {name=장혜지, id=1, email=jangheyji@gmail.com}
-[INFO ] 2024-10-06 13:41:57 [http-nio-8000-exec-4] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
-[INFO ] 2024-10-06 13:41:57 [http-nio-8000-exec-4] IntSearchController - Decoded user info: {name=장혜지, id=1, email=jangheyji@gmail.com}
-[ERROR] 2024-10-06 13:42:34 [http-nio-8000-exec-2] IntSearchController - Error during search: 
-org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://192.168.0.218:9000/search/unified": Operation timed out
-	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:915) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:895) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.client.RestTemplate.postForObject(RestTemplate.java:507) ~[spring-web-6.1.12.jar:6.1.12]
-	at com.example.demo.controller.IntSearchController.search(IntSearchController.java:63) ~[main/:?]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.28.jar:6.0]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.28.jar:6.0]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at com.example.demo.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:37) ~[main/:?]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) [spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) [spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) [spring-security-config-6.3.3.jar:6.3.3]
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) [spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) [spring-web-6.1.12.jar:6.1.12]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) [spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) [spring-web-6.1.12.jar:6.1.12]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) [spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) [spring-web-6.1.12.jar:6.1.12]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) [spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) [spring-web-6.1.12.jar:6.1.12]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at java.base/java.lang.Thread.run(Thread.java:833) [?:?]
-Caused by: java.net.ConnectException: Operation timed out
-	at java.base/sun.nio.ch.Net.connect0(Native Method) ~[?:?]
-	at java.base/sun.nio.ch.Net.connect(Net.java:579) ~[?:?]
-	at java.base/sun.nio.ch.Net.connect(Net.java:568) ~[?:?]
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:588) ~[?:?]
-	at java.base/java.net.Socket.connect(Socket.java:639) ~[?:?]
-	at java.base/java.net.Socket.connect(Socket.java:588) ~[?:?]
-	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:183) ~[?:?]
-	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:531) ~[?:?]
-	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:636) ~[?:?]
-	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:279) ~[?:?]
-	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:384) ~[?:?]
-	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:406) ~[?:?]
-	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1312) ~[?:?]
-	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1245) ~[?:?]
-	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1131) ~[?:?]
-	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1060) ~[?:?]
-	at org.springframework.http.client.SimpleClientHttpRequest.executeInternal(SimpleClientHttpRequest.java:79) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889) ~[spring-web-6.1.12.jar:6.1.12]
-	... 100 more
-[ERROR] 2024-10-06 13:43:12 [http-nio-8000-exec-4] IntSearchController - Error during search: 
-org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://192.168.0.218:9000/search/unified": Operation timed out
-	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:915) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:895) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.client.RestTemplate.postForObject(RestTemplate.java:507) ~[spring-web-6.1.12.jar:6.1.12]
-	at com.example.demo.controller.IntSearchController.search(IntSearchController.java:63) ~[main/:?]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.28.jar:6.0]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.28.jar:6.0]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at com.example.demo.security.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:37) ~[main/:?]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.3.3.jar:6.3.3]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.12.jar:6.1.12]
-	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) [spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) [spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) [spring-security-config-6.3.3.jar:6.3.3]
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) [spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) [spring-web-6.1.12.jar:6.1.12]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) [spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) [spring-web-6.1.12.jar:6.1.12]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) [spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) [spring-web-6.1.12.jar:6.1.12]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) [spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) [spring-web-6.1.12.jar:6.1.12]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) [tomcat-embed-core-10.1.28.jar:10.1.28]
-	at java.base/java.lang.Thread.run(Thread.java:833) [?:?]
-Caused by: java.net.ConnectException: Operation timed out
-	at java.base/sun.nio.ch.Net.connect0(Native Method) ~[?:?]
-	at java.base/sun.nio.ch.Net.connect(Net.java:579) ~[?:?]
-	at java.base/sun.nio.ch.Net.connect(Net.java:568) ~[?:?]
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:588) ~[?:?]
-	at java.base/java.net.Socket.connect(Socket.java:639) ~[?:?]
-	at java.base/java.net.Socket.connect(Socket.java:588) ~[?:?]
-	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:183) ~[?:?]
-	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:531) ~[?:?]
-	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:636) ~[?:?]
-	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:279) ~[?:?]
-	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:384) ~[?:?]
-	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:406) ~[?:?]
-	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1312) ~[?:?]
-	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1245) ~[?:?]
-	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1131) ~[?:?]
-	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:1060) ~[?:?]
-	at org.springframework.http.client.SimpleClientHttpRequest.executeInternal(SimpleClientHttpRequest.java:79) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66) ~[spring-web-6.1.12.jar:6.1.12]
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889) ~[spring-web-6.1.12.jar:6.1.12]
-	... 100 more
-[INFO ] 2024-10-06 13:43:49 [SpringApplicationShutdownHook] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-[INFO ] 2024-10-06 13:43:49 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
-[INFO ] 2024-10-06 13:43:49 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
-[INFO ] 2024-10-06 13:43:51 [background-preinit] Version - HV000001: Hibernate Validator 8.0.1.Final
-[INFO ] 2024-10-06 13:43:51 [main] DemoApplication - Starting DemoApplication using Java 17.0.6 with PID 18582 (/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main started by honggeonho in /Users/honggeonho/Documents/workspace/AIOnion/Back)
-[DEBUG] 2024-10-06 13:43:51 [main] DemoApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-[INFO ] 2024-10-06 13:43:51 [main] DemoApplication - No active profile set, falling back to 1 default profile: "default"
-[DEBUG] 2024-10-06 13:43:52 [main] MybatisAutoConfiguration - Searching for mappers annotated with @Mapper
-[DEBUG] 2024-10-06 13:43:52 [main] MybatisAutoConfiguration - Using auto-configuration base package 'com.example.demo'
-[INFO ] 2024-10-06 13:43:52 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[INFO ] 2024-10-06 13:43:52 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 79 ms. Found 6 JPA repository interfaces.
-[DEBUG] 2024-10-06 13:43:52 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/model/intSㄹearch/SearchResultMapper.class]
-[DEBUG] 2024-10-06 13:43:52 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/chat/ChatMapper.class]
-[DEBUG] 2024-10-06 13:43:52 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/community/CommunityMapper.class]
-[DEBUG] 2024-10-06 13:43:52 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'searchResultMapper' and 'com.example.demo.model.intSㄹearch.SearchResultMapper' mapperInterface
-[DEBUG] 2024-10-06 13:43:52 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'chatMapper' and 'com.example.demo.service.chat.ChatMapper' mapperInterface
-[DEBUG] 2024-10-06 13:43:52 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'communityMapper' and 'com.example.demo.service.community.CommunityMapper' mapperInterface
-[INFO ] 2024-10-06 13:43:52 [main] TomcatWebServer - Tomcat initialized with port 8000 (http)
-[INFO ] 2024-10-06 13:43:52 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8000"]
-[INFO ] 2024-10-06 13:43:52 [main] StandardService - Starting service [Tomcat]
-[INFO ] 2024-10-06 13:43:52 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
-[INFO ] 2024-10-06 13:43:52 [main] [/] - Initializing Spring embedded WebApplicationContext
-[INFO ] 2024-10-06 13:43:52 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 826 ms
-[INFO ] 2024-10-06 13:43:52 [main] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-[INFO ] 2024-10-06 13:43:52 [main] Version - HHH000412: Hibernate ORM core version 6.5.2.Final
-[INFO ] 2024-10-06 13:43:52 [main] RegionFactoryInitiator - HHH000026: Second-level cache disabled
-[INFO ] 2024-10-06 13:43:53 [main] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-[INFO ] 2024-10-06 13:43:53 [main] HikariDataSource - HikariPool-1 - Starting...
-[INFO ] 2024-10-06 13:43:53 [main] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@350e3fb4
-[INFO ] 2024-10-06 13:43:53 [main] HikariDataSource - HikariPool-1 - Start completed.
-[WARN ] 2024-10-06 13:43:53 [main] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-[INFO ] 2024-10-06 13:43:53 [main] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[INFO ] 2024-10-06 13:43:54 [main] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[DEBUG] 2024-10-06 13:43:54 [main] SqlSessionFactoryBean - Property 'mapperLocations' was not specified.
-[INFO ] 2024-10-06 13:43:54 [main] QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-[WARN ] 2024-10-06 13:43:54 [main] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[WARN ] 2024-10-06 13:43:54 [main] ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
-[DEBUG] 2024-10-06 13:43:54 [main] MybatisAutoConfiguration - Not found configuration for registering mapper bean using @MapperScan, MapperFactoryBean and MapperScannerConfigurer.
-[INFO ] 2024-10-06 13:43:55 [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8000"]
-[INFO ] 2024-10-06 13:43:55 [main] TomcatWebServer - Tomcat started on port 8000 (http) with context path '/'
-[INFO ] 2024-10-06 13:43:55 [main] DemoApplication - Started DemoApplication in 3.491 seconds (process running for 3.967)
-[INFO ] 2024-10-06 13:43:58 [http-nio-8000-exec-2] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[INFO ] 2024-10-06 13:43:58 [http-nio-8000-exec-2] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-[INFO ] 2024-10-06 13:43:58 [http-nio-8000-exec-2] DispatcherServlet - Completed initialization in 1 ms
-[INFO ] 2024-10-06 13:43:58 [http-nio-8000-exec-2] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
-[INFO ] 2024-10-06 13:43:58 [http-nio-8000-exec-2] IntSearchController - Decoded user info: {name=장혜지, id=1, email=jangheyji@gmail.com}
-[INFO ] 2024-10-06 13:44:01 [http-nio-8000-exec-2] IntSearchController - {video_results_video_no=[20, 24, 25], document_results_document_no=[426, 248, 118], community_results_board_no=[63, 67, 62], chat_results_session_id=[a2fbeb93-68e2-40a1-8d1e-e5d2aaa31f74, b0d57d80-7283-4e80-bce8-85b0f0e56fa9, 2c4e73db-fbc7-40ed-8427-fe49d3d5d518]}
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7ba7fa17] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@11676833 wrapping org.postgresql.jdbc.PgConnection@350e3fb4] will not be managed by Spring
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] getVideoDataByIds - ==>  Preparing: SELECT * FROM data_video WHERE video_no IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] getVideoDataByIds - ==> Parameters: 20(Integer), 24(Integer), 25(Integer)
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] getVideoDataByIds - <==      Total: 3
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7ba7fa17]
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@29b52364] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1813432114 wrapping org.postgresql.jdbc.PgConnection@350e3fb4] will not be managed by Spring
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] getDocumentDataByIds - ==>  Preparing: SELECT * FROM data_document WHERE document_no IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] getDocumentDataByIds - ==> Parameters: 426(Integer), 248(Integer), 118(Integer)
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] getDocumentDataByIds - <==      Total: 3
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@29b52364]
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@14a2a8e6] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@737903672 wrapping org.postgresql.jdbc.PgConnection@350e3fb4] will not be managed by Spring
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] getCommunityBoardsWithFilesByNos - ==>  Preparing: SELECT * FROM community_board WHERE board_no IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] getCommunityBoardsWithFilesByNos - ==> Parameters: 63(Integer), 67(Integer), 62(Integer)
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] getCommunityBoardsWithFilesByNos - <==      Total: 3
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@14a2a8e6]
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@278369f2] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1831874089 wrapping org.postgresql.jdbc.PgConnection@350e3fb4] will not be managed by Spring
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] getChatDataByIds - ==>  Preparing: SELECT * FROM chat_detail WHERE session_id IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] getChatDataByIds - ==> Parameters: a2fbeb93-68e2-40a1-8d1e-e5d2aaa31f74(String), b0d57d80-7283-4e80-bce8-85b0f0e56fa9(String), 2c4e73db-fbc7-40ed-8427-fe49d3d5d518(String)
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] getChatDataByIds - <==      Total: 0
-[DEBUG] 2024-10-06 13:44:01 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@278369f2]
-[INFO ] 2024-10-06 13:45:51 [http-nio-8000-exec-5] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
-[INFO ] 2024-10-06 13:45:51 [http-nio-8000-exec-5] IntSearchController - Decoded user info: {name=장혜지, id=1, email=jangheyji@gmail.com}
-[INFO ] 2024-10-06 13:45:53 [http-nio-8000-exec-5] IntSearchController - {video_results_video_no=[20, 24, 25], document_results_document_no=[426, 248, 118], community_results_board_no=[63, 67, 62], chat_results_session_id=[a2fbeb93-68e2-40a1-8d1e-e5d2aaa31f74, b0d57d80-7283-4e80-bce8-85b0f0e56fa9, 2c4e73db-fbc7-40ed-8427-fe49d3d5d518]}
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4af5dd98] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@2059441275 wrapping org.postgresql.jdbc.PgConnection@350e3fb4] will not be managed by Spring
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] getVideoDataByIds - ==>  Preparing: SELECT * FROM data_video WHERE video_no IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] getVideoDataByIds - ==> Parameters: 20(Integer), 24(Integer), 25(Integer)
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] getVideoDataByIds - <==      Total: 3
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4af5dd98]
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@42545bac] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1776862274 wrapping org.postgresql.jdbc.PgConnection@350e3fb4] will not be managed by Spring
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] getDocumentDataByIds - ==>  Preparing: SELECT * FROM data_document WHERE document_no IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] getDocumentDataByIds - ==> Parameters: 426(Integer), 248(Integer), 118(Integer)
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] getDocumentDataByIds - <==      Total: 3
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@42545bac]
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4e3b96a7] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@2118454966 wrapping org.postgresql.jdbc.PgConnection@350e3fb4] will not be managed by Spring
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] getCommunityBoardsWithFilesByNos - ==>  Preparing: SELECT * FROM community_board WHERE board_no IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] getCommunityBoardsWithFilesByNos - ==> Parameters: 63(Integer), 67(Integer), 62(Integer)
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] getCommunityBoardsWithFilesByNos - <==      Total: 3
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4e3b96a7]
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7d255042] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@283949532 wrapping org.postgresql.jdbc.PgConnection@350e3fb4] will not be managed by Spring
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] getChatDataByIds - ==>  Preparing: SELECT * FROM chat_detail WHERE session_id IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] getChatDataByIds - ==> Parameters: a2fbeb93-68e2-40a1-8d1e-e5d2aaa31f74(String), b0d57d80-7283-4e80-bce8-85b0f0e56fa9(String), 2c4e73db-fbc7-40ed-8427-fe49d3d5d518(String)
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] getChatDataByIds - <==      Total: 0
-[DEBUG] 2024-10-06 13:45:53 [http-nio-8000-exec-5] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7d255042]
-[INFO ] 2024-10-06 13:50:54 [SpringApplicationShutdownHook] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-[INFO ] 2024-10-06 13:50:54 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
-[INFO ] 2024-10-06 13:50:54 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
-[INFO ] 2024-10-06 13:50:56 [background-preinit] Version - HV000001: Hibernate Validator 8.0.1.Final
-[INFO ] 2024-10-06 13:50:56 [main] DemoApplication - Starting DemoApplication using Java 17.0.6 with PID 18699 (/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main started by honggeonho in /Users/honggeonho/Documents/workspace/AIOnion/Back)
-[DEBUG] 2024-10-06 13:50:56 [main] DemoApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-[INFO ] 2024-10-06 13:50:56 [main] DemoApplication - No active profile set, falling back to 1 default profile: "default"
-[DEBUG] 2024-10-06 13:50:57 [main] MybatisAutoConfiguration - Searching for mappers annotated with @Mapper
-[DEBUG] 2024-10-06 13:50:57 [main] MybatisAutoConfiguration - Using auto-configuration base package 'com.example.demo'
-[INFO ] 2024-10-06 13:50:57 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[INFO ] 2024-10-06 13:50:57 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 82 ms. Found 6 JPA repository interfaces.
-[DEBUG] 2024-10-06 13:50:57 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/model/intSㄹearch/SearchResultMapper.class]
-[DEBUG] 2024-10-06 13:50:57 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/chat/ChatMapper.class]
-[DEBUG] 2024-10-06 13:50:57 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/community/CommunityMapper.class]
-[DEBUG] 2024-10-06 13:50:57 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'searchResultMapper' and 'com.example.demo.model.intSㄹearch.SearchResultMapper' mapperInterface
-[DEBUG] 2024-10-06 13:50:57 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'chatMapper' and 'com.example.demo.service.chat.ChatMapper' mapperInterface
-[DEBUG] 2024-10-06 13:50:57 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'communityMapper' and 'com.example.demo.service.community.CommunityMapper' mapperInterface
-[INFO ] 2024-10-06 13:50:57 [main] TomcatWebServer - Tomcat initialized with port 8000 (http)
-[INFO ] 2024-10-06 13:50:57 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8000"]
-[INFO ] 2024-10-06 13:50:57 [main] StandardService - Starting service [Tomcat]
-[INFO ] 2024-10-06 13:50:57 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
-[INFO ] 2024-10-06 13:50:57 [main] [/] - Initializing Spring embedded WebApplicationContext
-[INFO ] 2024-10-06 13:50:57 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 833 ms
-[INFO ] 2024-10-06 13:50:57 [main] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-[INFO ] 2024-10-06 13:50:57 [main] Version - HHH000412: Hibernate ORM core version 6.5.2.Final
-[INFO ] 2024-10-06 13:50:57 [main] RegionFactoryInitiator - HHH000026: Second-level cache disabled
-[INFO ] 2024-10-06 13:50:58 [main] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-[INFO ] 2024-10-06 13:50:58 [main] HikariDataSource - HikariPool-1 - Starting...
-[INFO ] 2024-10-06 13:50:58 [main] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5a31abe9
-[INFO ] 2024-10-06 13:50:58 [main] HikariDataSource - HikariPool-1 - Start completed.
-[WARN ] 2024-10-06 13:50:58 [main] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-[INFO ] 2024-10-06 13:50:58 [main] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[INFO ] 2024-10-06 13:50:59 [main] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[DEBUG] 2024-10-06 13:50:59 [main] SqlSessionFactoryBean - Property 'mapperLocations' was not specified.
-[INFO ] 2024-10-06 13:50:59 [main] QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-[WARN ] 2024-10-06 13:50:59 [main] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[WARN ] 2024-10-06 13:50:59 [main] ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
-[DEBUG] 2024-10-06 13:50:59 [main] MybatisAutoConfiguration - Not found configuration for registering mapper bean using @MapperScan, MapperFactoryBean and MapperScannerConfigurer.
-[INFO ] 2024-10-06 13:51:00 [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8000"]
-[INFO ] 2024-10-06 13:51:00 [main] TomcatWebServer - Tomcat started on port 8000 (http) with context path '/'
-[INFO ] 2024-10-06 13:51:00 [main] DemoApplication - Started DemoApplication in 3.573 seconds (process running for 4.032)
-[INFO ] 2024-10-06 13:51:05 [http-nio-8000-exec-1] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[INFO ] 2024-10-06 13:51:05 [http-nio-8000-exec-1] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-[INFO ] 2024-10-06 13:51:05 [http-nio-8000-exec-1] DispatcherServlet - Completed initialization in 1 ms
-[INFO ] 2024-10-06 13:51:05 [http-nio-8000-exec-1] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
-[INFO ] 2024-10-06 13:51:05 [http-nio-8000-exec-1] IntSearchController - Decoded user info: {name=장혜지, id=1, email=jangheyji@gmail.com}
-[INFO ] 2024-10-06 13:51:08 [http-nio-8000-exec-1] IntSearchController - {video_results_video_no=[20, 24, 25], document_results_document_no=[426, 248, 118], community_results_board_no=[63, 67, 62], chat_results_session_id=[a2fbeb93-68e2-40a1-8d1e-e5d2aaa31f74, b0d57d80-7283-4e80-bce8-85b0f0e56fa9, 2c4e73db-fbc7-40ed-8427-fe49d3d5d518]}
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5d4861b5] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@142540086 wrapping org.postgresql.jdbc.PgConnection@5a31abe9] will not be managed by Spring
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] getVideoDataByIds - ==>  Preparing: SELECT * FROM data_video WHERE video_no IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] getVideoDataByIds - ==> Parameters: 20(Integer), 24(Integer), 25(Integer)
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] getVideoDataByIds - <==      Total: 3
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5d4861b5]
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@14a2a8e6] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@737903672 wrapping org.postgresql.jdbc.PgConnection@5a31abe9] will not be managed by Spring
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] getDocumentDataByIds - ==>  Preparing: SELECT * FROM data_document WHERE document_no IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] getDocumentDataByIds - ==> Parameters: 426(Integer), 248(Integer), 118(Integer)
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] getDocumentDataByIds - <==      Total: 3
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@14a2a8e6]
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2bd52c20] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1906327871 wrapping org.postgresql.jdbc.PgConnection@5a31abe9] will not be managed by Spring
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] getCommunityBoardsWithFilesByNos - ==>  Preparing: SELECT * FROM community_board WHERE board_no IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] getCommunityBoardsWithFilesByNos - ==> Parameters: 63(Integer), 67(Integer), 62(Integer)
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] getCommunityBoardsWithFilesByNos - <==      Total: 3
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2bd52c20]
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@11c48155] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1313346290 wrapping org.postgresql.jdbc.PgConnection@5a31abe9] will not be managed by Spring
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] getChatDataByIds - ==>  Preparing: SELECT summ_answer FROM chat WHERE session_id IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] getChatDataByIds - ==> Parameters: a2fbeb93-68e2-40a1-8d1e-e5d2aaa31f74(String), b0d57d80-7283-4e80-bce8-85b0f0e56fa9(String), 2c4e73db-fbc7-40ed-8427-fe49d3d5d518(String)
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] getChatDataByIds - <==      Total: 0
-[DEBUG] 2024-10-06 13:51:08 [http-nio-8000-exec-1] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@11c48155]
-[INFO ] 2024-10-06 13:51:49 [http-nio-8000-exec-3] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3IiwiZW1haWwiOiJlb2RsZjMzM0BnbWFpbC5jb20iLCJuYW1lIjoi7ISd7ZiE7IaQIiwiaWF0IjoxNzI4MTg1NDU3fQ.C4z79I9z_6Ivurj-cpovOHdwmSuhvR9H3IJHjj5ICf8
-[INFO ] 2024-10-06 13:51:49 [http-nio-8000-exec-3] IntSearchController - Decoded user info: {name=석현손, id=7, email=eodlf333@gmail.com}
-[INFO ] 2024-10-06 13:51:51 [http-nio-8000-exec-3] IntSearchController - {video_results_video_no=[25, 5, 3], document_results_document_no=[362, 172, 375], community_results_board_no=[63, 80, 64], chat_results_session_id=[7c6a9d69-5fd0-4e9c-8d23-f934f6d39750, 02ccb455-d7ca-4998-acfb-ebf85c37cc21, 0a238f08-e085-419b-8e73-e09672929675]}
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@462ba909] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@2108772450 wrapping org.postgresql.jdbc.PgConnection@5a31abe9] will not be managed by Spring
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] getVideoDataByIds - ==>  Preparing: SELECT * FROM data_video WHERE video_no IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] getVideoDataByIds - ==> Parameters: 25(Integer), 5(Integer), 3(Integer)
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] getVideoDataByIds - <==      Total: 3
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@462ba909]
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53f8fcb1] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@458371272 wrapping org.postgresql.jdbc.PgConnection@5a31abe9] will not be managed by Spring
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] getDocumentDataByIds - ==>  Preparing: SELECT * FROM data_document WHERE document_no IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] getDocumentDataByIds - ==> Parameters: 362(Integer), 172(Integer), 375(Integer)
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] getDocumentDataByIds - <==      Total: 3
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53f8fcb1]
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@c1943ec] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1200680727 wrapping org.postgresql.jdbc.PgConnection@5a31abe9] will not be managed by Spring
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] getCommunityBoardsWithFilesByNos - ==>  Preparing: SELECT * FROM community_board WHERE board_no IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] getCommunityBoardsWithFilesByNos - ==> Parameters: 63(Integer), 80(Integer), 64(Integer)
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] getCommunityBoardsWithFilesByNos - <==      Total: 3
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@c1943ec]
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7287212] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@632297993 wrapping org.postgresql.jdbc.PgConnection@5a31abe9] will not be managed by Spring
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] getChatDataByIds - ==>  Preparing: SELECT summ_answer FROM chat WHERE session_id IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] getChatDataByIds - ==> Parameters: 7c6a9d69-5fd0-4e9c-8d23-f934f6d39750(String), 02ccb455-d7ca-4998-acfb-ebf85c37cc21(String), 0a238f08-e085-419b-8e73-e09672929675(String)
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] getChatDataByIds - <==      Total: 3
-[DEBUG] 2024-10-06 13:51:51 [http-nio-8000-exec-3] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7287212]
-[INFO ] 2024-10-06 13:52:03 [SpringApplicationShutdownHook] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-[INFO ] 2024-10-06 13:52:03 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
-[INFO ] 2024-10-06 13:52:03 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
-[INFO ] 2024-10-06 13:58:25 [background-preinit] Version - HV000001: Hibernate Validator 8.0.1.Final
-[INFO ] 2024-10-06 13:58:26 [main] DemoApplication - Starting DemoApplication using Java 17.0.6 with PID 19008 (/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main started by honggeonho in /Users/honggeonho/Documents/workspace/AIOnion/Back)
-[DEBUG] 2024-10-06 13:58:26 [main] DemoApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-[INFO ] 2024-10-06 13:58:26 [main] DemoApplication - No active profile set, falling back to 1 default profile: "default"
-[DEBUG] 2024-10-06 13:58:26 [main] MybatisAutoConfiguration - Searching for mappers annotated with @Mapper
-[DEBUG] 2024-10-06 13:58:26 [main] MybatisAutoConfiguration - Using auto-configuration base package 'com.example.demo'
-[INFO ] 2024-10-06 13:58:26 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[INFO ] 2024-10-06 13:58:26 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 80 ms. Found 6 JPA repository interfaces.
-[DEBUG] 2024-10-06 13:58:26 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/model/intSㄹearch/SearchResultMapper.class]
-[DEBUG] 2024-10-06 13:58:26 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/chat/ChatMapper.class]
-[DEBUG] 2024-10-06 13:58:26 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/community/CommunityMapper.class]
-[DEBUG] 2024-10-06 13:58:26 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'searchResultMapper' and 'com.example.demo.model.intSㄹearch.SearchResultMapper' mapperInterface
-[DEBUG] 2024-10-06 13:58:26 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'chatMapper' and 'com.example.demo.service.chat.ChatMapper' mapperInterface
-[DEBUG] 2024-10-06 13:58:26 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'communityMapper' and 'com.example.demo.service.community.CommunityMapper' mapperInterface
-[INFO ] 2024-10-06 13:58:26 [main] TomcatWebServer - Tomcat initialized with port 8000 (http)
-[INFO ] 2024-10-06 13:58:26 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8000"]
-[INFO ] 2024-10-06 13:58:26 [main] StandardService - Starting service [Tomcat]
-[INFO ] 2024-10-06 13:58:26 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
-[INFO ] 2024-10-06 13:58:26 [main] [/] - Initializing Spring embedded WebApplicationContext
-[INFO ] 2024-10-06 13:58:26 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 847 ms
-[INFO ] 2024-10-06 13:58:27 [main] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-[INFO ] 2024-10-06 13:58:27 [main] Version - HHH000412: Hibernate ORM core version 6.5.2.Final
-[INFO ] 2024-10-06 13:58:27 [main] RegionFactoryInitiator - HHH000026: Second-level cache disabled
-[INFO ] 2024-10-06 13:58:27 [main] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-[INFO ] 2024-10-06 13:58:27 [main] HikariDataSource - HikariPool-1 - Starting...
-[INFO ] 2024-10-06 13:58:27 [main] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@350e3fb4
-[INFO ] 2024-10-06 13:58:27 [main] HikariDataSource - HikariPool-1 - Start completed.
-[WARN ] 2024-10-06 13:58:27 [main] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-[INFO ] 2024-10-06 13:58:28 [main] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[INFO ] 2024-10-06 13:58:28 [main] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[DEBUG] 2024-10-06 13:58:28 [main] SqlSessionFactoryBean - Property 'mapperLocations' was not specified.
-[INFO ] 2024-10-06 13:58:28 [main] QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-[WARN ] 2024-10-06 13:58:29 [main] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[WARN ] 2024-10-06 13:58:29 [main] ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
-[DEBUG] 2024-10-06 13:58:29 [main] MybatisAutoConfiguration - Not found configuration for registering mapper bean using @MapperScan, MapperFactoryBean and MapperScannerConfigurer.
-[INFO ] 2024-10-06 13:58:29 [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8000"]
-[INFO ] 2024-10-06 13:58:29 [main] TomcatWebServer - Tomcat started on port 8000 (http) with context path '/'
-[INFO ] 2024-10-06 13:58:29 [main] DemoApplication - Started DemoApplication in 3.605 seconds (process running for 4.152)
-[INFO ] 2024-10-06 13:59:21 [SpringApplicationShutdownHook] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-[INFO ] 2024-10-06 13:59:21 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
-[INFO ] 2024-10-06 13:59:21 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
-[INFO ] 2024-10-06 13:59:23 [background-preinit] Version - HV000001: Hibernate Validator 8.0.1.Final
-[INFO ] 2024-10-06 13:59:23 [main] DemoApplication - Starting DemoApplication using Java 17.0.6 with PID 19039 (/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main started by honggeonho in /Users/honggeonho/Documents/workspace/AIOnion/Back)
-[DEBUG] 2024-10-06 13:59:23 [main] DemoApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-[INFO ] 2024-10-06 13:59:23 [main] DemoApplication - No active profile set, falling back to 1 default profile: "default"
-[DEBUG] 2024-10-06 13:59:24 [main] MybatisAutoConfiguration - Searching for mappers annotated with @Mapper
-[DEBUG] 2024-10-06 13:59:24 [main] MybatisAutoConfiguration - Using auto-configuration base package 'com.example.demo'
-[INFO ] 2024-10-06 13:59:24 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[INFO ] 2024-10-06 13:59:24 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 82 ms. Found 6 JPA repository interfaces.
-[DEBUG] 2024-10-06 13:59:24 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/model/intSㄹearch/SearchResultMapper.class]
-[DEBUG] 2024-10-06 13:59:24 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/chat/ChatMapper.class]
-[DEBUG] 2024-10-06 13:59:24 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/community/CommunityMapper.class]
-[DEBUG] 2024-10-06 13:59:24 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'searchResultMapper' and 'com.example.demo.model.intSㄹearch.SearchResultMapper' mapperInterface
-[DEBUG] 2024-10-06 13:59:24 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'chatMapper' and 'com.example.demo.service.chat.ChatMapper' mapperInterface
-[DEBUG] 2024-10-06 13:59:24 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'communityMapper' and 'com.example.demo.service.community.CommunityMapper' mapperInterface
-[INFO ] 2024-10-06 13:59:24 [main] TomcatWebServer - Tomcat initialized with port 8000 (http)
-[INFO ] 2024-10-06 13:59:24 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8000"]
-[INFO ] 2024-10-06 13:59:24 [main] StandardService - Starting service [Tomcat]
-[INFO ] 2024-10-06 13:59:24 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
-[INFO ] 2024-10-06 13:59:24 [main] [/] - Initializing Spring embedded WebApplicationContext
-[INFO ] 2024-10-06 13:59:24 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 910 ms
-[INFO ] 2024-10-06 13:59:24 [main] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-[INFO ] 2024-10-06 13:59:24 [main] Version - HHH000412: Hibernate ORM core version 6.5.2.Final
-[INFO ] 2024-10-06 13:59:24 [main] RegionFactoryInitiator - HHH000026: Second-level cache disabled
-[INFO ] 2024-10-06 13:59:25 [main] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-[INFO ] 2024-10-06 13:59:25 [main] HikariDataSource - HikariPool-1 - Starting...
-[INFO ] 2024-10-06 13:59:25 [main] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2cd52eda
-[INFO ] 2024-10-06 13:59:25 [main] HikariDataSource - HikariPool-1 - Start completed.
-[WARN ] 2024-10-06 13:59:25 [main] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-[INFO ] 2024-10-06 13:59:26 [main] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[INFO ] 2024-10-06 13:59:26 [main] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[DEBUG] 2024-10-06 13:59:26 [main] SqlSessionFactoryBean - Property 'mapperLocations' was not specified.
-[INFO ] 2024-10-06 13:59:26 [main] QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-[WARN ] 2024-10-06 13:59:26 [main] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[WARN ] 2024-10-06 13:59:27 [main] ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
-[DEBUG] 2024-10-06 13:59:27 [main] MybatisAutoConfiguration - Not found configuration for registering mapper bean using @MapperScan, MapperFactoryBean and MapperScannerConfigurer.
-[INFO ] 2024-10-06 13:59:27 [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8000"]
-[INFO ] 2024-10-06 13:59:27 [main] TomcatWebServer - Tomcat started on port 8000 (http) with context path '/'
-[INFO ] 2024-10-06 13:59:27 [main] DemoApplication - Started DemoApplication in 3.938 seconds (process running for 4.361)
-[INFO ] 2024-10-06 13:59:28 [SpringApplicationShutdownHook] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-[INFO ] 2024-10-06 13:59:28 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
-[INFO ] 2024-10-06 13:59:28 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
-[INFO ] 2024-10-06 13:59:30 [background-preinit] Version - HV000001: Hibernate Validator 8.0.1.Final
-[INFO ] 2024-10-06 13:59:30 [main] DemoApplication - Starting DemoApplication using Java 17.0.6 with PID 19047 (/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main started by honggeonho in /Users/honggeonho/Documents/workspace/AIOnion/Back)
-[DEBUG] 2024-10-06 13:59:30 [main] DemoApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
-[INFO ] 2024-10-06 13:59:30 [main] DemoApplication - No active profile set, falling back to 1 default profile: "default"
-[DEBUG] 2024-10-06 13:59:31 [main] MybatisAutoConfiguration - Searching for mappers annotated with @Mapper
-[DEBUG] 2024-10-06 13:59:31 [main] MybatisAutoConfiguration - Using auto-configuration base package 'com.example.demo'
-[INFO ] 2024-10-06 13:59:31 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-[INFO ] 2024-10-06 13:59:31 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 79 ms. Found 6 JPA repository interfaces.
-[DEBUG] 2024-10-06 13:59:31 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/model/intSㄹearch/SearchResultMapper.class]
-[DEBUG] 2024-10-06 13:59:31 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/chat/ChatMapper.class]
-[DEBUG] 2024-10-06 13:59:31 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/community/CommunityMapper.class]
-[DEBUG] 2024-10-06 13:59:31 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'searchResultMapper' and 'com.example.demo.model.intSㄹearch.SearchResultMapper' mapperInterface
-[DEBUG] 2024-10-06 13:59:31 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'chatMapper' and 'com.example.demo.service.chat.ChatMapper' mapperInterface
-[DEBUG] 2024-10-06 13:59:31 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'communityMapper' and 'com.example.demo.service.community.CommunityMapper' mapperInterface
-[INFO ] 2024-10-06 13:59:31 [main] TomcatWebServer - Tomcat initialized with port 8000 (http)
-[INFO ] 2024-10-06 13:59:31 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8000"]
-[INFO ] 2024-10-06 13:59:31 [main] StandardService - Starting service [Tomcat]
-[INFO ] 2024-10-06 13:59:31 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
-[INFO ] 2024-10-06 13:59:31 [main] [/] - Initializing Spring embedded WebApplicationContext
-[INFO ] 2024-10-06 13:59:31 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 832 ms
-[INFO ] 2024-10-06 13:59:31 [main] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-[INFO ] 2024-10-06 13:59:31 [main] Version - HHH000412: Hibernate ORM core version 6.5.2.Final
-[INFO ] 2024-10-06 13:59:31 [main] RegionFactoryInitiator - HHH000026: Second-level cache disabled
-[INFO ] 2024-10-06 13:59:32 [main] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-[INFO ] 2024-10-06 13:59:32 [main] HikariDataSource - HikariPool-1 - Starting...
-[INFO ] 2024-10-06 13:59:32 [main] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2dacda9a
-[INFO ] 2024-10-06 13:59:32 [main] HikariDataSource - HikariPool-1 - Start completed.
-[WARN ] 2024-10-06 13:59:32 [main] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-[INFO ] 2024-10-06 13:59:32 [main] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-[INFO ] 2024-10-06 13:59:33 [main] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-[DEBUG] 2024-10-06 13:59:33 [main] SqlSessionFactoryBean - Property 'mapperLocations' was not specified.
-[INFO ] 2024-10-06 13:59:33 [main] QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-[WARN ] 2024-10-06 13:59:33 [main] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-[WARN ] 2024-10-06 13:59:33 [main] ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
-[DEBUG] 2024-10-06 13:59:33 [main] MybatisAutoConfiguration - Not found configuration for registering mapper bean using @MapperScan, MapperFactoryBean and MapperScannerConfigurer.
-[INFO ] 2024-10-06 13:59:34 [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8000"]
-[INFO ] 2024-10-06 13:59:34 [main] TomcatWebServer - Tomcat started on port 8000 (http) with context path '/'
-[INFO ] 2024-10-06 13:59:34 [main] DemoApplication - Started DemoApplication in 3.571 seconds (process running for 4.017)
-[INFO ] 2024-10-06 13:59:37 [http-nio-8000-exec-2] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-[INFO ] 2024-10-06 13:59:37 [http-nio-8000-exec-2] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-[INFO ] 2024-10-06 13:59:37 [http-nio-8000-exec-2] DispatcherServlet - Completed initialization in 2 ms
-[INFO ] 2024-10-06 13:59:37 [http-nio-8000-exec-2] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3IiwiZW1haWwiOiJlb2RsZjMzM0BnbWFpbC5jb20iLCJuYW1lIjoi7ISd7ZiE7IaQIiwiaWF0IjoxNzI4MTg1NDU3fQ.C4z79I9z_6Ivurj-cpovOHdwmSuhvR9H3IJHjj5ICf8
-[INFO ] 2024-10-06 13:59:37 [http-nio-8000-exec-2] IntSearchController - Decoded user info: {name=석현손, id=7, email=eodlf333@gmail.com}
-[INFO ] 2024-10-06 13:59:40 [http-nio-8000-exec-2] IntSearchController - {video_results_video_no=[25, 5, 3], document_results_document_no=[362, 172, 375], community_results_board_no=[63, 80, 64], chat_results_session_id=[7c6a9d69-5fd0-4e9c-8d23-f934f6d39750, 02ccb455-d7ca-4998-acfb-ebf85c37cc21]}
-[DEBUG] 2024-10-06 13:59:40 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:59:40 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@79657f69] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:59:40 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@543909663 wrapping org.postgresql.jdbc.PgConnection@2dacda9a] will not be managed by Spring
-[DEBUG] 2024-10-06 13:59:40 [http-nio-8000-exec-2] getVideoDataByIds - ==>  Preparing: SELECT * FROM data_video WHERE video_no IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:59:40 [http-nio-8000-exec-2] getVideoDataByIds - ==> Parameters: 25(Integer), 5(Integer), 3(Integer)
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] getVideoDataByIds - <==      Total: 3
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@79657f69]
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3ddc694] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@122931748 wrapping org.postgresql.jdbc.PgConnection@2dacda9a] will not be managed by Spring
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] getDocumentDataByIds - ==>  Preparing: SELECT * FROM data_document WHERE document_no IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] getDocumentDataByIds - ==> Parameters: 362(Integer), 172(Integer), 375(Integer)
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] getDocumentDataByIds - <==      Total: 3
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3ddc694]
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5452b1ac] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@333857630 wrapping org.postgresql.jdbc.PgConnection@2dacda9a] will not be managed by Spring
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] getCommunityBoardsWithFilesByNos - ==>  Preparing: SELECT * FROM community_board WHERE board_no IN ( ? , ? , ? )
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] getCommunityBoardsWithFilesByNos - ==> Parameters: 63(Integer), 80(Integer), 64(Integer)
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] getCommunityBoardsWithFilesByNos - <==      Total: 3
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5452b1ac]
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5efd37db] was not registered for synchronization because synchronization is not active
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@177274269 wrapping org.postgresql.jdbc.PgConnection@2dacda9a] will not be managed by Spring
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] getChatDataByIds - ==>  Preparing: SELECT summ_answer, session_id FROM chat WHERE session_id IN ( ? , ? )
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] getChatDataByIds - ==> Parameters: 7c6a9d69-5fd0-4e9c-8d23-f934f6d39750(String), 02ccb455-d7ca-4998-acfb-ebf85c37cc21(String)
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] getChatDataByIds - <==      Total: 2
-[DEBUG] 2024-10-06 13:59:41 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5efd37db]
+[INFO ] 2024-10-10 10:45:01 [background-preinit] Version - HV000001: Hibernate Validator 8.0.1.Final
+[INFO ] 2024-10-10 10:45:01 [main] DemoApplication - Starting DemoApplication using Java 17.0.6 with PID 42242 (/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main started by honggeonho in /Users/honggeonho/Documents/workspace/AIOnion/Back)
+[DEBUG] 2024-10-10 10:45:01 [main] DemoApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[INFO ] 2024-10-10 10:45:01 [main] DemoApplication - No active profile set, falling back to 1 default profile: "default"
+[DEBUG] 2024-10-10 10:45:01 [main] MybatisAutoConfiguration - Searching for mappers annotated with @Mapper
+[DEBUG] 2024-10-10 10:45:01 [main] MybatisAutoConfiguration - Using auto-configuration base package 'com.example.demo'
+[INFO ] 2024-10-10 10:45:01 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 2024-10-10 10:45:02 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 111 ms. Found 6 JPA repository interfaces.
+[DEBUG] 2024-10-10 10:45:02 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/model/intSㄹearch/SearchResultMapper.class]
+[DEBUG] 2024-10-10 10:45:02 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/chat/ChatMapper.class]
+[DEBUG] 2024-10-10 10:45:02 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/community/CommunityMapper.class]
+[DEBUG] 2024-10-10 10:45:02 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'searchResultMapper' and 'com.example.demo.model.intSㄹearch.SearchResultMapper' mapperInterface
+[DEBUG] 2024-10-10 10:45:02 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'chatMapper' and 'com.example.demo.service.chat.ChatMapper' mapperInterface
+[DEBUG] 2024-10-10 10:45:02 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'communityMapper' and 'com.example.demo.service.community.CommunityMapper' mapperInterface
+[INFO ] 2024-10-10 10:45:02 [main] TomcatWebServer - Tomcat initialized with port 8000 (http)
+[INFO ] 2024-10-10 10:45:02 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8000"]
+[INFO ] 2024-10-10 10:45:02 [main] StandardService - Starting service [Tomcat]
+[INFO ] 2024-10-10 10:45:02 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+[INFO ] 2024-10-10 10:45:02 [main] [/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2024-10-10 10:45:02 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1080 ms
+[INFO ] 2024-10-10 10:45:02 [main] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 2024-10-10 10:45:02 [main] Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+[INFO ] 2024-10-10 10:45:02 [main] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[INFO ] 2024-10-10 10:45:02 [main] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[INFO ] 2024-10-10 10:45:02 [main] HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 2024-10-10 10:45:03 [main] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@575c23f1
+[INFO ] 2024-10-10 10:45:03 [main] HikariDataSource - HikariPool-1 - Start completed.
+[WARN ] 2024-10-10 10:45:03 [main] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[INFO ] 2024-10-10 10:45:03 [main] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[INFO ] 2024-10-10 10:45:04 [main] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[DEBUG] 2024-10-10 10:45:04 [main] SqlSessionFactoryBean - Property 'mapperLocations' was not specified.
+[INFO ] 2024-10-10 10:45:04 [main] QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+[WARN ] 2024-10-10 10:45:04 [main] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[WARN ] 2024-10-10 10:45:04 [main] ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+[DEBUG] 2024-10-10 10:45:04 [main] MybatisAutoConfiguration - Not found configuration for registering mapper bean using @MapperScan, MapperFactoryBean and MapperScannerConfigurer.
+[INFO ] 2024-10-10 10:45:05 [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8000"]
+[INFO ] 2024-10-10 10:45:05 [main] TomcatWebServer - Tomcat started on port 8000 (http) with context path '/'
+[INFO ] 2024-10-10 10:45:05 [main] DemoApplication - Started DemoApplication in 4.1 seconds (process running for 4.628)
+[INFO ] 2024-10-10 10:45:32 [http-nio-8000-exec-2] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2024-10-10 10:45:32 [http-nio-8000-exec-2] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2024-10-10 10:45:32 [http-nio-8000-exec-2] DispatcherServlet - Completed initialization in 3 ms
+[INFO ] 2024-10-10 10:45:32 [http-nio-8000-exec-2] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
+[INFO ] 2024-10-10 10:45:32 [http-nio-8000-exec-2] ChatController - Decoded user info: {name=장혜지, id=1, email=jangheyji@gmail.com}
+[DEBUG] 2024-10-10 10:45:32 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 10:45:32 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@488699f3] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 10:45:32 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@139793251 wrapping org.postgresql.jdbc.PgConnection@575c23f1] will not be managed by Spring
+[DEBUG] 2024-10-10 10:45:32 [http-nio-8000-exec-2] getChatHistoryBySessionId - ==>  Preparing: SELECT * FROM chat_detail WHERE session_id = ? ORDER BY qa_time
+[DEBUG] 2024-10-10 10:45:32 [http-nio-8000-exec-2] getChatHistoryBySessionId - ==> Parameters: 003095c4-d731-4805-977b-e5694c94c644(String)
+[DEBUG] 2024-10-10 10:45:32 [http-nio-8000-exec-2] getChatHistoryBySessionId - <==      Total: 0
+[DEBUG] 2024-10-10 10:45:32 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@488699f3]
+[DEBUG] 2024-10-10 10:45:32 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 10:45:32 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@424f9930] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 10:45:32 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@727336021 wrapping org.postgresql.jdbc.PgConnection@575c23f1] will not be managed by Spring
+[DEBUG] 2024-10-10 10:45:32 [http-nio-8000-exec-2] saveChatRoom - ==>  Preparing: INSERT INTO chat_room (session_id, user_no, child_id) VALUES (?, ?, ?)
+[DEBUG] 2024-10-10 10:45:32 [http-nio-8000-exec-2] saveChatRoom - ==> Parameters: 57439c0e-6550-4d6c-b3a6-a848e8028259(String), 3(Integer), 1(Integer)
+[DEBUG] 2024-10-10 10:45:32 [http-nio-8000-exec-2] saveChatRoom - <==    Updates: 1
+[DEBUG] 2024-10-10 10:45:32 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@424f9930]
+[INFO ] 2024-10-10 10:47:41 [http-nio-8000-exec-4] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
+[INFO ] 2024-10-10 10:47:41 [http-nio-8000-exec-4] ChatController - Decoded user info: {name=장혜지, id=1, email=jangheyji@gmail.com}
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1538a102] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1320963562 wrapping org.postgresql.jdbc.PgConnection@575c23f1] will not be managed by Spring
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] getFirstAnswer - ==>  Preparing: SELECT answer FROM chat_detail WHERE session_id = ? ORDER BY qa_time ASC LIMIT 1
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] getFirstAnswer - ==> Parameters: 57439c0e-6550-4d6c-b3a6-a848e8028259(String)
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] getFirstAnswer - <==      Total: 0
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1538a102]
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@45f3a067] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@2038017510 wrapping org.postgresql.jdbc.PgConnection@575c23f1] will not be managed by Spring
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] saveChat - ==>  Preparing: INSERT INTO chat (session_id, summ_answer, end_time) VALUES (?, ?, ?) RETURNING chat_id
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] saveChat - ==> Parameters: 57439c0e-6550-4d6c-b3a6-a848e8028259(String), 아이의 폭력적 행동(String), 2024-10-10 10:47:41.967454(Timestamp)
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@45f3a067]
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@27773821] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@324380596 wrapping org.postgresql.jdbc.PgConnection@575c23f1] will not be managed by Spring
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] getChatHistoryBySessionId - ==>  Preparing: SELECT * FROM chat_detail WHERE session_id = ? ORDER BY qa_time
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] getChatHistoryBySessionId - ==> Parameters: 57439c0e-6550-4d6c-b3a6-a848e8028259(String)
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] getChatHistoryBySessionId - <==      Total: 0
+[DEBUG] 2024-10-10 10:47:41 [http-nio-8000-exec-4] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@27773821]
+[DEBUG] 2024-10-10 10:47:49 [http-nio-8000-exec-4] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 10:47:49 [http-nio-8000-exec-4] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5d64750] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 10:47:49 [http-nio-8000-exec-4] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@819987305 wrapping org.postgresql.jdbc.PgConnection@575c23f1] will not be managed by Spring
+[DEBUG] 2024-10-10 10:47:49 [http-nio-8000-exec-4] saveChatDetail - ==>  Preparing: INSERT INTO chat_detail (query, answer, qa_time, session_id) VALUES (?, ?, ?, ?) RETURNING qa_id
+[DEBUG] 2024-10-10 10:47:49 [http-nio-8000-exec-4] saveChatDetail - ==> Parameters: 아이가 폭력적이에요(String), 1. 아이가 폭력적인 행동을 보일 때는 부모로서 당황스럽고 걱정이 많으실 것 같습니다. 이러한 행동은 다양한 이유로 발생할 수 있으며, 아이의 감정 상태나 환경적 요인도 영향을 미칠 수 있습니다.
+
+2. 우선, 아이가 폭력적인 행동을 보일 때는 즉각적으로 그 행동을 멈추게 하고, 왜 그런 행동이 잘못되었는지 설명해주는 것이 중요합니다. 아이에게 폭력은 문제를 해결하는 방법이 아니라는 것을 명확히 알려주세요.
+
+3. 아이가 폭력적인 행동을 통해 무엇을 얻으려 하는지 관찰해보세요. 예를 들어, 주의를 끌기 위한 것인지, 아니면 특정한 요구를 관철시키기 위한 것인지 파악하는 것이 중요합니다.
+
+4. 아이에게 충분한 사랑과 관심을 주는 것도 중요합니다. 아이가 원하는 사랑과 관심을 표현해주고, 하루에 최소 30분은 아이와 함께 시간을 보내며 긍정적인 상호작용을 하세요.
+
+5. 일관된 규칙과 한계를 설정하는 것도 필요합니다. 아이가 어떤 행동이 허용되고 어떤 행동이 허용되지 않는지를 명확히 알 수 있도록 해주세요.
+
+6. 만약 아이가 ADHD와 같은 충동 조절의 어려움을 겪고 있다면, 전문가의 도움을 받아 지속적인 치료와 지도를 받는 것이 좋습니다.
+
+7. 부모와 아이 사이의 신뢰 관계를 회복하는 것도 중요합니다. 아이의 감정을 이해하고 공감하는 태도를 보여주며, 폭력적인 대응을 멈추고 긍정적인 행동을 강화하는 방법을 사용하세요.
+
+8. 마지막으로, 아이의 폭력적인 행동이 지속되거나 심각한 경우에는 전문가의 도움을 받아 보다 구체적인 해결책을 찾는 것이 필요할 수 있습니다.(String), 2024-10-10 10:47:41.989468(Timestamp), 57439c0e-6550-4d6c-b3a6-a848e8028259(String)
+[DEBUG] 2024-10-10 10:47:49 [http-nio-8000-exec-4] saveChatDetail - <==    Updates: 1
+[DEBUG] 2024-10-10 10:47:49 [http-nio-8000-exec-4] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5d64750]
+[INFO ] 2024-10-10 10:48:11 [http-nio-8000-exec-6] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
+[INFO ] 2024-10-10 10:48:11 [http-nio-8000-exec-6] ChatController - Decoded user info: {name=장혜지, id=1, email=jangheyji@gmail.com}
+[DEBUG] 2024-10-10 10:48:11 [http-nio-8000-exec-6] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 10:48:11 [http-nio-8000-exec-6] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7d8b4fb0] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 10:48:11 [http-nio-8000-exec-6] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1524219030 wrapping org.postgresql.jdbc.PgConnection@575c23f1] will not be managed by Spring
+[DEBUG] 2024-10-10 10:48:11 [http-nio-8000-exec-6] getFirstAnswer - ==>  Preparing: SELECT answer FROM chat_detail WHERE session_id = ? ORDER BY qa_time ASC LIMIT 1
+[DEBUG] 2024-10-10 10:48:11 [http-nio-8000-exec-6] getFirstAnswer - ==> Parameters: 57439c0e-6550-4d6c-b3a6-a848e8028259(String)
+[DEBUG] 2024-10-10 10:48:11 [http-nio-8000-exec-6] getFirstAnswer - <==      Total: 1
+[DEBUG] 2024-10-10 10:48:11 [http-nio-8000-exec-6] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7d8b4fb0]
+[DEBUG] 2024-10-10 10:48:11 [http-nio-8000-exec-6] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 10:48:11 [http-nio-8000-exec-6] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@226856d6] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 10:48:11 [http-nio-8000-exec-6] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1656450566 wrapping org.postgresql.jdbc.PgConnection@575c23f1] will not be managed by Spring
+[DEBUG] 2024-10-10 10:48:11 [http-nio-8000-exec-6] getChatHistoryBySessionId - ==>  Preparing: SELECT * FROM chat_detail WHERE session_id = ? ORDER BY qa_time
+[DEBUG] 2024-10-10 10:48:11 [http-nio-8000-exec-6] getChatHistoryBySessionId - ==> Parameters: 57439c0e-6550-4d6c-b3a6-a848e8028259(String)
+[DEBUG] 2024-10-10 10:48:11 [http-nio-8000-exec-6] getChatHistoryBySessionId - <==      Total: 1
+[DEBUG] 2024-10-10 10:48:11 [http-nio-8000-exec-6] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@226856d6]
+[DEBUG] 2024-10-10 10:48:25 [http-nio-8000-exec-6] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 10:48:25 [http-nio-8000-exec-6] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@50b2f6a9] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 10:48:25 [http-nio-8000-exec-6] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1886561250 wrapping org.postgresql.jdbc.PgConnection@575c23f1] will not be managed by Spring
+[DEBUG] 2024-10-10 10:48:25 [http-nio-8000-exec-6] saveChatDetail - ==>  Preparing: INSERT INTO chat_detail (query, answer, qa_time, session_id) VALUES (?, ?, ?, ?) RETURNING qa_id
+[DEBUG] 2024-10-10 10:48:25 [http-nio-8000-exec-6] saveChatDetail - ==> Parameters: 아이가 폭력적이에요2(String), 아이의 폭력적인 행동은 부모로서 매우 걱정스러운 상황일 수 있습니다. 이러한 행동은 다양한 원인에 의해 발생할 수 있으며, 아이의 감정 상태나 환경적 요인도 영향을 미칠 수 있습니다. 
+
+1. 아이가 폭력적인 행동을 보일 때는 즉각적으로 그 행동을 멈추게 하고, 왜 그런 행동이 잘못되었는지 설명해주는 것이 중요합니다. 아이에게 폭력은 문제를 해결하는 방법이 아니라는 것을 명확히 알려주세요.
+
+2. 아이가 폭력적인 행동을 통해 무엇을 얻으려 하는지 관찰해보세요. 예를 들어, 주의를 끌기 위한 것인지, 아니면 특정한 요구를 관철시키기 위한 것인지 파악하는 것이 중요합니다.
+
+3. 아이에게 충분한 사랑과 관심을 주는 것도 중요합니다. 아이가 원하는 사랑과 관심을 표현해주고, 하루에 최소 30분은 아이와 함께 시간을 보내며 긍정적인 상호작용을 하세요.
+
+4. 일관된 규칙과 한계를 설정하는 것도 필요합니다. 아이가 어떤 행동이 허용되고 어떤 행동이 허용되지 않는지를 명확히 알 수 있도록 해주세요.
+
+5. 만약 아이가 ADHD와 같은 충동 조절의 어려움을 겪고 있다면, 전문가의 도움을 받아 지속적인 치료와 지도를 받는 것이 좋습니다.
+
+6. 부모와 아이 사이의 신뢰 관계를 회복하는 것도 중요합니다. 아이의 감정을 이해하고 공감하는 태도를 보여주며, 폭력적인 대응을 멈추고 긍정적인 행동을 강화하는 방법을 사용하세요.
+
+7. 마지막으로, 아이의 폭력적인 행동이 지속되거나 심각한 경우에는 전문가의 도움을 받아 보다 구체적인 해결책을 찾는 것이 필요할 수 있습니다.(String), 2024-10-10 10:48:11.046462(Timestamp), 57439c0e-6550-4d6c-b3a6-a848e8028259(String)
+[DEBUG] 2024-10-10 10:48:25 [http-nio-8000-exec-6] saveChatDetail - <==    Updates: 1
+[DEBUG] 2024-10-10 10:48:25 [http-nio-8000-exec-6] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@50b2f6a9]
+[INFO ] 2024-10-10 10:49:29 [SpringApplicationShutdownHook] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 2024-10-10 10:49:29 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 2024-10-10 10:49:29 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 2024-10-10 10:49:37 [background-preinit] Version - HV000001: Hibernate Validator 8.0.1.Final
+[INFO ] 2024-10-10 10:49:37 [main] DemoApplication - Starting DemoApplication using Java 17.0.6 with PID 42410 (/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main started by honggeonho in /Users/honggeonho/Documents/workspace/AIOnion/Back)
+[DEBUG] 2024-10-10 10:49:37 [main] DemoApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[INFO ] 2024-10-10 10:49:37 [main] DemoApplication - No active profile set, falling back to 1 default profile: "default"
+[DEBUG] 2024-10-10 10:49:38 [main] MybatisAutoConfiguration - Searching for mappers annotated with @Mapper
+[DEBUG] 2024-10-10 10:49:38 [main] MybatisAutoConfiguration - Using auto-configuration base package 'com.example.demo'
+[INFO ] 2024-10-10 10:49:38 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 2024-10-10 10:49:39 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 98 ms. Found 6 JPA repository interfaces.
+[DEBUG] 2024-10-10 10:49:39 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/model/intSㄹearch/SearchResultMapper.class]
+[DEBUG] 2024-10-10 10:49:39 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/chat/ChatMapper.class]
+[DEBUG] 2024-10-10 10:49:39 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/community/CommunityMapper.class]
+[DEBUG] 2024-10-10 10:49:39 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'searchResultMapper' and 'com.example.demo.model.intSㄹearch.SearchResultMapper' mapperInterface
+[DEBUG] 2024-10-10 10:49:39 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'chatMapper' and 'com.example.demo.service.chat.ChatMapper' mapperInterface
+[DEBUG] 2024-10-10 10:49:39 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'communityMapper' and 'com.example.demo.service.community.CommunityMapper' mapperInterface
+[INFO ] 2024-10-10 10:49:39 [main] TomcatWebServer - Tomcat initialized with port 8000 (http)
+[INFO ] 2024-10-10 10:49:39 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8000"]
+[INFO ] 2024-10-10 10:49:39 [main] StandardService - Starting service [Tomcat]
+[INFO ] 2024-10-10 10:49:39 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+[INFO ] 2024-10-10 10:49:39 [main] [/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2024-10-10 10:49:39 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1425 ms
+[INFO ] 2024-10-10 10:49:39 [main] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 2024-10-10 10:49:39 [main] Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+[INFO ] 2024-10-10 10:49:39 [main] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[INFO ] 2024-10-10 10:49:39 [main] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[INFO ] 2024-10-10 10:49:39 [main] HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 2024-10-10 10:49:40 [main] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@bcd9ed6
+[INFO ] 2024-10-10 10:49:40 [main] HikariDataSource - HikariPool-1 - Start completed.
+[WARN ] 2024-10-10 10:49:40 [main] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[INFO ] 2024-10-10 10:49:40 [main] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[INFO ] 2024-10-10 10:49:41 [main] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[DEBUG] 2024-10-10 10:49:41 [main] SqlSessionFactoryBean - Property 'mapperLocations' was not specified.
+[INFO ] 2024-10-10 10:49:41 [main] QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+[WARN ] 2024-10-10 10:49:41 [main] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[WARN ] 2024-10-10 10:49:42 [main] ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+[DEBUG] 2024-10-10 10:49:42 [main] MybatisAutoConfiguration - Not found configuration for registering mapper bean using @MapperScan, MapperFactoryBean and MapperScannerConfigurer.
+[INFO ] 2024-10-10 10:49:42 [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8000"]
+[INFO ] 2024-10-10 10:49:42 [main] TomcatWebServer - Tomcat started on port 8000 (http) with context path '/'
+[INFO ] 2024-10-10 10:49:42 [main] DemoApplication - Started DemoApplication in 4.921 seconds (process running for 5.617)
+[INFO ] 2024-10-10 10:49:45 [http-nio-8000-exec-2] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2024-10-10 10:49:45 [http-nio-8000-exec-2] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2024-10-10 10:49:45 [http-nio-8000-exec-2] DispatcherServlet - Completed initialization in 2 ms
+[INFO ] 2024-10-10 10:49:45 [http-nio-8000-exec-2] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
+[INFO ] 2024-10-10 10:49:45 [http-nio-8000-exec-2] ChatController - Decoded user info: {name=장혜지, id=1, email=jangheyji@gmail.com}
+[DEBUG] 2024-10-10 10:49:45 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 10:49:45 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b425084] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 10:49:45 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@776279532 wrapping org.postgresql.jdbc.PgConnection@bcd9ed6] will not be managed by Spring
+[DEBUG] 2024-10-10 10:49:45 [http-nio-8000-exec-2] getFirstAnswer - ==>  Preparing: SELECT answer FROM chat_detail WHERE session_id = ? ORDER BY qa_time ASC LIMIT 1
+[DEBUG] 2024-10-10 10:49:45 [http-nio-8000-exec-2] getFirstAnswer - ==> Parameters: 57439c0e-6550-4d6c-b3a6-a848e8028259(String)
+[DEBUG] 2024-10-10 10:49:45 [http-nio-8000-exec-2] getFirstAnswer - <==      Total: 1
+[DEBUG] 2024-10-10 10:49:45 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b425084]
+[DEBUG] 2024-10-10 10:49:45 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 10:49:45 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@18be6744] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 10:49:45 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@2069790045 wrapping org.postgresql.jdbc.PgConnection@bcd9ed6] will not be managed by Spring
+[DEBUG] 2024-10-10 10:49:45 [http-nio-8000-exec-2] getChatHistoryBySessionId - ==>  Preparing: SELECT * FROM chat_detail WHERE session_id = ? ORDER BY qa_time
+[DEBUG] 2024-10-10 10:49:45 [http-nio-8000-exec-2] getChatHistoryBySessionId - ==> Parameters: 57439c0e-6550-4d6c-b3a6-a848e8028259(String)
+[DEBUG] 2024-10-10 10:49:45 [http-nio-8000-exec-2] getChatHistoryBySessionId - <==      Total: 2
+[DEBUG] 2024-10-10 10:49:45 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@18be6744]
+[WARN ] 2024-10-10 10:49:45 [http-nio-8000-exec-2] ChatController - null
+[DEBUG] 2024-10-10 10:50:03 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 10:50:03 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@799b5b6f] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 10:50:03 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1340528110 wrapping org.postgresql.jdbc.PgConnection@bcd9ed6] will not be managed by Spring
+[DEBUG] 2024-10-10 10:50:03 [http-nio-8000-exec-2] saveChatDetail - ==>  Preparing: INSERT INTO chat_detail (query, answer, qa_time, session_id) VALUES (?, ?, ?, ?) RETURNING qa_id
+[DEBUG] 2024-10-10 10:50:03 [http-nio-8000-exec-2] saveChatDetail - ==> Parameters: 아이가 폭력적이에요2(String), 아이의 폭력적인 행동은 부모로서 매우 걱정스러운 상황일 수 있습니다. 이러한 행동은 다양한 원인에 의해 발생할 수 있으며, 아이의 감정 상태나 환경적 요인도 영향을 미칠 수 있습니다.
+
+1. 아이가 폭력적인 행동을 보일 때는 즉각적으로 그 행동을 멈추게 하고, 왜 그런 행동이 잘못되었는지 설명해주는 것이 중요합니다. 아이에게 폭력은 문제를 해결하는 방법이 아니라는 것을 명확히 알려주세요.
+
+2. 아이가 폭력적인 행동을 통해 무엇을 얻으려 하는지 관찰해보세요. 예를 들어, 주의를 끌기 위한 것인지, 아니면 특정한 요구를 관철시키기 위한 것인지 파악하는 것이 중요합니다.
+
+3. 아이에게 충분한 사랑과 관심을 주는 것도 중요합니다. 아이가 원하는 사랑과 관심을 표현해주고, 하루에 최소 30분은 아이와 함께 시간을 보내며 긍정적인 상호작용을 하세요.
+
+4. 일관된 규칙과 한계를 설정하는 것도 필요합니다. 아이가 어떤 행동이 허용되고 어떤 행동이 허용되지 않는지를 명확히 알 수 있도록 해주세요.
+
+5. 만약 아이가 ADHD와 같은 충동 조절의 어려움을 겪고 있다면, 전문가의 도움을 받아 지속적인 치료와 지도를 받는 것이 좋습니다.
+
+6. 부모와 아이 사이의 신뢰 관계를 회복하는 것도 중요합니다. 아이의 감정을 이해하고 공감하는 태도를 보여주며, 폭력적인 대응을 멈추고 긍정적인 행동을 강화하는 방법을 사용하세요.
+
+7. 마지막으로, 아이의 폭력적인 행동이 지속되거나 심각한 경우에는 전문가의 도움을 받아 보다 구체적인 해결책을 찾는 것이 필요할 수 있습니다.(String), 2024-10-10 10:49:45.781046(Timestamp), 57439c0e-6550-4d6c-b3a6-a848e8028259(String)
+[DEBUG] 2024-10-10 10:50:03 [http-nio-8000-exec-2] saveChatDetail - <==    Updates: 1
+[DEBUG] 2024-10-10 10:50:03 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@799b5b6f]
+[INFO ] 2024-10-10 10:50:20 [SpringApplicationShutdownHook] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 2024-10-10 10:50:20 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 2024-10-10 10:50:20 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 2024-10-10 10:50:23 [background-preinit] Version - HV000001: Hibernate Validator 8.0.1.Final
+[INFO ] 2024-10-10 10:50:23 [main] DemoApplication - Starting DemoApplication using Java 17.0.6 with PID 42454 (/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main started by honggeonho in /Users/honggeonho/Documents/workspace/AIOnion/Back)
+[DEBUG] 2024-10-10 10:50:23 [main] DemoApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[INFO ] 2024-10-10 10:50:23 [main] DemoApplication - No active profile set, falling back to 1 default profile: "default"
+[DEBUG] 2024-10-10 10:50:23 [main] MybatisAutoConfiguration - Searching for mappers annotated with @Mapper
+[DEBUG] 2024-10-10 10:50:23 [main] MybatisAutoConfiguration - Using auto-configuration base package 'com.example.demo'
+[INFO ] 2024-10-10 10:50:23 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 2024-10-10 10:50:23 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 82 ms. Found 6 JPA repository interfaces.
+[DEBUG] 2024-10-10 10:50:23 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/model/intSㄹearch/SearchResultMapper.class]
+[DEBUG] 2024-10-10 10:50:23 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/chat/ChatMapper.class]
+[DEBUG] 2024-10-10 10:50:23 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/community/CommunityMapper.class]
+[DEBUG] 2024-10-10 10:50:23 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'searchResultMapper' and 'com.example.demo.model.intSㄹearch.SearchResultMapper' mapperInterface
+[DEBUG] 2024-10-10 10:50:23 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'chatMapper' and 'com.example.demo.service.chat.ChatMapper' mapperInterface
+[DEBUG] 2024-10-10 10:50:23 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'communityMapper' and 'com.example.demo.service.community.CommunityMapper' mapperInterface
+[INFO ] 2024-10-10 10:50:24 [main] TomcatWebServer - Tomcat initialized with port 8000 (http)
+[INFO ] 2024-10-10 10:50:24 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8000"]
+[INFO ] 2024-10-10 10:50:24 [main] StandardService - Starting service [Tomcat]
+[INFO ] 2024-10-10 10:50:24 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+[INFO ] 2024-10-10 10:50:24 [main] [/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2024-10-10 10:50:24 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 811 ms
+[INFO ] 2024-10-10 10:50:24 [main] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 2024-10-10 10:50:24 [main] Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+[INFO ] 2024-10-10 10:50:24 [main] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[INFO ] 2024-10-10 10:50:24 [main] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[INFO ] 2024-10-10 10:50:24 [main] HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 2024-10-10 10:50:24 [main] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@350e3fb4
+[INFO ] 2024-10-10 10:50:24 [main] HikariDataSource - HikariPool-1 - Start completed.
+[WARN ] 2024-10-10 10:50:24 [main] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[INFO ] 2024-10-10 10:50:25 [main] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[INFO ] 2024-10-10 10:50:25 [main] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[DEBUG] 2024-10-10 10:50:25 [main] SqlSessionFactoryBean - Property 'mapperLocations' was not specified.
+[INFO ] 2024-10-10 10:50:25 [main] QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+[WARN ] 2024-10-10 10:50:26 [main] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[WARN ] 2024-10-10 10:50:26 [main] ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+[DEBUG] 2024-10-10 10:50:26 [main] MybatisAutoConfiguration - Not found configuration for registering mapper bean using @MapperScan, MapperFactoryBean and MapperScannerConfigurer.
+[INFO ] 2024-10-10 10:50:26 [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8000"]
+[INFO ] 2024-10-10 10:50:26 [main] TomcatWebServer - Tomcat started on port 8000 (http) with context path '/'
+[INFO ] 2024-10-10 10:50:26 [main] DemoApplication - Started DemoApplication in 3.444 seconds (process running for 3.872)
+[INFO ] 2024-10-10 10:50:31 [http-nio-8000-exec-2] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2024-10-10 10:50:31 [http-nio-8000-exec-2] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2024-10-10 10:50:31 [http-nio-8000-exec-2] DispatcherServlet - Completed initialization in 2 ms
+[INFO ] 2024-10-10 10:50:31 [http-nio-8000-exec-2] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
+[INFO ] 2024-10-10 10:50:31 [http-nio-8000-exec-2] ChatController - Decoded user info: {name=장혜지, id=1, email=jangheyji@gmail.com}
+[DEBUG] 2024-10-10 10:50:31 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 10:50:31 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@59b0f6a4] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 10:50:31 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@415069772 wrapping org.postgresql.jdbc.PgConnection@350e3fb4] will not be managed by Spring
+[DEBUG] 2024-10-10 10:50:31 [http-nio-8000-exec-2] getFirstAnswer - ==>  Preparing: SELECT answer FROM chat_detail WHERE session_id = ? ORDER BY qa_time ASC LIMIT 1
+[DEBUG] 2024-10-10 10:50:31 [http-nio-8000-exec-2] getFirstAnswer - ==> Parameters: 57439c0e-6550-4d6c-b3a6-a848e8028259(String)
+[DEBUG] 2024-10-10 10:50:31 [http-nio-8000-exec-2] getFirstAnswer - <==      Total: 1
+[DEBUG] 2024-10-10 10:50:31 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@59b0f6a4]
+[DEBUG] 2024-10-10 10:50:31 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 10:50:31 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3535c016] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 10:50:31 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1637250191 wrapping org.postgresql.jdbc.PgConnection@350e3fb4] will not be managed by Spring
+[DEBUG] 2024-10-10 10:50:31 [http-nio-8000-exec-2] getChatHistoryBySessionId - ==>  Preparing: SELECT * FROM chat_detail WHERE session_id = ? ORDER BY qa_time
+[DEBUG] 2024-10-10 10:50:31 [http-nio-8000-exec-2] getChatHistoryBySessionId - ==> Parameters: 57439c0e-6550-4d6c-b3a6-a848e8028259(String)
+[DEBUG] 2024-10-10 10:50:31 [http-nio-8000-exec-2] getChatHistoryBySessionId - <==      Total: 3
+[DEBUG] 2024-10-10 10:50:31 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3535c016]
+[WARN ] 2024-10-10 10:50:31 [http-nio-8000-exec-2] ChatController - [ChatDetailVO(qa_id=1513, query=아이가 폭력적이에요, answer=1. 아이가 폭력적인 행동을 보일 때는 부모로서 당황스럽고 걱정이 많으실 것 같습니다. 이러한 행동은 다양한 이유로 발생할 수 있으며, 아이의 감정 상태나 환경적 요인도 영향을 미칠 수 있습니다.
+
+2. 우선, 아이가 폭력적인 행동을 보일 때는 즉각적으로 그 행동을 멈추게 하고, 왜 그런 행동이 잘못되었는지 설명해주는 것이 중요합니다. 아이에게 폭력은 문제를 해결하는 방법이 아니라는 것을 명확히 알려주세요.
+
+3. 아이가 폭력적인 행동을 통해 무엇을 얻으려 하는지 관찰해보세요. 예를 들어, 주의를 끌기 위한 것인지, 아니면 특정한 요구를 관철시키기 위한 것인지 파악하는 것이 중요합니다.
+
+4. 아이에게 충분한 사랑과 관심을 주는 것도 중요합니다. 아이가 원하는 사랑과 관심을 표현해주고, 하루에 최소 30분은 아이와 함께 시간을 보내며 긍정적인 상호작용을 하세요.
+
+5. 일관된 규칙과 한계를 설정하는 것도 필요합니다. 아이가 어떤 행동이 허용되고 어떤 행동이 허용되지 않는지를 명확히 알 수 있도록 해주세요.
+
+6. 만약 아이가 ADHD와 같은 충동 조절의 어려움을 겪고 있다면, 전문가의 도움을 받아 지속적인 치료와 지도를 받는 것이 좋습니다.
+
+7. 부모와 아이 사이의 신뢰 관계를 회복하는 것도 중요합니다. 아이의 감정을 이해하고 공감하는 태도를 보여주며, 폭력적인 대응을 멈추고 긍정적인 행동을 강화하는 방법을 사용하세요.
+
+8. 마지막으로, 아이의 폭력적인 행동이 지속되거나 심각한 경우에는 전문가의 도움을 받아 보다 구체적인 해결책을 찾는 것이 필요할 수 있습니다., session_id=57439c0e-6550-4d6c-b3a6-a848e8028259, qa_time=2024-10-10 10:47:41.989468), ChatDetailVO(qa_id=1514, query=아이가 폭력적이에요2, answer=아이의 폭력적인 행동은 부모로서 매우 걱정스러운 상황일 수 있습니다. 이러한 행동은 다양한 원인에 의해 발생할 수 있으며, 아이의 감정 상태나 환경적 요인도 영향을 미칠 수 있습니다. 
+
+1. 아이가 폭력적인 행동을 보일 때는 즉각적으로 그 행동을 멈추게 하고, 왜 그런 행동이 잘못되었는지 설명해주는 것이 중요합니다. 아이에게 폭력은 문제를 해결하는 방법이 아니라는 것을 명확히 알려주세요.
+
+2. 아이가 폭력적인 행동을 통해 무엇을 얻으려 하는지 관찰해보세요. 예를 들어, 주의를 끌기 위한 것인지, 아니면 특정한 요구를 관철시키기 위한 것인지 파악하는 것이 중요합니다.
+
+3. 아이에게 충분한 사랑과 관심을 주는 것도 중요합니다. 아이가 원하는 사랑과 관심을 표현해주고, 하루에 최소 30분은 아이와 함께 시간을 보내며 긍정적인 상호작용을 하세요.
+
+4. 일관된 규칙과 한계를 설정하는 것도 필요합니다. 아이가 어떤 행동이 허용되고 어떤 행동이 허용되지 않는지를 명확히 알 수 있도록 해주세요.
+
+5. 만약 아이가 ADHD와 같은 충동 조절의 어려움을 겪고 있다면, 전문가의 도움을 받아 지속적인 치료와 지도를 받는 것이 좋습니다.
+
+6. 부모와 아이 사이의 신뢰 관계를 회복하는 것도 중요합니다. 아이의 감정을 이해하고 공감하는 태도를 보여주며, 폭력적인 대응을 멈추고 긍정적인 행동을 강화하는 방법을 사용하세요.
+
+7. 마지막으로, 아이의 폭력적인 행동이 지속되거나 심각한 경우에는 전문가의 도움을 받아 보다 구체적인 해결책을 찾는 것이 필요할 수 있습니다., session_id=57439c0e-6550-4d6c-b3a6-a848e8028259, qa_time=2024-10-10 10:48:11.046462), ChatDetailVO(qa_id=1515, query=아이가 폭력적이에요2, answer=아이의 폭력적인 행동은 부모로서 매우 걱정스러운 상황일 수 있습니다. 이러한 행동은 다양한 원인에 의해 발생할 수 있으며, 아이의 감정 상태나 환경적 요인도 영향을 미칠 수 있습니다.
+
+1. 아이가 폭력적인 행동을 보일 때는 즉각적으로 그 행동을 멈추게 하고, 왜 그런 행동이 잘못되었는지 설명해주는 것이 중요합니다. 아이에게 폭력은 문제를 해결하는 방법이 아니라는 것을 명확히 알려주세요.
+
+2. 아이가 폭력적인 행동을 통해 무엇을 얻으려 하는지 관찰해보세요. 예를 들어, 주의를 끌기 위한 것인지, 아니면 특정한 요구를 관철시키기 위한 것인지 파악하는 것이 중요합니다.
+
+3. 아이에게 충분한 사랑과 관심을 주는 것도 중요합니다. 아이가 원하는 사랑과 관심을 표현해주고, 하루에 최소 30분은 아이와 함께 시간을 보내며 긍정적인 상호작용을 하세요.
+
+4. 일관된 규칙과 한계를 설정하는 것도 필요합니다. 아이가 어떤 행동이 허용되고 어떤 행동이 허용되지 않는지를 명확히 알 수 있도록 해주세요.
+
+5. 만약 아이가 ADHD와 같은 충동 조절의 어려움을 겪고 있다면, 전문가의 도움을 받아 지속적인 치료와 지도를 받는 것이 좋습니다.
+
+6. 부모와 아이 사이의 신뢰 관계를 회복하는 것도 중요합니다. 아이의 감정을 이해하고 공감하는 태도를 보여주며, 폭력적인 대응을 멈추고 긍정적인 행동을 강화하는 방법을 사용하세요.
+
+7. 마지막으로, 아이의 폭력적인 행동이 지속되거나 심각한 경우에는 전문가의 도움을 받아 보다 구체적인 해결책을 찾는 것이 필요할 수 있습니다., session_id=57439c0e-6550-4d6c-b3a6-a848e8028259, qa_time=2024-10-10 10:49:45.781046)]
+[DEBUG] 2024-10-10 10:50:44 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 10:50:44 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7f5de252] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 10:50:44 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1619821932 wrapping org.postgresql.jdbc.PgConnection@350e3fb4] will not be managed by Spring
+[DEBUG] 2024-10-10 10:50:44 [http-nio-8000-exec-2] saveChatDetail - ==>  Preparing: INSERT INTO chat_detail (query, answer, qa_time, session_id) VALUES (?, ?, ?, ?) RETURNING qa_id
+[DEBUG] 2024-10-10 10:50:44 [http-nio-8000-exec-2] saveChatDetail - ==> Parameters: 아이가 폭력적이에요2(String), 아이의 폭력적인 행동은 부모로서 매우 걱정스러운 상황일 수 있습니다. 이러한 행동은 다양한 원인에 의해 발생할 수 있으며, 아이의 감정 상태나 환경적 요인도 영향을 미칠 수 있습니다.
+
+1. 아이가 폭력적인 행동을 보일 때는 즉각적으로 그 행동을 멈추게 하고, 왜 그런 행동이 잘못되었는지 설명해주는 것이 중요합니다. 아이에게 폭력은 문제를 해결하는 방법이 아니라는 것을 명확히 알려주세요.
+
+2. 아이가 폭력적인 행동을 통해 무엇을 얻으려 하는지 관찰해보세요. 예를 들어, 주의를 끌기 위한 것인지, 아니면 특정한 요구를 관철시키기 위한 것인지 파악하는 것이 중요합니다.
+
+3. 아이에게 충분한 사랑과 관심을 주는 것도 중요합니다. 아이가 원하는 사랑과 관심을 표현해주고, 하루에 최소 30분은 아이와 함께 시간을 보내며 긍정적인 상호작용을 하세요.
+
+4. 일관된 규칙과 한계를 설정하는 것도 필요합니다. 아이가 어떤 행동이 허용되고 어떤 행동이 허용되지 않는지를 명확히 알 수 있도록 해주세요.
+
+5. 만약 아이가 ADHD와 같은 충동 조절의 어려움을 겪고 있다면, 전문가의 도움을 받아 지속적인 치료와 지도를 받는 것이 좋습니다.
+
+6. 부모와 아이 사이의 신뢰 관계를 회복하는 것도 중요합니다. 아이의 감정을 이해하고 공감하는 태도를 보여주며, 폭력적인 대응을 멈추고 긍정적인 행동을 강화하는 방법을 사용하세요.
+
+7. 마지막으로, 아이의 폭력적인 행동이 지속되거나 심각한 경우에는 전문가의 도움을 받아 보다 구체적인 해결책을 찾는 것이 필요할 수 있습니다.(String), 2024-10-10 10:50:31.272247(Timestamp), 57439c0e-6550-4d6c-b3a6-a848e8028259(String)
+[DEBUG] 2024-10-10 10:50:44 [http-nio-8000-exec-2] saveChatDetail - <==    Updates: 1
+[DEBUG] 2024-10-10 10:50:44 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7f5de252]
+[WARN ] 2024-10-10 11:05:47 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=52s111ms).
+[WARN ] 2024-10-10 11:09:19 [HikariPool-1 housekeeper] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m2s570ms).
+[INFO ] 2024-10-10 11:17:27 [SpringApplicationShutdownHook] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 2024-10-10 11:17:27 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 2024-10-10 11:17:27 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
+[INFO ] 2024-10-10 11:17:29 [background-preinit] Version - HV000001: Hibernate Validator 8.0.1.Final
+[INFO ] 2024-10-10 11:17:29 [main] DemoApplication - Starting DemoApplication using Java 17.0.6 with PID 42796 (/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main started by honggeonho in /Users/honggeonho/Documents/workspace/AIOnion/Back)
+[DEBUG] 2024-10-10 11:17:29 [main] DemoApplication - Running with Spring Boot v3.3.3, Spring v6.1.12
+[INFO ] 2024-10-10 11:17:29 [main] DemoApplication - No active profile set, falling back to 1 default profile: "default"
+[DEBUG] 2024-10-10 11:17:30 [main] MybatisAutoConfiguration - Searching for mappers annotated with @Mapper
+[DEBUG] 2024-10-10 11:17:30 [main] MybatisAutoConfiguration - Using auto-configuration base package 'com.example.demo'
+[INFO ] 2024-10-10 11:17:30 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 2024-10-10 11:17:30 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 88 ms. Found 6 JPA repository interfaces.
+[DEBUG] 2024-10-10 11:17:30 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/model/intSㄹearch/SearchResultMapper.class]
+[DEBUG] 2024-10-10 11:17:30 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/chat/ChatMapper.class]
+[DEBUG] 2024-10-10 11:17:30 [main] ClassPathMapperScanner - Identified candidate component class: file [/Users/honggeonho/Documents/workspace/AIOnion/Back/build/classes/java/main/com/example/demo/service/community/CommunityMapper.class]
+[DEBUG] 2024-10-10 11:17:30 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'searchResultMapper' and 'com.example.demo.model.intSㄹearch.SearchResultMapper' mapperInterface
+[DEBUG] 2024-10-10 11:17:30 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'chatMapper' and 'com.example.demo.service.chat.ChatMapper' mapperInterface
+[DEBUG] 2024-10-10 11:17:30 [main] ClassPathMapperScanner - Creating MapperFactoryBean with name 'communityMapper' and 'com.example.demo.service.community.CommunityMapper' mapperInterface
+[INFO ] 2024-10-10 11:17:30 [main] TomcatWebServer - Tomcat initialized with port 8000 (http)
+[INFO ] 2024-10-10 11:17:30 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8000"]
+[INFO ] 2024-10-10 11:17:30 [main] StandardService - Starting service [Tomcat]
+[INFO ] 2024-10-10 11:17:30 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+[INFO ] 2024-10-10 11:17:30 [main] [/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2024-10-10 11:17:30 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 906 ms
+[INFO ] 2024-10-10 11:17:30 [main] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 2024-10-10 11:17:30 [main] Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+[INFO ] 2024-10-10 11:17:30 [main] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+[INFO ] 2024-10-10 11:17:30 [main] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+[INFO ] 2024-10-10 11:17:30 [main] HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 2024-10-10 11:17:31 [main] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@a2fb8a5
+[INFO ] 2024-10-10 11:17:31 [main] HikariDataSource - HikariPool-1 - Start completed.
+[WARN ] 2024-10-10 11:17:31 [main] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[INFO ] 2024-10-10 11:17:31 [main] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[INFO ] 2024-10-10 11:17:31 [main] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[DEBUG] 2024-10-10 11:17:32 [main] SqlSessionFactoryBean - Property 'mapperLocations' was not specified.
+[INFO ] 2024-10-10 11:17:32 [main] QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+[WARN ] 2024-10-10 11:17:32 [main] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[WARN ] 2024-10-10 11:17:32 [main] ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+[DEBUG] 2024-10-10 11:17:32 [main] MybatisAutoConfiguration - Not found configuration for registering mapper bean using @MapperScan, MapperFactoryBean and MapperScannerConfigurer.
+[INFO ] 2024-10-10 11:17:33 [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8000"]
+[INFO ] 2024-10-10 11:17:33 [main] TomcatWebServer - Tomcat started on port 8000 (http) with context path '/'
+[INFO ] 2024-10-10 11:17:33 [main] DemoApplication - Started DemoApplication in 3.627 seconds (process running for 4.157)
+[INFO ] 2024-10-10 11:18:40 [http-nio-8000-exec-2] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2024-10-10 11:18:40 [http-nio-8000-exec-2] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2024-10-10 11:18:40 [http-nio-8000-exec-2] DispatcherServlet - Completed initialization in 1 ms
+[INFO ] 2024-10-10 11:18:40 [http-nio-8000-exec-2] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
+[INFO ] 2024-10-10 11:18:40 [http-nio-8000-exec-2] ChatController - Decoded user info: {name=장혜지, id=1, email=jangheyji@gmail.com}
+[DEBUG] 2024-10-10 11:18:40 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 11:18:40 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6d0acb11] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 11:18:40 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@997162905 wrapping org.postgresql.jdbc.PgConnection@a2fb8a5] will not be managed by Spring
+[DEBUG] 2024-10-10 11:18:40 [http-nio-8000-exec-2] getChatHistoryBySessionId - ==>  Preparing: SELECT * FROM chat_detail WHERE session_id = ? ORDER BY qa_time
+[DEBUG] 2024-10-10 11:18:40 [http-nio-8000-exec-2] getChatHistoryBySessionId - ==> Parameters: 003095c4-d731-4805-977b-e5694c94c644(String)
+[DEBUG] 2024-10-10 11:18:40 [http-nio-8000-exec-2] getChatHistoryBySessionId - <==      Total: 0
+[DEBUG] 2024-10-10 11:18:40 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6d0acb11]
+[DEBUG] 2024-10-10 11:18:40 [http-nio-8000-exec-2] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 11:18:40 [http-nio-8000-exec-2] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c39865b] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 11:18:40 [http-nio-8000-exec-2] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@2050881464 wrapping org.postgresql.jdbc.PgConnection@a2fb8a5] will not be managed by Spring
+[DEBUG] 2024-10-10 11:18:40 [http-nio-8000-exec-2] saveChatRoom - ==>  Preparing: INSERT INTO chat_room (session_id, user_no, child_id) VALUES (?, ?, ?)
+[DEBUG] 2024-10-10 11:18:40 [http-nio-8000-exec-2] saveChatRoom - ==> Parameters: c82ba303-db71-44a9-bc4b-d7057d5b6df7(String), 3(Integer), 1(Integer)
+[DEBUG] 2024-10-10 11:18:40 [http-nio-8000-exec-2] saveChatRoom - <==    Updates: 1
+[DEBUG] 2024-10-10 11:18:40 [http-nio-8000-exec-2] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c39865b]
+[INFO ] 2024-10-10 11:18:58 [http-nio-8000-exec-3] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
+[INFO ] 2024-10-10 11:18:58 [http-nio-8000-exec-3] ChatController - Decoded user info: {name=장혜지, id=1, email=jangheyji@gmail.com}
+[DEBUG] 2024-10-10 11:18:58 [http-nio-8000-exec-3] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 11:18:58 [http-nio-8000-exec-3] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78f6a1fb] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 11:18:58 [http-nio-8000-exec-3] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@442212394 wrapping org.postgresql.jdbc.PgConnection@a2fb8a5] will not be managed by Spring
+[DEBUG] 2024-10-10 11:18:58 [http-nio-8000-exec-3] getFirstAnswer - ==>  Preparing: SELECT answer FROM chat_detail WHERE session_id = ? ORDER BY qa_time ASC LIMIT 1
+[DEBUG] 2024-10-10 11:18:58 [http-nio-8000-exec-3] getFirstAnswer - ==> Parameters: c82ba303-db71-44a9-bc4b-d7057d5b6df7(String)
+[DEBUG] 2024-10-10 11:18:58 [http-nio-8000-exec-3] getFirstAnswer - <==      Total: 0
+[DEBUG] 2024-10-10 11:18:58 [http-nio-8000-exec-3] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@78f6a1fb]
+[DEBUG] 2024-10-10 11:18:59 [http-nio-8000-exec-3] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 11:18:59 [http-nio-8000-exec-3] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@294982e0] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 11:18:59 [http-nio-8000-exec-3] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1907696166 wrapping org.postgresql.jdbc.PgConnection@a2fb8a5] will not be managed by Spring
+[DEBUG] 2024-10-10 11:18:59 [http-nio-8000-exec-3] saveChat - ==>  Preparing: INSERT INTO chat (session_id, summ_answer, end_time) VALUES (?, ?, ?) RETURNING chat_id
+[DEBUG] 2024-10-10 11:18:59 [http-nio-8000-exec-3] saveChat - ==> Parameters: c82ba303-db71-44a9-bc4b-d7057d5b6df7(String), 아동 폭력 문제(String), 2024-10-10 11:18:59.12268(Timestamp)
+[DEBUG] 2024-10-10 11:18:59 [http-nio-8000-exec-3] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@294982e0]
+[DEBUG] 2024-10-10 11:18:59 [http-nio-8000-exec-3] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 11:18:59 [http-nio-8000-exec-3] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6cb32687] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 11:18:59 [http-nio-8000-exec-3] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@877628709 wrapping org.postgresql.jdbc.PgConnection@a2fb8a5] will not be managed by Spring
+[DEBUG] 2024-10-10 11:18:59 [http-nio-8000-exec-3] getChatHistoryBySessionId - ==>  Preparing: SELECT * FROM chat_detail WHERE session_id = ? ORDER BY qa_time
+[DEBUG] 2024-10-10 11:18:59 [http-nio-8000-exec-3] getChatHistoryBySessionId - ==> Parameters: c82ba303-db71-44a9-bc4b-d7057d5b6df7(String)
+[DEBUG] 2024-10-10 11:18:59 [http-nio-8000-exec-3] getChatHistoryBySessionId - <==      Total: 0
+[DEBUG] 2024-10-10 11:18:59 [http-nio-8000-exec-3] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6cb32687]
+[DEBUG] 2024-10-10 11:19:13 [http-nio-8000-exec-3] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 11:19:13 [http-nio-8000-exec-3] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@c787181] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 11:19:13 [http-nio-8000-exec-3] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@790584048 wrapping org.postgresql.jdbc.PgConnection@a2fb8a5] will not be managed by Spring
+[DEBUG] 2024-10-10 11:19:13 [http-nio-8000-exec-3] saveChatDetail - ==>  Preparing: INSERT INTO chat_detail (query, answer, qa_time, session_id) VALUES (?, ?, ?, ?) RETURNING qa_id
+[DEBUG] 2024-10-10 11:19:13 [http-nio-8000-exec-3] saveChatDetail - ==> Parameters: 아이가 폭력적이에요2(String), 상황 설명: 아이가 폭력적인 행동을 보이는 것은 여러 가지 이유가 있을 수 있습니다. 아이는 자신의 감정을 효과적으로 표현하지 못하거나, 원하는 것을 얻기 위해 폭력을 사용할 수 있습니다. 또한, 부모와의 관계에서 불안정한 애착이나 일관되지 않은 훈육이 이러한 행동을 강화할 수 있습니다. 아이가 폭력적인 행동을 보일 때, 이는 단순히 나쁜 행동이 아니라 아이가 도움을 필요로 한다는 신호일 수 있습니다.
+
+솔루션:
+1. 아이의 감정을 이해하고 공감하세요. 아이가 왜 그런 행동을 보이는지 대화를 통해 알아보세요. 아이가 자신의 감정을 표현할 수 있도록 도와주는 것이 중요합니다.
+2. 폭력적인 행동은 즉각적으로 중단시키고, 왜 그런 행동이 잘못되었는지 설명해 주세요. 아이에게 폭력은 문제를 해결하는 방법이 아님을 명확히 알려주세요.
+3. 일관된 규칙과 한계를 설정하세요. 아이가 규칙을 이해하고 따를 수 있도록 일관된 훈육을 제공하는 것이 중요합니다.
+4. 긍정적인 행동을 강화하세요. 아이가 올바른 행동을 보일 때 칭찬하고, 긍정적인 피드백을 주어 그 행동이 반복되도록 유도하세요.
+5. 아이와의 신뢰 관계를 회복하세요. 아이에게 충분한 사랑과 관심을 주고, 함께 시간을 보내며 안정감을 느낄 수 있도록 하세요.
+6. 필요하다면 전문가의 도움을 받으세요. 아이의 행동이 지속되거나 심각하다면, 전문가의 상담을 통해 보다 구체적인 해결책을 찾는 것이 좋습니다.(String), 2024-10-10 11:18:59.139119(Timestamp), c82ba303-db71-44a9-bc4b-d7057d5b6df7(String)
+[DEBUG] 2024-10-10 11:19:13 [http-nio-8000-exec-3] saveChatDetail - <==    Updates: 1
+[DEBUG] 2024-10-10 11:19:13 [http-nio-8000-exec-3] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@c787181]
+[INFO ] 2024-10-10 11:19:23 [http-nio-8000-exec-4] JwtTokenProvider - eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJqYW5naGV5amlAZ21haWwuY29tIiwibmFtZSI6Iuyepe2YnOyngCIsImNyZWF0ZWRBdCI6IjIwMjQtMDktMjMgMDk6Mjg6NDIuNzY4IiwiaWF0IjoxNzI3MjU4MjE3fQ.pJIBwQ2myYWo2O_hCk-jgmiDKtgTW_1npWXmcj6zHmg
+[INFO ] 2024-10-10 11:19:23 [http-nio-8000-exec-4] ChatController - Decoded user info: {name=장혜지, id=1, email=jangheyji@gmail.com}
+[DEBUG] 2024-10-10 11:19:23 [http-nio-8000-exec-4] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 11:19:23 [http-nio-8000-exec-4] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1b0f5e8d] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 11:19:23 [http-nio-8000-exec-4] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1603527742 wrapping org.postgresql.jdbc.PgConnection@a2fb8a5] will not be managed by Spring
+[DEBUG] 2024-10-10 11:19:23 [http-nio-8000-exec-4] getFirstAnswer - ==>  Preparing: SELECT answer FROM chat_detail WHERE session_id = ? ORDER BY qa_time ASC LIMIT 1
+[DEBUG] 2024-10-10 11:19:23 [http-nio-8000-exec-4] getFirstAnswer - ==> Parameters: c82ba303-db71-44a9-bc4b-d7057d5b6df7(String)
+[DEBUG] 2024-10-10 11:19:23 [http-nio-8000-exec-4] getFirstAnswer - <==      Total: 1
+[DEBUG] 2024-10-10 11:19:23 [http-nio-8000-exec-4] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1b0f5e8d]
+[DEBUG] 2024-10-10 11:19:23 [http-nio-8000-exec-4] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 11:19:23 [http-nio-8000-exec-4] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@26d3bb9f] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 11:19:23 [http-nio-8000-exec-4] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@928153322 wrapping org.postgresql.jdbc.PgConnection@a2fb8a5] will not be managed by Spring
+[DEBUG] 2024-10-10 11:19:23 [http-nio-8000-exec-4] getChatHistoryBySessionId - ==>  Preparing: SELECT * FROM chat_detail WHERE session_id = ? ORDER BY qa_time
+[DEBUG] 2024-10-10 11:19:23 [http-nio-8000-exec-4] getChatHistoryBySessionId - ==> Parameters: c82ba303-db71-44a9-bc4b-d7057d5b6df7(String)
+[DEBUG] 2024-10-10 11:19:23 [http-nio-8000-exec-4] getChatHistoryBySessionId - <==      Total: 1
+[DEBUG] 2024-10-10 11:19:23 [http-nio-8000-exec-4] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@26d3bb9f]
+[DEBUG] 2024-10-10 11:19:41 [http-nio-8000-exec-4] SqlSessionUtils - Creating a new SqlSession
+[DEBUG] 2024-10-10 11:19:41 [http-nio-8000-exec-4] SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4ced867a] was not registered for synchronization because synchronization is not active
+[DEBUG] 2024-10-10 11:19:41 [http-nio-8000-exec-4] SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1811866134 wrapping org.postgresql.jdbc.PgConnection@a2fb8a5] will not be managed by Spring
+[DEBUG] 2024-10-10 11:19:41 [http-nio-8000-exec-4] saveChatDetail - ==>  Preparing: INSERT INTO chat_detail (query, answer, qa_time, session_id) VALUES (?, ?, ?, ?) RETURNING qa_id
+[DEBUG] 2024-10-10 11:19:41 [http-nio-8000-exec-4] saveChatDetail - ==> Parameters: 아이가 폭력적이에요3(String), 상황 설명: 아이가 폭력적인 행동을 보이는 것은 여러 가지 이유가 있을 수 있습니다. 아이는 자신의 요구가 즉시 충족되지 않으면 불안해하거나, 감정을 조절하는 능력이 부족하여 폭력적인 행동을 보일 수 있습니다. 또한, 부모와의 관계에서 충분한 사랑과 관심을 받지 못하거나, 일관된 훈육이 부족할 때 이러한 행동이 나타날 수 있습니다. 아이가 폭력적인 행동을 보일 때, 이는 단순히 나쁜 행동이 아니라 아이가 도움을 필요로 한다는 신호일 수 있습니다.
+
+솔루션:
+1. 아이의 감정을 이해하고 공감하세요. 아이가 왜 그런 행동을 보이는지 대화를 통해 알아보세요. 아이가 자신의 감정을 표현할 수 있도록 도와주는 것이 중요합니다.
+2. 폭력적인 행동은 즉각적으로 중단시키고, 왜 그런 행동이 잘못되었는지 설명해 주세요. 아이에게 폭력은 문제를 해결하는 방법이 아님을 명확히 알려주세요.
+3. 일관된 규칙과 한계를 설정하세요. 아이가 규칙을 이해하고 따를 수 있도록 일관된 훈육을 제공하는 것이 중요합니다.
+4. 긍정적인 행동을 강화하세요. 아이가 올바른 행동을 보일 때 칭찬하고, 긍정적인 피드백을 주어 그 행동이 반복되도록 유도하세요.
+5. 아이와의 신뢰 관계를 회복하세요. 아이에게 충분한 사랑과 관심을 주고, 함께 시간을 보내며 안정감을 느낄 수 있도록 하세요.
+6. 필요하다면 전문가의 도움을 받으세요. 아이의 행동이 지속되거나 심각하다면, 전문가의 상담을 통해 보다 구체적인 해결책을 찾는 것이 좋습니다.(String), 2024-10-10 11:19:23.200515(Timestamp), c82ba303-db71-44a9-bc4b-d7057d5b6df7(String)
+[DEBUG] 2024-10-10 11:19:41 [http-nio-8000-exec-4] saveChatDetail - <==    Updates: 1
+[DEBUG] 2024-10-10 11:19:41 [http-nio-8000-exec-4] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4ced867a]
