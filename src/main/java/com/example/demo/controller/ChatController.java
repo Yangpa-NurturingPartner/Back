@@ -67,6 +67,31 @@ public class ChatController {
             // 기존 대화 이력 가져오기
             List<ChatDetailVO> history = chatMapper.getChatHistoryBySessionId(sessionId);
 
+            // 대화 이력이 없는 경우에만 외부 API 호출
+            if (history == null || history.isEmpty()) {
+                // 외부 API 호출을 위한 데이터 구성
+                String embeddedUrl = "http://221.148.97.238:9400/embedded/chat/contents";
+                Map<String, Object> externalEmbeddedRequestBody = Map.of(
+                        "user_no", user,
+                        "session_id", sessionId,
+                        "query", query,
+                        "answer", "답변이 없습니다."
+                );
+
+                // 외부 서비스에 전송
+                ResponseEntity<String> embeddedResponse = sendPostRequest(embeddedUrl, externalEmbeddedRequestBody);
+
+                // 응답 처리
+                if (!embeddedResponse.getStatusCode().is2xxSuccessful()) {
+                    log.error("외부 서비스 요청 실패: {}", embeddedResponse.getBody());
+                    return ResponseEntity.status(500).body(Map.of(
+                            "status", "error",
+                            "message", "외부 서비스 요청 실패: " + embeddedResponse.getBody(),
+                            "data", null
+                    ));
+                }
+            }
+
             // history 데이터를 새로운 API에 맞게 가공
             List<Map<String, String>> messages = history.stream()
                     .flatMap(chat -> List.of(
@@ -106,32 +131,11 @@ public class ChatController {
             // 채팅 상세 저장
             chatMapper.saveChatDetail(chatDetailVO);
 
-            String embeddedUrl = "http://221.148.97.238:9400/embedded/chat/contents";
-            Map<String, Object> externalEmbeddedRequestBody = Map.of(
-                    "user_no", user,
-                    "session_id", sessionId,
-                    "query", query,
-                    "answer", answer
-            );
-
-            // 외부 서비스에 전송
-            ResponseEntity<String> embeddedResponse = sendPostRequest(embeddedUrl, externalEmbeddedRequestBody);
-
-            // 응답 처리
-            if (embeddedResponse.getStatusCode().is2xxSuccessful()) {
-                return ResponseEntity.ok(Map.of(
-                        "status", "success",
-                        "data", chatDetailVO,
-                        "message", "요청이 성공적으로 처리되었습니다."
-                ));
-            } else {
-                log.error("외부 서비스 요청 실패: {}", embeddedResponse.getBody());
-                return ResponseEntity.status(500).body(Map.of(
-                        "status", "error",
-                        "message", "외부 서비스 요청 실패: " + embeddedResponse.getBody(),
-                        "data", null
-                ));
-            }
+            return ResponseEntity.ok(Map.of(
+                    "status", "success",
+                    "data", chatDetailVO,
+                    "message", "요청이 성공적으로 처리되었습니다."
+            ));
 
         } catch (Exception e) {
             log.error("Error in yangpaChat: {}", e.getMessage(), e);
@@ -142,6 +146,7 @@ public class ChatController {
             ));
         }
     }
+
 
 
     // 채팅 종료
