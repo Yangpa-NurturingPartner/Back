@@ -79,7 +79,6 @@ public interface CommunityMapper {
             "<foreach item='item' index='index' collection='boardNos' open='(' separator=',' close=')'>" +
             "#{item}" +
             "</foreach>" +
-            "ORDER BY b.board_no DESC" +
             "</script>")
     List<CommunityBoardVO> getBoardsWithFilesByNos(@Param("boardNos") List<Integer> boardNos);
 }
