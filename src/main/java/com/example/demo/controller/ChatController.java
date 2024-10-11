@@ -148,7 +148,6 @@ public class ChatController {
     }
 
 
-
     // 채팅 종료
     @PostMapping("/end-chat")
     public ResponseEntity<Map<String, Object>> endChatSession(@RequestParam String sessionId) {
@@ -308,7 +307,7 @@ public class ChatController {
                 ));
             }
 
-            List<ChatVO> chatSummaries = chatMapper.getSummBySessionIds(sessionIds);
+            List<ChatVO> chatSummaries = chatMapper.getBySessionIds(sessionIds);
 
             return ResponseEntity.ok(Map.of(
                     "status", "success",

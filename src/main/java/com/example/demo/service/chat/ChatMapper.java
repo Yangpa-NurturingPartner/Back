@@ -50,6 +50,16 @@ public interface ChatMapper {
     })
     List<ChatVO> getSummBySessionIds(@Param("sessionIds") List<String> sessionIds);
 
+    @Select({
+            "<script>",
+            "SELECT * FROM chat WHERE session_id IN ",
+            "<foreach item='sessionId' collection='sessionIds' open='(' separator=',' close=')'>",
+            "#{sessionId}",
+            "</foreach>",
+            "</script>"
+    })
+    List<ChatVO> getBySessionIds(@Param("sessionIds") List<String> sessionIds);
+
     // 특정 user_no가 가지고 있는 채팅방 목록 불러오기
     @Select("SELECT session_id FROM chat_room WHERE user_no = #{user_no}")
     List<String> getSessionIdsByUserId(Integer user_no);

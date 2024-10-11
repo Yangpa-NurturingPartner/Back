@@ -35,7 +35,7 @@ public class IntSearchController {
     private CommunityMapper communityMapper;
 
     @Autowired
-    private com.example.demo.model.intSㄹearch.SearchResultMapper searchMapper;
+    private com.example.demo.model.intSearch.SearchResultMapper searchMapper;
 
     @Autowired
     public IntSearchController(CommunityService communityService,
