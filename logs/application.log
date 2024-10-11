@@ -471,3 +471,6 @@
 6. 필요하다면 전문가의 도움을 받으세요. 아이의 행동이 지속되거나 심각하다면, 전문가의 상담을 통해 보다 구체적인 해결책을 찾는 것이 좋습니다.(String), 2024-10-10 11:19:23.200515(Timestamp), c82ba303-db71-44a9-bc4b-d7057d5b6df7(String)
 [DEBUG] 2024-10-10 11:19:41 [http-nio-8000-exec-4] saveChatDetail - <==    Updates: 1
 [DEBUG] 2024-10-10 11:19:41 [http-nio-8000-exec-4] SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4ced867a]
+[INFO ] 2024-10-10 11:22:26 [SpringApplicationShutdownHook] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 2024-10-10 11:22:26 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 2024-10-10 11:22:26 [SpringApplicationShutdownHook] HikariDataSource - HikariPool-1 - Shutdown completed.
